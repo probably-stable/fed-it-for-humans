@@ -1,0 +1,97 @@
+import WPanel from "../components/WPanel.astro";
+import InTheField from "../components/InTheField.astro";
+
+<WPanel
+  title="STIGs and CIS Benchmarks — configuration baselines"
+  who="STIGs are published by DISA (Defense Information Systems Agency); mandatory for DoD systems and widely adopted across federal civilian agencies. CIS Benchmarks are published by the Center for Internet Security; voluntary, widely adopted across the private sector, federal civilian, and non-federal."
+  what="Per-product configuration baselines that translate abstract security control requirements into specific settings — registry keys, sysctl values, SSH config directives, audit policy entries, etc. Each baseline targets a specific product version (RHEL 9, Windows Server 2022, Cisco IOS XE, Oracle 19c, etc.). Findings are categorized by severity — CAT I (high), CAT II (medium), CAT III (low) for STIGs; Level 1 / Level 2 profiles for CIS."
+  where="At the bottom of the chain, the implementation layer. NIST 800-53 control → agency overlay → product STIG or CIS Benchmark → actual machine settings. Where the abstract finally meets the concrete."
+  why="NIST controls are deliberately product-agnostic — 'enforce password complexity' rather than 'set Windows policy to require 12 characters.' STIGs and CIS Benchmarks fill that gap by specifying, for each product, what the abstract control actually means in settings. Without them, every sysadmin would re-derive the implementation from the control language, which is both wasteful and inconsistent."
+  how="Find the right baseline for your product version, scan your system against it (DISA's SCAP Compliance Checker, CIS-CAT, OpenSCAP, others), review the findings, remediate or document why a finding doesn't apply (Not Applicable / Not a Finding). The remediated state goes into your SSP as evidence; remaining gaps go into the POA&M."
+/>
+
+## STIGs (Security Technical Implementation Guides)
+
+STIGs are DISA's product-by-product hardening checklists. Each STIG is a structured XML document (XCCDF format) covering a specific product version. The DISA STIG Library at public.cyber.mil is the canonical source.
+
+Typical STIG content per finding:
+
+- Severity (CAT I / II / III)
+- Vulnerability ID (V-####)
+- Discussion (the why)
+- Check text (how to verify the system is compliant)
+- Fix text (how to remediate)
+
+Working with STIGs in practice usually means using the DISA **STIG Viewer** to track findings, the **SCAP Compliance Checker (SCC)** or **OpenSCAP** to scan, and one of several config-management approaches (Ansible, Group Policy, DSC, manual remediation) to fix findings.
+
+STIGs are mandatory for DoD systems. Federal civilian agencies often adopt them as well — partly because they're the most prescriptive option, partly because tooling for them is mature.
+
+## CIS Benchmarks
+
+CIS Benchmarks are the Center for Internet Security's hardening references. Voluntary, free PDFs available at cisecurity.org. CIS also publishes CIS Hardened Images (pre-hardened cloud VM images) and CIS-CAT for scanning.
+
+Two profile levels per benchmark:
+
+- **Level 1** — broad applicability, minimal functionality impact, intended as a baseline most environments can adopt.
+- **Level 2** — more restrictive, accepts functionality tradeoffs in exchange for higher security.
+
+Where STIGs lean strict (DoD-origin, optimized for high-security environments), CIS leans practical — designed to be widely adoptable, with the explicit Level-1 vs Level-2 split for exactly that reason.
+
+## STIG vs CIS — when to use which
+
+Both cover similar ground for most products, with significant overlap on the specific settings recommended. Differences:
+
+- **DoD shops** — STIG, mandatory.
+- **Federal civilian shops** — historically STIG-heavy, but increasingly CIS-friendly especially for cloud workloads where CIS Hardened Images are the easier path.
+- **Private sector** — usually CIS, sometimes both.
+- **Cloud-first environments** — often CIS, because CIS publishes the pre-hardened cloud VM images.
+
+Where they diverge on a specific setting, it's usually a strictness call. STIG might require an audit setting CIS leaves to Level 2; CIS might be more pragmatic about a service config STIG insists on disabling.
+
+<InTheField>
+For non-DoD shops, the STIG-or-CIS choice isn't always settled at the agency level. Some federal civilian agencies pick STIG for traditional Linux/Windows servers but CIS for AWS/Azure/GCP workloads. Others adopt CIS across the board because Level 1 is more deployable. If you're walking into a new shop, ask which one is the canonical reference for the product you're working on. The answer changes which scanner output gets attached to your SSP.
+</InTheField>
+
+## Agency-specific implementation overlays
+
+Some agencies maintain their OWN product-level hardening guides. Not policy documents — those are agency overlays at the control layer, covered in the agency overlays chapter — these are technical implementation guides for specific products.
+
+The relationship to upstream STIGs varies. Some agencies derive their guide directly from a STIG and tailor it. Some build something parallel that satisfies the same controls a different way. Some maintain a guide that doesn't reference STIG content at all, just satisfies the agency's own baseline. Whatever the relationship, the agency's guide is what you implement against — not the STIG.
+
+Common shapes:
+
+- Agency-maintained gold images (a hardened OS image you start from)
+- Agency-specific Ansible roles, GPO templates, or DSC configurations
+- Agency-published implementation guides (PDFs, internal wikis, or living docs)
+- Agency-engineered hardening guides — sometimes STIG-derived, sometimes parallel, sometimes independent
+
+When your agency has these, they're the canonical reference for hardening — what scanners check against, what evidence the assessor expects, what your SSP cites.
+
+**Exemptions:** if you need to deviate from the agency-specific guide — to enable a feature your workflow needs, to accommodate a vendor constraint, to support a research tool that breaks under the standard config — you document the deviation. What you're not implementing, why, what compensating control you're putting in place if any. The exemption goes into your SSP and typically needs approval at the ISSO or AO level. "It was inconvenient" isn't a reason; "this scientific instrument requires a service the standard config disables, and we've isolated the host on its own VLAN with restricted access" is.
+
+Different from inherited common controls (covered in the 800-53 chapter): common controls are upstream-provided — you don't implement them yourself. Agency-specific implementation overlays still mean YOU are doing the hardening — just against the agency's specific guide rather than the generic STIG.
+
+## Finding implementations via vendor support
+
+STIGs and CIS Benchmarks aren't the only implementation references. The vendor of the product you're hardening often publishes their own security guide, and sometimes that guide is a better answer than the STIG.
+
+A few worth knowing:
+
+- **Microsoft** — Security Compliance Toolkit, Windows Security Baselines, Microsoft Defender hardening guides
+- **Red Hat** — RHEL Hardening Guide, official OpenSCAP profiles (some STIG-derived, some independent)
+- **VMware** — vSphere Security Hardening Guide
+- **Cisco** — per-product hardening guides for IOS, NX-OS, ASA, etc.
+- **Oracle** — Database Security Guide
+- **AWS / Azure / GCP** — cloud-provider security best practices and well-architected security pillars
+- **Apple** — Platform Security Guide for macOS deployments
+
+When the vendor guide is the better path:
+
+- **Newer product version not yet covered by the current STIG.** STIG publication lags releases by months sometimes. The vendor knows their own product's security model from day one.
+- **A specific feature where the vendor has a better-tested config.** STIGs are sometimes generic; vendor docs know the edge cases.
+- **An alternative implementation that satisfies the control intent without breaking functionality.** Sometimes the STIG recommendation breaks something the product depends on; the vendor knows a different way to achieve the same security outcome.
+- **The vendor's own automation is more practical.** Microsoft DSC, Red Hat Ansible roles, VMware first-party compliance tools — these integrate cleanly with the product.
+
+The catch: your assessor or 3PAO will probably still expect STIG- or CIS-aligned evidence in your SSP. You can use the vendor guide as your actual implementation reference, but you'll need to map your implementation back to the relevant STIG / CIS / 800-53 controls for the documentation. The vendor guide is how you do the work; the STIG is often the language you describe it in.
+
+Don't default to vendor guides — STIG/CIS first, vendor guide when there's a real reason. But know that the vendor option exists, and that reaching for it deliberately is a real practitioner skill.

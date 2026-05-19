@@ -1,0 +1,70 @@
+---
+/**
+ * GoodLuck — sticky-note end-of-branch wink. Each persona's last chapter ends
+ * with one. Names the harder thing the doc DOESN'T cover for that persona,
+ * wishes them luck, adds one beat of real advice.
+ *
+ * Visually distinct — sticky-note treatment, slightly off-axis. Signals
+ * "this is a wink, not formal content."
+ *
+ * Persona-scoped via data-persona-content; visibility handled by CSS rules
+ * in global.css. Tilt is disabled under prefers-reduced-motion to spare
+ * vestibular-sensitive readers.
+ */
+
+import type { Persona } from "../lib/persona";
+
+interface Props {
+  persona: Persona;
+}
+
+const { persona } = Astro.props;
+---
+
+<aside class="good-luck" data-persona-content={persona} role="note">
+  <slot />
+</aside>
+
+<style>
+  .good-luck {
+    background: var(--color-luck-bg);
+    color: var(--color-luck-fg);
+    border: 1px solid var(--color-luck-bd);
+    border-radius: var(--radius-sm);
+    padding: var(--space-6);
+    margin-block: var(--space-12);
+    max-width: 36rem;
+    margin-inline: auto;
+    box-shadow: var(--shadow-md);
+    /* slight off-axis tilt — sticky-note feel */
+    transform: rotate(-0.6deg);
+    font-family: var(--font-serif);
+    font-size: var(--fs-base);
+    line-height: 1.5;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .good-luck {
+      transform: none;
+    }
+  }
+
+  .good-luck :global(em) {
+    font-style: italic;
+    color: var(--color-luck-fg);
+    opacity: 0.85;
+  }
+
+  .good-luck :global(strong) {
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .good-luck :global(p) {
+    margin: 0 0 var(--space-2);
+  }
+
+  .good-luck :global(p:last-child) {
+    margin-bottom: 0;
+  }
+</style>

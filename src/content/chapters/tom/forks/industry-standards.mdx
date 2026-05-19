@@ -1,0 +1,39 @@
+---
+title: "Industry standards"
+order: 12
+personas: [tom]
+isFinal: true
+summary: "Your home — the entire compliance world you operate in or alongside. PCI, HIPAA, SOC 2, ISO 27001, NIST CSF, GDPR, state privacy laws. The map below covers all of it; the YouPanel narrows to a pragmatic stack for most small-to-mid private-sector orgs."
+---
+
+import IndustryStandardsCore from "@cores/industry-standards.mdx";
+
+This is the entire compliance world you operate in or alongside. None of the federal forks apply. The map below covers PCI, HIPAA, SOC 2, ISO 27001, NIST CSF, GDPR, state privacy laws, and the broader industry-framework universe. The YouPanel below narrows that map down to a pragmatic stack for most small-to-mid private-sector orgs.
+
+<IndustryStandardsCore />
+
+<YouPanel persona="tom">
+This is your home. None of the federal forks apply to you; industry standards is the entire compliance world you operate in or alongside.
+
+Whether you're the person making framework decisions for your org or just an IT person who encounters these names in audit reports, vendor questionnaires, leadership emails, security training, or a customer's procurement form — here's the shape of each one:
+
+- **PCI-DSS** — applies if anyone in your org handles payment card data. Mandatory through card-brand contracts.
+- **HIPAA** — U.S. federal law; applies if anyone handles health data as a covered entity or business associate.
+- **SOC 2 Type II** — the de facto attestation report required to sell SaaS to enterprise customers. If your company has one, it'll come up in sales cycles and customer due diligence.
+- **GDPR** — EU privacy law; applies to anyone processing EU residents' data.
+- **State privacy laws** — CCPA / CPRA, VCDPA, CPA, and others as they pass. State-level analogs to GDPR.
+- **CIS Controls** — voluntary best-practices framework, often the cheapest defensible starting point for a security program.
+- **NIST CSF** — voluntary federal-authored framework; the most common bridge between federal and non-federal security thinking.
+
+If you ARE the decider for your org's framework adoption, the pragmatic path for most small-to-mid orgs: CIS Controls IG1 as your program backbone, plus whatever industry-specific framework your sector requires, plus SOC 2 if your customers ask for it. Add ISO 27001 when you start selling internationally.
+
+**First-week move:** make a list of every framework anyone (regulator, customer, insurer, your board, a colleague's email, a vendor questionnaire) has mentioned in the last six months. That list tells you what your org cares about, even if you're not the one deciding what to do about it.
+</YouPanel>
+
+## That's the map
+
+You've walked the federal-IT compliance chain end to end and seen which parts of it reach you (mostly through vendors and references) and which don't (most of the rest). The defense contractor and classified forks are out of scope for this guide. From here, the **reference** chapters — glossary, bookshelf, about — are what you'd dip into when you need them.
+
+<GoodLuck persona="tom">
+*And if your boss just walked over and said "we need to be SOC 2 by next quarter because our biggest customer is asking"?* **GOOD LUCK.** 😂 SOC 2 isn't federal but it lives in the same control family — once you've read this doc, you'll recognize ~70% of what an auditor asks for. Pick a Type II, find an auditor who'll do guided prep, budget six months even if your boss thinks it's three.
+</GoodLuck>

@@ -1,0 +1,90 @@
+---
+title: "About this guide"
+order: 99
+personas: [sam, jordan, gary, tom, jarod]
+summary: "What this guide is, who it's for, what it isn't, and how to contribute. Includes the editorial discipline that keeps it honest."
+---
+
+## What this is
+
+A visual on-ramp to federal IT compliance. The chain from FISMA at the top to STIGs and CIS Benchmarks at the implementation layer, with the forks where the chain branches into specialized tracks (FedRAMP, industry standards, defense contractor, classified). Written for the person walking into this world cold and trying to figure out how the pieces hang together.
+
+The guide reshapes around five reader personas. Pick yours on the home page and the chapter content (especially the *You Panel* under each concept) rearranges to match your situation.
+
+## Who it's for
+
+People new to federal IT compliance who need to understand:
+
+- The chain from FISMA → OMB → NIST → agency overlays → product hardening
+- Where the chain forks (federal direct, defense contractor, classified, cloud, industry standards)
+- What "how to apply this" actually means at the implementation layer
+- The acronyms, in plain English
+
+If you've been doing federal compliance work for ten years, this guide isn't for you (you'll find it elementary). If you're walking into your first fed IT job, your first vendor security questionnaire, your first audit prep, your first compliance interview — this is the orientation read that should have existed before you needed it.
+
+## Who it's NOT for
+
+- People who need authoritative legal or compliance advice. This is an orientation guide. The official sources (linked in the [Bookshelf](/reference/bookshelf)) are the ground truth.
+- People looking for a deep CMMC / NIST 800-171 / DFARS reference. That fork is **out of scope** (see below).
+- People doing classified work. The classified fork is named for orientation but the operational reality is something the guide doesn't cover in depth.
+- People building a complete state/local government IT compliance program. State/local government compliance has its own world (CJIS, state-specific regulations) that this guide only touches lightly.
+
+## What's intentionally out of scope
+
+Two areas are explicitly out of scope for this guide:
+
+**Defense contractor (CMMC + NIST 800-171 + DFARS 252.204-7012).** A real and large slice of fed IT, but the author of this guide doesn't have direct lived experience with private-contractor CMMC environments. Writing speculatively in that area would put bad guidance under the author's name and undermine the rest of the doc. The Forks chapter names the fork for orientation and points readers at official sources; the dedicated chapter is **open for a contributor with direct experience.**
+
+**Classified work (CNSSI 1253, ICD 503, JSIG, SAP).** Same reason. Named for orientation, depth deferred until a cleared practitioner contributes. The framework names and authority are accurate; the day-to-day operational reality is something the guide doesn't try to teach.
+
+A third area worth flagging:
+
+**State / local / tribal government IT compliance.** Touched briefly (CJIS mentioned, NIST CSF discussed), but the deep state/local government compliance world has its own regimes that this guide doesn't fully cover. Future addition once the federal core is stable.
+
+## The editorial discipline
+
+A few rules drive the writing:
+
+**The question should never require the answer.** Every "first-week move" or actionable item in a *You Panel* must work *before* the reader has the chapter's vocabulary, not after. Open questions, not loaded ones. Lets the workplace conversation teach the reader in their org's actual language.
+
+**Don't invent fed-IT in-meeting dialogue or social dynamics.** If a claim about how people talk in this world isn't grounded in lived experience, it doesn't go in. Speculation about "people will say X to you" invents friction the reader won't actually encounter.
+
+**Verification practice.** Factual claims cite NIST publication numbers and section anchors where possible. Things that may have shifted since the author's knowledge cutoff (CMMC, FedRAMP, NIST 800-53 revisions) are flagged for verification rather than asserted as current.
+
+**Honest scope.** When the guide doesn't cover something well, the guide says so. The defense-contractor and classified out-of-scope notices, the state/local gap, and the FedRAMP-modernization caveat are all examples.
+
+These rules are documented in `docs/STYLE_GUIDE.md` in the project repo for any future contributor.
+
+## How to contribute
+
+The project welcomes contributions, especially in areas the current author can't write authoritatively:
+
+- **Defense contractor (CMMC / NIST 800-171 / DFARS) chapter** — open invitation for a practitioner with direct experience.
+- **Classified work** — for cleared practitioners willing to write at the level the doc allows publicly.
+- **State / local / tribal government IT compliance** — for someone working in that world.
+- **Corrections** — anything inaccurate, outdated, or misleading. Editorial pushback is welcome and expected.
+- **New personas** — if there's a reader category the current five personas don't serve well, propose one.
+
+Open issues and pull requests on the project's GitHub. The `STYLE_GUIDE.md` file in the repo describes the writing rules a contribution would need to follow.
+
+## The author
+
+Jonathan Villarreal — Linux/systems administrator with several years of federal contracting experience covering NIST 800-53, STIG hardening, and the foundation chain. Wrote this guide because it's the orientation document he wishes had existed when he was the new person trying to figure out what FISMA meant.
+
+The guide is written under a hard scope rule: don't name specific previous employers or agencies, even where the details are public knowledge. Attribution isn't the author's to make. Generic "federal contractor / civilian agency / R&D facility" framing is used throughout.
+
+## Tooling acknowledgment
+
+This guide was drafted in collaboration with an AI writing assistant. The author is the editor and reality-check; the AI handled structural and prose drafting against the editorial discipline above. Any factual errors are the author's responsibility regardless of who typed the original draft.
+
+## License
+
+License: TBD before public release. Likely MIT (for code) + CC-BY-SA (for content). Confirmed before the repository goes public.
+
+## Project status
+
+Foundation chain complete. Forks chapter complete. FedRAMP and industry standards covered in depth. Defense contractor and classified out of scope. Glossary, bookshelf, and this About page round out v1.
+
+Next pass after v1: visual/illustration work (the interactive chain map, the storybook illustrations per chapter), more You-panel polish based on reader feedback, and the contributor-driven chapters where this guide doesn't currently reach.
+
+If you've read this far and you found something useful, the project would welcome a star, an issue, or a pull request. If you found something wrong, the issue tracker is the right place.

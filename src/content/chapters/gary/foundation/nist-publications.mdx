@@ -1,0 +1,24 @@
+---
+title: "NIST publications"
+order: 3
+personas: [gary]
+summary: "The technical standards behind FedRAMP. SP 800-53 is your bible — the controls catalog FedRAMP is built directly on top of. SP 800-53A drives 3PAO assessments. SP 800-37 structures your continuous monitoring."
+---
+
+import NistPublicationsCore from "@cores/nist-publications.mdx";
+
+NIST publications are the technical foundation under your entire FedRAMP program. SP 800-53 is the controls catalog FedRAMP is built on. SP 800-53A is what your 3PAO assesses against. SP 800-37 (RMF) shapes how your continuous monitoring is structured. FIPS 199 / 200 set the impact-level vocabulary that determines your baseline. These aren't background reading for you — they're the load-bearing technical documents your compliance program operates inside of.
+
+<NistPublicationsCore />
+
+<YouPanel persona="gary">
+NIST SP 800-53 is your bible. FedRAMP is built directly on top of it — the controls in your FedRAMP baseline come straight from 800-53, organized into Low / Moderate / High / Li-SaaS impact levels via SP 800-53B.
+
+If you're going through a FedRAMP authorization, your team is essentially documenting how your service satisfies a tailored 800-53 baseline. Your 3PAO is assessing against SP 800-53A. Your continuous monitoring is structured per SP 800-37.
+
+**First-week move:** ask which FedRAMP impact level your authorization is at (Low, Moderate, High, Li-SaaS). The answer tells you which 800-53B baseline you're working against, which determines almost everything about your control posture.
+</YouPanel>
+
+## What's next
+
+The next chapter zooms into **NIST SP 800-37 (the RMF)** — the seven-step federal lifecycle. FedRAMP is essentially the RMF tailored for cloud services, with the same seven steps in a slightly different cast: 3PAO instead of agency assessor, Agency or JAB authorization paths, FedRAMP-specific continuous monitoring program.

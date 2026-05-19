@@ -1,0 +1,28 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "← fed it for humans" [ref=e3] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e4]:
+      - text: Reading as
+      - strong
+      - text: ·
+      - link "change" [ref=e5] [cursor=pointer]:
+        - /url: /
+  - main [ref=e6]:
+    - generic [ref=e7]:
+      - heading "FISMA" [level=1] [ref=e8]
+      - paragraph [ref=e9]: The federal law that requires every agency to have an information security program. The top of the chain. Everything else flows from this.
+    - article
+  - generic [ref=e12]:
+    - button "Menu" [ref=e13]:
+      - img [ref=e15]
+      - generic: Menu
+    - button "Inspect" [ref=e19]:
+      - img [ref=e21]
+      - generic: Inspect
+    - button "Audit" [ref=e23]:
+      - img [ref=e25]
+      - generic: Audit
+    - button "Settings" [ref=e28]:
+      - img [ref=e30]
+      - generic: Settings

@@ -1,0 +1,82 @@
+---
+/**
+ * PageLayout — base layout. Imports global styles + initializes persona
+ * visibility script. Wrap every page in this.
+ *
+ * The FOUC-safe persona attribute is set by an inline head script BEFORE
+ * the body renders, so persona-scoped content shows correctly on first
+ * paint. The post-load script (persona-visibility) only handles updates.
+ */
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  /* og: image — full URL, recommended 1200x630 */
+  ogImage?: string;
+  /* canonical URL of this page; falls back to Astro.url */
+  canonical?: string;
+}
+
+const {
+  title = "fed it for humans",
+  description = "A visual on-ramp to federal IT compliance — FISMA, NIST, STIGs, CIS, and the rest of the chain. Written for people coming into this world cold.",
+  ogImage,
+  canonical,
+} = Astro.props;
+
+const canonicalHref = canonical ?? Astro.url.href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalHref} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    {/* open graph + twitter card */}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalHref} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+    {/* FOUC-safe persona detection — runs synchronously before body renders */}
+    <script is:inline>
+      (function () {
+        try {
+          var raw = window.localStorage.getItem("fed-it-persona");
+          var valid = ["sam", "jordan", "gary", "tom", "jarod"];
+          var active = raw && valid.indexOf(raw) >= 0 ? raw : "none";
+          document.documentElement.setAttribute("data-active-persona", active);
+        } catch (e) {
+          document.documentElement.setAttribute("data-active-persona", "none");
+        }
+      })();
+    </script>
+
+    {/* JS-disabled fallback: show all persona variants so nothing is hidden */}
+    <noscript>
+      <style>
+        [data-persona-content] { display: revert !important; }
+      </style>
+    </noscript>
+  </head>
+  <body>
+    <slot />
+
+    <script>
+      import { initPersonaVisibility } from "../lib/persona-visibility";
+      initPersonaVisibility();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "← fed it for humans" [ref=e3] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e4]:
+      - text: Reading as
+      - strong [ref=e5]: Sam
+      - text: ·
+      - link "change" [ref=e6] [cursor=pointer]:
+        - /url: /
+  - main [ref=e7]:
+    - generic [ref=e8]:
+      - heading "Agency overlays" [level=1] [ref=e9]
+      - paragraph [ref=e10]: Where the federal-wide NIST baseline meets the agency you'd actually work for. Every agency tailors. The overlay layer is where most of the variance in fed IT compliance experience lives.
+    - article [ref=e11]:
+      - paragraph [ref=e12]:
+        - text: You don’t actually implement NIST controls. You implement your agency’s
+        - emphasis [ref=e13]: interpretation
+        - text: of NIST controls. The NIST baseline (SP 800-53 + 800-53B) is federal-government-wide; every agency adds its own overlay on top — additions, removals, modifications, and agency-specific policies. The overlay layer is the most underestimated source of variance in fed IT compliance work, and the reason “fed IT experience” can mean genuinely different things at different agencies.
+      - 'region "Frame: Agency overlays — agency-specific tailoring of the NIST baseline" [ref=e14]':
+        - heading "Agency overlays — agency-specific tailoring of the NIST baseline" [level=3] [ref=e15]
+        - generic [ref=e16]:
+          - generic [ref=e17]:
+            - term [ref=e18]: Who
+            - definition [ref=e19]: Each federal agency's CIO and CISO office owns the agency overlay. ISSOs apply it at the system level. Most agencies publish their overlay as one or more policy documents (the document type varies by agency — Instructions, Orders, Directives, Procedural Requirements, depending on the agency's own vocabulary).
+          - generic [ref=e20]:
+            - term [ref=e21]: What
+            - definition [ref=e22]: Tailored sets of controls and policies that adapt the NIST 800-53 baseline for an agency's specific missions, environments, and sectors. May add controls (overlays in the formal NIST sense), remove controls with documented justification, or modify how a control is implemented. Often packaged with agency-specific policies, instructions, and procedures.
+          - generic [ref=e23]:
+            - term [ref=e24]: Where
+            - definition [ref=e25]: Sit between NIST 800-53 (federal-government-wide) and STIGs / CIS Benchmarks (technical implementation). The overlay is what your agency's SSPs actually cite for many controls — the federal baseline gets pulled through the overlay before reaching your system.
+          - generic [ref=e26]:
+            - term [ref=e27]: Why
+            - definition [ref=e28]: One-size-fits-all federal baselines don't fit every mission. Operational systems differ from civilian-agency systems differ from classified systems differ from healthcare-oversight systems. Overlays let each agency adapt without breaking federal-wide consistency. They're the legitimate place to encode mission-specific requirements that the broad NIST catalog can't anticipate.
+          - generic [ref=e29]:
+            - term [ref=e30]: How
+            - definition [ref=e31]: Agencies publish overlay documents (some public, some internal-only). At the RMF Select step, the ISSO applies the agency overlay on top of the NIST baseline to produce the final control set for the system. The SSP documents both the federal control and the agency-specific implementation. Implementation flows down from there into product-specific STIGs / CIS Benchmarks at the technical configuration layer.
+      - heading "The major agency overlay families" [level=2] [ref=e32]
+      - paragraph [ref=e33]: A short, non-exhaustive tour of overlay families you’ll encounter or hear about. Each cabinet department has its own; the named examples below are the ones with the most public-facing documentation.
+      - list [ref=e34]:
+        - listitem [ref=e35]:
+          - paragraph [ref=e36]:
+            - strong [ref=e37]: DoD — DoDI 8500.01 (Cybersecurity) + DoDI 8510.01 (RMF for DoD IT) + DISA SRGs.
+            - text: "The DoD operates its own RMF instance with overlay layers stacked: department-wide instructions at 8500-series, RMF process at 8510, and DISA Security Requirements Guides (SRGs) as the cross-product overlay before STIGs. Individual services (Army, Navy, Air Force, Space Force) layer service-specific guidance on top."
+        - listitem [ref=e38]:
+          - paragraph [ref=e39]:
+            - strong [ref=e40]: Intelligence Community — CNSSI 1253 + ICD 503 + JSIG.
+            - text: The IC uses CNSSI 1253 (Committee on National Security Systems Instruction) for categorization of national security systems — different impact dimensions than FIPS 199. ICD 503 (Intelligence Community Directive) handles IT system security risk management. JSIG (Joint SAP Implementation Guide) covers Special Access Programs. Cleared environments only.
+        - listitem [ref=e41]:
+          - paragraph [ref=e42]:
+            - strong [ref=e43]: DOE — DOE Order 205.1 series (Department Cyber Security Program).
+            - text: Department of Energy overlay; carries additional weight where work touches nuclear-related sensitivity.
+        - listitem [ref=e44]:
+          - paragraph [ref=e45]:
+            - strong [ref=e46]: HHS — HHS Cybersecurity Program.
+            - text: Health and Human Services has its own info-sec program, on top of the HIPAA framework HHS itself maintains for the broader healthcare sector.
+        - listitem [ref=e47]:
+          - paragraph [ref=e48]:
+            - strong [ref=e49]: Other cabinet agencies (VA, State, Treasury, civilian science and research agencies, etc.)
+            - text: — every cabinet department has its own overlay. Some are well-known to specialists; most are internal documents you wouldn’t read until you worked there. The document type varies by agency — Orders, Instructions, Directives, Procedural Requirements, depending on the agency’s own conventions.
+      - paragraph [ref=e50]: "The pattern is consistent: NIST 800-53 baseline → agency overlay → system implementation. The overlay is where the agency’s mission, culture, and risk tolerance get encoded into the controls."
+      - note [ref=e51]:
+        - generic [ref=e52]:
+          - generic [ref=e53]: ⚐
+          - generic [ref=e54]: In the field
+        - paragraph [ref=e56]: Agency overlay maturity and accessibility vary widely. Some agencies have well-organized overlay catalogs you can pull up from a single internal portal — controls cross-walked to NIST, agency-specific implementation guidance attached to each, lineage clear. Others have the overlay scattered across multiple documents across multiple offices, with center-level or service-level guidance on top, and no single canonical map. If you’re walking into a new shop, ask where the agency’s overlay lives and how to read it. The answer is sometimes one URL and sometimes a Sharepoint scavenger hunt.
+      - complementary [ref=e57]:
+        - generic [ref=e58]: For you, Sam
+        - generic [ref=e59]:
+          - paragraph [ref=e60]: This is where most of your daily compliance experience actually lives. You’re not implementing “NIST controls” — you’re implementing your agency’s interpretation of NIST controls through the agency overlay. Whatever your agency’s overlay document is called (Instruction, Order, Directive, Procedural Requirements), that’s the document that shapes your day. DoDI 8510.01 + DISA SRGs if you’re DoD-side, ICD 503 if IC, your specific agency’s policy if you’re civilian.
+          - paragraph [ref=e61]: The overlay is what your SSP actually cites for most of the system-specific work. When the assessor asks “how do you satisfy AC-2 here,” the answer is usually “per agency policy section X, which interprets AC-2 as requiring Y for our system type.”
+          - paragraph [ref=e62]:
+            - strong [ref=e63]: "First-week move:"
+            - text: ask where your agency’s overlay or info-sec policy document lives, and ask for the version of it that applies to your specific system or location. Read the table of contents. You don’t need to read it cover-to-cover — you need to know the shape and where to look up specific controls when they come up.
+      - heading "What’s next" [level=2] [ref=e64]
+      - paragraph [ref=e65]:
+        - text: "The next chapter goes one layer deeper into the implementation surface:"
+        - strong [ref=e66]: STIGs and CIS Benchmarks
+        - text: . These are the configuration baselines that translate “implement AC-2” into “here are the exact RHEL 9 settings to satisfy that requirement.” Where the abstract control language finally meets the actual hardening you’d do on a system.
+    - navigation "Chapter navigation" [ref=e67]:
+      - link "← Previous NIST SP 800-53 — the controls catalog" [ref=e68] [cursor=pointer]:
+        - /url: /sam/foundation/nist-800-53
+        - generic [ref=e69]: ← Previous
+        - generic [ref=e70]: NIST SP 800-53 — the controls catalog
+      - link "Next → STIGs and CIS Benchmarks" [ref=e71] [cursor=pointer]:
+        - /url: /sam/foundation/stigs-and-cis
+        - generic [ref=e72]: Next →
+        - generic [ref=e73]: STIGs and CIS Benchmarks
+  - generic [ref=e76]:
+    - button "Menu" [ref=e77]:
+      - img [ref=e79]
+      - generic: Menu
+    - button "Inspect" [ref=e83]:
+      - img [ref=e85]
+      - generic: Inspect
+    - button "Audit" [ref=e87]:
+      - img [ref=e89]
+      - generic: Audit
+    - button "Settings" [ref=e92]:
+      - img [ref=e94]
+      - generic: Settings

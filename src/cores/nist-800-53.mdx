@@ -1,0 +1,100 @@
+import WPanel from "../components/WPanel.astro";
+import InTheField from "../components/InTheField.astro";
+
+<WPanel
+  title="NIST SP 800-53 — Security and Privacy Controls for Information Systems and Organizations"
+  who="Authored and maintained by NIST. Used by every federal agency, every federal contractor, every cloud service in FedRAMP. Currently on revision 5 (released September 2020); rev 4 documentation still exists in older programs that haven't migrated."
+  what="A catalog of security and privacy controls that organizations select from to satisfy FIPS 200's minimum security requirements. Roughly 1,000 controls (including enhancements) across 20 control families in rev 5. Each control has a code (e.g. AC-2 for Account Management), a control statement, discussion, related controls, and optional control enhancements."
+  where="Pulled from at the Select step of the RMF. Implemented at the Implement step. Assessed (per SP 800-53A) at the Assess step. Most fed IT security findings, audit results, and SSP entries trace back to specific control numbers from this catalog."
+  why="FIPS 200 says federal agencies must address 17 minimum security requirement areas. SP 800-53 is the catalog those requirements pull from — with enough specificity that an agency can pick a baseline (Low / Moderate / High) and have a defensible starting point for what to implement. Without 800-53, every agency would invent their own control language."
+  how="At the Select step, agencies pick a baseline from SP 800-53B based on the system's FIPS 199 categorization. Then they tailor the baseline (add controls, remove controls, document why). The selected controls go into the SSP. At Implement, the controls get deployed via STIGs, CIS Benchmarks, vendor configs, etc. At Assess, the SP 800-53A procedures evaluate whether each control is effective."
+/>
+
+## The 20 control families
+
+Each family has a 2-letter code. Memorizing them is unnecessary — you'll absorb them by use — but recognition helps a lot when reading SSPs and audit findings:
+
+- **AC** — Access Control
+- **AT** — Awareness and Training
+- **AU** — Audit and Accountability
+- **CA** — Assessment, Authorization, and Monitoring
+- **CM** — Configuration Management
+- **CP** — Contingency Planning
+- **IA** — Identification and Authentication
+- **IR** — Incident Response
+- **MA** — Maintenance
+- **MP** — Media Protection
+- **PE** — Physical and Environmental Protection
+- **PL** — Planning
+- **PM** — Program Management
+- **PS** — Personnel Security
+- **PT** — PII Processing and Transparency *(added in rev 5)*
+- **RA** — Risk Assessment
+- **SA** — System and Services Acquisition
+- **SC** — System and Communications Protection
+- **SI** — System and Information Integrity
+- **SR** — Supply Chain Risk Management *(added in rev 5)*
+
+FIPS 200 originally specified 17 minimum requirement areas; the 20 in 800-53 today reflect Program Management (added in rev 4) plus PII / Supply Chain (added in rev 5).
+
+## Anatomy of a control
+
+Take **AC-2 — Account Management**. Stripped to essentials, it reads roughly:
+
+> **AC-2 ACCOUNT MANAGEMENT**
+>
+> a. Define and document account types (individual, group, system, application, etc.)
+> b. Assign account managers
+> c. Require approval for account creation
+> d. Establish conditions for group/role membership
+> e. Monitor account usage
+> f. Review accounts periodically
+> g. Disable accounts when no longer needed
+>
+> *(Plus a Discussion section explaining the why, Related Controls cross-references, References to other NIST docs, and a long list of Control Enhancements like AC-2(1) for automated management, AC-2(3) for disable-when-inactive, AC-2(12) for atypical-usage monitoring, etc.)*
+
+A control isn't a recipe — it's a requirement. AC-2 says "you must manage accounts according to these principles." HOW you manage accounts is left to you (or to the STIG / CIS Benchmark / vendor guide that translates the requirement into specific configuration steps).
+
+Reading 800-53 is mostly lookup. You find the control by code, you read the control statement and discussion, you check the enhancements that apply at your baseline, and you go back to your work. End-to-end reading isn't the move. Reference reading is.
+
+## Baselines (Low, Moderate, High)
+
+SP 800-53B publishes three baselines that map the FIPS 199 categorization to which controls + enhancements apply:
+
+- **Low baseline** — roughly 100 controls. The minimum for low-impact systems.
+- **Moderate baseline** — roughly 300 controls. The most common federal baseline.
+- **High baseline** — roughly 400+ controls. National security and high-impact systems.
+
+There's also a Privacy baseline, applied alongside the security baseline when the system processes PII.
+
+Your starting point is whichever baseline matches your FIPS 199 category. Then your agency tailors — adds controls (overlays), removes controls (with documented justification), or modifies enhancements. The result is the control set that goes into your SSP.
+
+## Control inheritance: not all of those controls are yours
+
+Walking into a Moderate-baseline system and seeing ~300 controls in the SSP can feel overwhelming. The reality is more humane: a meaningful fraction of those controls are not implemented by your system at all. They're **inherited** from upstream.
+
+NIST recognizes three kinds of controls in 800-53:
+
+- **System-specific** — your system implements the control directly. You own it, you document it, you maintain it.
+- **Common** — provided by a single upstream entity (your agency, a shared service provider, a parent system) and inherited by many systems. You don't implement it; you reference where it's provided.
+- **Hybrid** — partly common, partly system-specific. AT-2 (Awareness Training) is a classic example: your agency provides the annual security awareness module everyone takes, your system provides the role-specific training for users with privileged access on top.
+
+The entity that provides a common control is called the **Common Control Provider (CCP)**. When you reference an inherited control in your SSP, you're naming that CCP.
+
+Control families that are commonly inherited at the agency level:
+
+- **PE — Physical and Environmental Protection.** Usually inherited from the data center or facility provider. You're not the one running the badge readers.
+- **PS — Personnel Security.** Inherited from agency HR processes (background checks, position categorization, separation procedures).
+- **PL — Planning.** Agency-wide information security policies typically cover most of this family.
+- **AT — Awareness and Training.** Annual agency security awareness training covers the bulk; you may add system-specific pieces.
+- **IR — Incident Response (partial).** The agency CSIRT typically owns coordination, reporting, and the major-incident response process; your system contributes detection and local response.
+
+The practical effect: your actual ownership for a Moderate-baseline system might be 100-150 controls, not 300. The rest get documented as "inherited from [CCP name]" with a pointer to where the upstream artifact lives. If your shop has a mature common-controls program, the burden on individual system owners is dramatically lower than the raw control count suggests.
+
+<InTheField>
+The maturity of common-controls programs varies wildly between agencies. Some shops have well-documented common control catalogs that make inheritance easy and obvious — you write your SSP, mark the inherited controls, and move on. Others have nothing formal, and every system owner ends up re-writing the same physical-security or personnel-security narrative from scratch because there's no agency-level artifact to inherit from. If you're walking into a new shop, ask whether the agency has a common controls catalog. The answer changes how much actual control documentation you'll be doing.
+</InTheField>
+
+<InTheField>
+**Revision 5 vs revision 4** — different shops are at different points in migrating. SP 800-53 rev 5 was released September 2020. Some agencies migrated quickly; others still have legacy programs operating against rev 4 documentation. The control codes mostly carried over but some controls were renumbered, merged, or moved between families, and the privacy controls got integrated rather than living separately. If you're walking into a new shop, ask what revision their controls program is on. If the answer is "rev 4," older program; "rev 5," current; "transitioning" or "mixed" is common.
+</InTheField>

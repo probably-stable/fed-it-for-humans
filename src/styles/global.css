@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────────────────────────────────
+   fed-it-for-humans — design tokens (v1.1)
+   Aesthetic: warm storybook / Macaulay paper-feeling. Not enterprise-blue.
+   Light + dark mode. Tokens are CSS variables so they're queryable from any
+   utility/component layer.
+   ────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* paper + ink */
+  --color-bg:        #fdf9f3;   /* warm off-white parchment */
+  --color-fg:        #252220;   /* dark warm ink */
+  --color-muted:     #5e574c;   /* dimmed ink — darkened for AA contrast on parchment */
+  --color-card:      #ffffff;   /* slightly brighter cards on the parchment */
+  --color-border:    #e8ddc8;   /* warm tan rule */
+
+  /* accents — small, intentional. Darkened from #c2410c → #9a330a for WCAG AA on parchment (~5.5:1) */
+  --color-accent:    #9a330a;   /* deep warm orange (links, the spine of the chain map) */
+  --color-accent-fg: #ffffff;
+  --color-focus-ring: #c2410c;  /* slightly brighter for focus visibility */
+
+  /* callout colors — distinct so the eye knows what kind of beat it's reading */
+  --color-field-bg: #eaf3f3;    /* "In the field" — pale teal */
+  --color-field-fg: #1f3d3d;
+  --color-field-bd: #b9d4d4;
+
+  --color-luck-bg:  #fdf3c4;    /* "GoodLuck" sticky-note — pale yellow */
+  --color-luck-fg:  #4a3f1a;
+  --color-luck-bd:  #e8d680;
+
+  /* typography */
+  --font-serif: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
+  --font-sans:  ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono:  ui-monospace, "JetBrains Mono", "Menlo", "Monaco", "Consolas", monospace;
+
+  /* type scale (modular, ratio ~1.25) */
+  --fs-xs:  0.8125rem;   /* 13 */
+  --fs-sm:  0.9375rem;   /* 15 */
+  --fs-base: 1.0625rem;  /* 17 — slightly larger body for readability */
+  --fs-md:  1.25rem;
+  --fs-lg:  1.5rem;
+  --fs-xl:  2rem;
+  --fs-2xl: 2.75rem;
+  --fs-3xl: 3.75rem;
+
+  /* spacing scale (matches Tailwind defaults) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* layout */
+  --content-max: 42rem;       /* prose column ~672px */
+  --wide-max:    72rem;       /* full-width sections (chain map etc.) */
+
+  /* shape + shadow */
+  --radius-sm: 0.25rem;
+  --radius:    0.5rem;
+  --radius-lg: 1rem;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+  --shadow:    0 2px 8px -2px rgb(0 0 0 / 0.06);
+  --shadow-md: 0 6px 24px -6px rgb(0 0 0 / 0.10);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg:        #1a1814;   /* near-black warm */
+    --color-fg:        #f5efe5;   /* warm bone */
+    --color-muted:     #b8b0a3;   /* lightened for AA contrast on dark */
+    --color-card:      #252220;
+    --color-border:    #3a342b;
+
+    --color-accent:    #fb923c;   /* softer amber in dark — less harsh than pure orange */
+    --color-accent-fg: #1a1814;
+    --color-focus-ring: #fdba74;
+
+    --color-field-bg: #1f2d2d;
+    --color-field-fg: #c8e0e0;
+    --color-field-bd: #2f4a4a;
+
+    --color-luck-bg:  #3a3018;
+    --color-luck-fg:  #f5e6a8;
+    --color-luck-bd:  #5a4a28;
+  }
+}
+
+/* ──────── base ──────── */
+
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  margin: 0;
+  min-height: 100vh;
+  font-size: var(--fs-base);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+code, pre, kbd {
+  font-family: var(--font-mono);
+}
+
+/* ──────── focus styles (AA-compliant, visible on warm palette) ──────── */
+
+:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ──────── motion ──────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ──────── persona visibility (FOUC-safe) ──────── */
+
+/* By default, hide all persona-scoped content. The head-inline script in
+   PageLayout sets [data-active-persona] on <html> BEFORE first paint. The
+   rules below show only the matching content. <noscript> fallback below
+   reverses this when JS is off so all variants remain readable. */
+
+[data-persona-content] { display: none; }
+
+[data-active-persona="sam"]    [data-persona-content="sam"],
+[data-active-persona="jordan"] [data-persona-content="jordan"],
+[data-active-persona="gary"]   [data-persona-content="gary"],
+[data-active-persona="tom"]    [data-persona-content="tom"],
+[data-active-persona="jarod"]  [data-persona-content="jarod"] {
+  display: revert;
+}
+
+[data-active-persona]:not([data-active-persona="none"]) [data-persona-content="any"] {
+  display: revert;
+}
+
+[data-active-persona="none"] [data-persona-content="none"] {
+  display: revert;
+}
+
+/* ──────── utility helpers ──────── */
+
+.prose-column {
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+.wide-column {
+  max-width: var(--wide-max);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}

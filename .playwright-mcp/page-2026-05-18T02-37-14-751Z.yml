@@ -1,0 +1,141 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "← fed it for humans" [ref=e3] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e4]:
+      - text: Reading as
+      - strong [ref=e5]: Gary
+      - text: ·
+      - link "change" [ref=e6] [cursor=pointer]:
+        - /url: /
+  - main [ref=e7]:
+    - generic [ref=e8]:
+      - heading "FedRAMP" [level=1] [ref=e9]
+      - paragraph [ref=e10]: The standardized authorization program for cloud services used by federal agencies. Built on a tailored NIST 800-53 baseline. Do-once-use-many-times by design.
+    - article [ref=e11]:
+      - paragraph [ref=e12]: If you sell a cloud service to federal agencies, FedRAMP is how that selling happens. Federal agencies can’t just procure any commercial cloud service for federal data — the service has to satisfy FISMA, and FedRAMP is the standardized mechanism that proves it does. Without FedRAMP, every agency would have to authorize every cloud service independently. With it, one authorization can be leveraged across many agencies.
+      - 'region "Frame: FedRAMP — Federal Risk and Authorization Management Program" [ref=e13]':
+        - heading "FedRAMP — Federal Risk and Authorization Management Program" [level=3] [ref=e14]
+        - generic [ref=e15]:
+          - generic [ref=e16]:
+            - term [ref=e17]: Who
+            - definition [ref=e18]: "Run by the FedRAMP Program Management Office (PMO) at GSA. Established by OMB Memorandum M-11-26 (December 2011). Governance involves the CIO Council and the Joint Authorization Board (JAB — historically the CIOs of DHS, DoD, and GSA). The actors who do the work: Cloud Service Providers (CSPs), Third-Party Assessment Organizations (3PAOs), and Authorizing Officials (AOs) at agencies."
+          - generic [ref=e19]:
+            - term [ref=e20]: What
+            - definition [ref=e21]: A standardized program for security assessment, authorization, and continuous monitoring of cloud services used by federal agencies. The CSP documents its security against a tailored NIST 800-53 baseline; an accredited 3PAO assesses; an AO authorizes. Once authorized, the service appears on the FedRAMP Marketplace and other agencies can leverage that authorization for their own use.
+          - generic [ref=e22]:
+            - term [ref=e23]: Where
+            - definition [ref=e24]: Sits as a specialized fork of the federal-direct chain. Built on top of NIST 800-53 (with FedRAMP-specific tailoring). FedRAMP-authorized services then plug into agency RMF processes — agencies layer their own overlays on top of the FedRAMP baseline when they procure.
+          - generic [ref=e25]:
+            - term [ref=e26]: Why
+            - definition [ref=e27]: "Pre-FedRAMP, every agency would have to assess and authorize every cloud service independently. That meant the same SaaS would go through dozens of redundant authorizations across the government, each costing months of CSP and agency time. FedRAMP standardizes the work — assess once, authorize once, leverage many times. The structural goal: reduce redundant compliance work without lowering the security bar."
+          - generic [ref=e28]:
+            - term [ref=e29]: How
+            - definition [ref=e30]: "CSP determines the impact level (Low / Li-SaaS / Moderate / High). Documents its SSP against the FedRAMP baseline for that level. Engages a FedRAMP-accredited 3PAO to assess. Pursues authorization via either the Agency path (a sponsoring agency's AO authorizes) or the JAB path (Joint Authorization Board issues a Provisional ATO). Once authorized, lands on the FedRAMP Marketplace. Operates a continuous monitoring program: monthly POA&M updates, vulnerability scans, annual reassessment, change management."
+      - heading "Impact levels" [level=2] [ref=e31]
+      - paragraph [ref=e32]: "FedRAMP uses four impact levels, mapped from FIPS 199 categorization with FedRAMP-specific control baselines:"
+      - list [ref=e33]:
+        - listitem [ref=e34]:
+          - strong [ref=e35]: Low
+          - text: — low-impact systems. Roughly 125 controls.
+        - listitem [ref=e36]:
+          - strong [ref=e37]: Li-SaaS
+          - text: — Low-impact SaaS. A lighter variant of Low introduced in 2017 for collaboration / productivity SaaS that doesn’t store significant federal data. Reduced control set.
+        - listitem [ref=e38]:
+          - strong [ref=e39]: Moderate
+          - text: — the most common authorization level for federal SaaS. Roughly 325 controls.
+        - listitem [ref=e40]:
+          - strong [ref=e41]: High
+          - text: — sensitive federal data. Roughly 410+ controls. Most stringent.
+      - paragraph [ref=e42]: The level you’re authorized at determines the size of your control surface and, downstream, the cost and time of your authorization and continuous monitoring effort.
+      - heading "Authorization paths" [level=2] [ref=e43]
+      - paragraph [ref=e44]: "Two paths historically existed. The landscape is in active modernization (see the In-the-field note below), but the structural distinction is worth knowing:"
+      - list [ref=e45]:
+        - listitem [ref=e46]:
+          - strong [ref=e47]: Agency ATO
+          - text: — a single sponsoring agency’s AO authorizes your cloud service for federal use. Other agencies can then leverage that authorization for their own ATOs (with their own additional overlay if they want one). This is the more common path.
+        - listitem [ref=e48]:
+          - strong [ref=e49]: JAB Provisional ATO (P-ATO)
+          - text: — the Joint Authorization Board (DHS + DoD + GSA CIOs, historically) issues a provisional authorization that any federal agency can leverage without a single sponsor. Higher bar to enter; broader reach when achieved.
+      - heading "The cast" [level=2] [ref=e50]
+      - list [ref=e51]:
+        - listitem [ref=e52]:
+          - strong [ref=e53]: CSP (Cloud Service Provider)
+          - text: — the company offering the service.
+        - listitem [ref=e54]:
+          - strong [ref=e55]: 3PAO (Third-Party Assessment Organization)
+          - text: — FedRAMP-accredited assessor. Conducts the security assessment using SP 800-53A procedures against the FedRAMP baseline.
+        - listitem [ref=e56]:
+          - strong [ref=e57]: AO (Authorizing Official)
+          - text: — at the sponsoring agency for Agency path, or on the JAB for JAB path.
+        - listitem [ref=e58]:
+          - strong [ref=e59]: FedRAMP PMO
+          - text: — the GSA team that runs the program, maintains the marketplace, manages the JAB process, accredits 3PAOs.
+        - listitem [ref=e60]:
+          - strong [ref=e61]: Federal customer agency
+          - text: — the buyer that ultimately uses (and sometimes sponsors) the authorization.
+      - heading "Continuous monitoring" [level=2] [ref=e62]
+      - paragraph [ref=e63]: "Authorization isn’t the end — it’s the start. Once authorized, a CSP runs continuous monitoring: monthly POA&M updates, vulnerability scans on a defined cadence, change management for system modifications, annual reassessment of a subset of controls, and full reassessment on a longer cycle. The 3PAO stays engaged for the ongoing assessment work. The federal customer agencies expect continuous monitoring deliverables on a regular schedule."
+      - paragraph [ref=e64]: "This is the part that surprises new CSPs the most: the cost and operational burden of FedRAMP isn’t the initial authorization. It’s the multi-year continuous monitoring obligation that follows."
+      - note [ref=e65]:
+        - generic [ref=e66]:
+          - generic [ref=e67]: ⚐
+          - generic [ref=e68]: In the field
+        - paragraph [ref=e70]: FedRAMP has been in active modernization for several years (sometimes branded “FedRAMP 20x” or under similar names depending on the cycle). The JAB P-ATO process was being restructured and partially phased out in favor of a streamlined Agency-path authorization with broader reusability. Authorization timelines that historically ran 12-24 months are explicitly being targeted for reduction. The structural shape — tailored 800-53 baseline, 3PAO assessment, AO authorization, continuous monitoring — is stable. The specific procedural state (which path is currently preferred, how much process automation has landed, what the JAB’s role is) drifts. Verify against current FedRAMP PMO guidance at fedramp.gov before relying on procedural specifics.
+      - complementary [ref=e71]:
+        - generic [ref=e72]: For you, Gary
+        - generic [ref=e73]:
+          - paragraph [ref=e74]: This IS your job. FedRAMP is the federal-side authorization that lets your service sell to federal agencies, and most of your compliance program revolves around it.
+          - paragraph [ref=e75]: "Things you’ll spend time on:"
+          - list [ref=e76]:
+            - listitem [ref=e77]:
+              - strong [ref=e78]: The SSP
+              - text: — the master document describing how your service satisfies the FedRAMP baseline. Hundreds of pages, alive document, versioned.
+            - listitem [ref=e79]:
+              - strong [ref=e80]: 3PAO engagement
+              - text: — the assessment cycle. SAP (Security Assessment Plan), assessment fieldwork, SAR (Security Assessment Report).
+            - listitem [ref=e81]:
+              - strong [ref=e82]: POA&M maintenance
+              - text: — monthly updates on findings + remediation timelines. The federal customer agencies watch this.
+            - listitem [ref=e83]:
+              - strong [ref=e84]: Continuous monitoring
+              - text: — vulnerability scans, change management, ongoing evidence collection.
+            - listitem [ref=e85]:
+              - strong [ref=e86]: Customer agency communication
+              - text: — agencies that leverage your authorization may have their own questions, additional overlay requirements, customer-specific reporting expectations.
+          - paragraph [ref=e87]: "The skill that separates good FedRAMP teams from struggling ones: knowing how to interpret a control in your specific cloud architecture without re-deriving the answer every time. Build internal control narratives that you can reuse and update; don’t write new prose for every assessment cycle."
+          - paragraph [ref=e88]:
+            - strong [ref=e89]: "First-week move:"
+            - text: ask which path your service is on (Agency or JAB), which sponsoring agency authorized you (if Agency path), what impact level your current authorization is at, and which 3PAO does your assessments. Those four facts define the scope of your federal-side compliance work.
+      - heading "What’s next" [level=2] [ref=e90]
+      - paragraph [ref=e91]:
+        - text: The next chapter covers the
+        - strong [ref=e92]: industry standards
+        - text: fork — CIS Controls, NIST CSF (the voluntary cousin to 800-53), and the industry-specific frameworks (PCI-DSS, HIPAA, SOC 2, ISO 27001). This is where Tom lives, where Jordan does most of her work, and where Gary’s internal infrastructure operates. Even Sam touches this fork indirectly through the federal references that inform private-sector security thinking.
+      - note [ref=e93]:
+        - paragraph [ref=e94]:
+          - emphasis [ref=e95]: And if your normal-tech company just landed a federal customer and you’re the one who got the email saying “we need to be FedRAMP authorized in 6 months”?
+          - strong [ref=e96]: GOOD LUCK.
+          - text: "😂 What you just read is the world your federal-customer-facing peers live in. Realistic path: 12-18 months, low-six to mid-seven figures, and a 3PAO who’ll know your codebase better than you do."
+    - navigation "Chapter navigation" [ref=e97]:
+      - link "← Previous The forks" [ref=e98] [cursor=pointer]:
+        - /url: /forks/the-forks
+        - generic [ref=e99]: ← Previous
+        - generic [ref=e100]: The forks
+      - link "Next → Industry standards" [ref=e101] [cursor=pointer]:
+        - /url: /forks/industry-standards
+        - generic [ref=e102]: Next →
+        - generic [ref=e103]: Industry standards
+  - generic [ref=e106]:
+    - button "Menu" [ref=e107]:
+      - img [ref=e109]
+      - generic: Menu
+    - button "Inspect" [ref=e113]:
+      - img [ref=e115]
+      - generic: Inspect
+    - button "Audit" [ref=e117]:
+      - img [ref=e119]
+      - generic: Audit
+    - button "Settings" [ref=e122]:
+      - img [ref=e124]
+      - generic: Settings

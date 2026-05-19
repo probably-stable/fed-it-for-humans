@@ -1,0 +1,169 @@
+---
+/**
+ * Custom 404 page. Replaces Astro's generic default with the storybook
+ * aesthetic and gives visitors who land on a broken URL a useful set of
+ * jumping-off points.
+ */
+import PageLayout from "../layouts/PageLayout.astro";
+import { getCollection } from "astro:content";
+
+const chapters = await getCollection("chapters");
+chapters.sort((a, b) => a.data.order - b.data.order);
+
+// group by directory prefix (foundation / forks / reference)
+const groups = {
+  foundation: chapters.filter((c) => c.id.startsWith("foundation/")),
+  forks: chapters.filter((c) => c.id.startsWith("forks/")),
+  reference: chapters.filter((c) => c.id.startsWith("reference/")),
+};
+---
+
+<PageLayout
+  title="Not found — fed it for humans"
+  description="The page you were looking for isn't here. The chain map is."
+>
+  <main class="prose-column">
+    <header class="hero">
+      <p class="eyebrow">404</p>
+      <h1 class="hero-title">You've wandered off the map.</h1>
+      <p class="hero-lede">
+        Either the URL is wrong, the chapter moved, or it never existed.
+        Either way, here's how to get back on the chain.
+      </p>
+      <p class="cta">
+        <a href="/">← Back to the home page</a>
+      </p>
+    </header>
+
+    <section class="chapter-index">
+      <h2 class="section-heading">Or jump straight to a chapter</h2>
+
+      <div class="group">
+        <h3 class="group-heading">Foundation chain</h3>
+        <ul>
+          {groups.foundation.map((c) => (
+            <li><a href={`/${c.id}`}>{c.data.title}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="group">
+        <h3 class="group-heading">Forks</h3>
+        <ul>
+          {groups.forks.map((c) => (
+            <li><a href={`/${c.id}`}>{c.data.title}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="group">
+        <h3 class="group-heading">Reference</h3>
+        <ul>
+          {groups.reference.map((c) => (
+            <li><a href={`/${c.id}`}>{c.data.title}</a></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  </main>
+</PageLayout>
+
+<style>
+  .hero {
+    padding-block: var(--space-24) var(--space-8);
+    text-align: center;
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: var(--fs-xs);
+    color: var(--color-accent);
+    margin: 0 0 var(--space-4);
+    font-weight: 600;
+  }
+
+  .hero-title {
+    font-size: var(--fs-2xl);
+    margin: 0 0 var(--space-4);
+    line-height: 1.1;
+  }
+
+  .hero-lede {
+    font-size: var(--fs-md);
+    color: var(--color-muted);
+    max-width: 32rem;
+    margin: 0 auto var(--space-6);
+    line-height: 1.5;
+  }
+
+  .cta {
+    margin: 0;
+  }
+
+  .cta a {
+    display: inline-block;
+    padding: var(--space-2) var(--space-4);
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .chapter-index {
+    padding-block: var(--space-12) var(--space-24);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .section-heading {
+    font-size: var(--fs-lg);
+    text-align: center;
+    margin: 0 0 var(--space-8);
+  }
+
+  .group {
+    margin-bottom: var(--space-8);
+  }
+
+  .group-heading {
+    font-size: var(--fs-md);
+    color: var(--color-accent);
+    margin: 0 0 var(--space-3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: var(--fs-xs);
+  }
+
+  .group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .group li a {
+    display: block;
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    color: var(--color-fg);
+    text-decoration: none;
+    font-family: var(--font-serif);
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .group li a:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-1px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .group li a {
+      transition: none;
+    }
+    .group li a:hover {
+      transform: none;
+    }
+  }
+</style>

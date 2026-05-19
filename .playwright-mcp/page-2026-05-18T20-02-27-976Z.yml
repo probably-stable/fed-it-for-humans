@@ -1,0 +1,129 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "← fed it for humans" [ref=e3] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e4]:
+      - text: Reading as
+      - strong [ref=e5]: Jordan
+      - text: ·
+      - link "change" [ref=e6] [cursor=pointer]:
+        - /url: /
+  - main [ref=e7]:
+    - generic [ref=e8]:
+      - heading "The forks" [level=1] [ref=e9]
+      - paragraph [ref=e10]: Where the federal-IT chain branches into specialized tracks. Most healthcare work is on the industry-standards fork by default — but specific systems can sit on federal-direct or FedRAMP forks depending on what data they handle.
+    - article [ref=e11]:
+      - paragraph [ref=e12]: "The foundation chapters walked the federal-wide chain. That spine is the same for everyone in federal IT — but the chain forks at the bottom. Different work environments add different specialized tracks: defense contractor (CMMC + 800-171), classified, cloud (FedRAMP), industry standards. Healthcare lives mainly on the industry-standards fork, but parts of a hospital can touch other forks. Knowing which fork (or forks) you’re on tells you which of the next chapters you actually need."
+      - 'region "Frame: The forks — specialized tracks branching off the foundation chain" [ref=e13]':
+        - heading "The forks — specialized tracks branching off the foundation chain" [level=3] [ref=e14]
+        - generic [ref=e15]:
+          - generic [ref=e16]:
+            - term [ref=e17]: Who
+            - definition [ref=e18]: Each fork has its own owners. CMMC and DFARS clauses are owned by DoD's Cyber Accreditation Body and contracting officers. FedRAMP is owned by the FedRAMP PMO at GSA. Classified overlays are owned by CNSS / IC. Industry-standard frameworks have their own bodies (CIS, NIST CSF authors, PCI Council, HITRUST Alliance, ISO, etc.).
+          - generic [ref=e19]:
+            - term [ref=e20]: What
+            - definition [ref=e21]: Specialized compliance tracks that apply on top of (or in parallel to) the federal-wide foundation chain. Each fork addresses a specific kind of work — handling controlled defense data in non-federal environments, handling classified information, providing cloud services to federal agencies, or doing security work outside the federal contract universe entirely.
+          - generic [ref=e22]:
+            - term [ref=e23]: Where
+            - definition [ref=e24]: Branching off the foundation chain at the agency-overlay or implementation layer. Some forks (CMMC + 800-171, FedRAMP) are direct overlays of NIST controls. Some (classified) add entire additional control families. Some (industry standards) replace federal frameworks with industry-specific ones.
+          - generic [ref=e25]:
+            - term [ref=e26]: Why
+            - definition [ref=e27]: Federal IT isn't monolithic. Defense contractors handle Controlled Unclassified Information (CUI) in their own environments that needs protection beyond what civilian baselines cover. Cloud services need a standardized way to sell to many agencies without re-authorizing for each. Classified work has irreducible additional protection requirements. Private-sector work has its own pressures (PCI, HIPAA, SOC 2) that the federal frameworks don't address. Forks let each context have rules that fit.
+          - generic [ref=e28]:
+            - term [ref=e29]: How
+            - definition [ref=e30]: Identify which fork(s) your work is on (often more than one). Read the dedicated chapter for each (where one exists in this guide). Map your system's compliance posture across all applicable forks. Document how you satisfy each in your SSP or equivalent.
+      - heading "The five forks" [level=2] [ref=e31]
+      - paragraph [ref=e32]: A short orientation. Each fork is named below with what it actually covers; the dedicated chapters that follow go deeper on the ones this guide covers.
+      - list [ref=e33]:
+        - listitem [ref=e34]:
+          - paragraph [ref=e35]:
+            - strong [ref=e36]: Federal direct
+            - text: — the foundation chain by itself. You work for or with a federal agency (civilian or DoD) on federal information systems, and the chain we just walked is your whole picture. No additional fork; this is the baseline. Covered in the foundation set.
+        - listitem [ref=e37]:
+          - paragraph [ref=e38]:
+            - strong [ref=e39]: Defense contractor (CMMC + 800-171 + DFARS)
+            - text: —
+            - strong [ref=e40]: out of scope for this guide.
+            - text: If you handle Controlled Unclassified Information for the DoD or its supply chain
+            - emphasis [ref=e41]: in your own (non-federal) environment
+            - text: ", you’re on this fork — CMMC certification, NIST SP 800-171, DFARS clause 252.204-7012, and a program landscape that’s been actively reshaping for years. The author of this guide doesn’t have direct lived experience with this fork and won’t write speculatively about it. If you’re on it, the official sources (the CMMC Accreditation Body, DoD CIO, NIST 800-171 itself) and practitioners who do this work day-to-day are where to go."
+            - emphasis [ref=e42]: "Open invitation: if a contributor with direct CMMC / 800-171 / DFARS experience wants to write this chapter, the project would welcome it."
+        - listitem [ref=e43]:
+          - paragraph [ref=e44]:
+            - strong [ref=e45]: Classified
+            - text: — additional overlay layers on top of NIST baselines. CNSSI 1253 for categorization (different impact dimensions than FIPS 199), ICD 503 for IC IT system risk management, JSIG for Special Access Programs. Cleared environments only. Named here for orientation; depth coverage is limited in this guide because the operational reality of cleared work is something the author hasn’t lived. The framework names and authority are accurate; the day-to-day shape is best learned from people who do it.
+        - listitem [ref=e46]:
+          - paragraph [ref=e47]:
+            - strong [ref=e48]: Cloud services (FedRAMP)
+            - text: — Federal Risk and Authorization Management Program. A standardized way for cloud services to be authorized once and reused across federal agencies. Built on a tailored NIST 800-53 baseline, assessed by FedRAMP-accredited 3PAOs, authorized by either Agency AOs or the JAB. If you provide a cloud service to federal customers, this is your fork. Dedicated chapter forthcoming.
+        - listitem [ref=e49]:
+          - paragraph [ref=e50]:
+            - strong [ref=e51]: Industry standards
+            - text: — CIS Controls + NIST CSF + industry-specific (PCI-DSS for payments, HIPAA + HITRUST for healthcare, SOC 2 / ISO 27001 for service providers, GDPR / state privacy laws for data handlers). Not governed by federal compliance regimes; runs alongside. Many private-sector orgs voluntarily adopt federal frameworks (NIST CSF most commonly) without being required to. Dedicated chapter forthcoming.
+      - heading "How to know which fork(s) apply to you" [level=2] [ref=e52]
+      - paragraph [ref=e53]: "Some quick triage questions:"
+      - list [ref=e54]:
+        - listitem [ref=e55]:
+          - strong [ref=e56]: Do you have a federal contract?
+          - text: If yes, you’re on the federal direct fork at minimum. If the contract involves cloud services, add FedRAMP. If the work touches classified information, add the classified fork.
+        - listitem [ref=e57]:
+          - strong [ref=e58]: Is the data classified?
+          - text: If yes, the classified fork applies regardless of what other forks are also in play.
+        - listitem [ref=e59]:
+          - strong [ref=e60]: Do you handle CUI for DoD in your own (non-federal) environment?
+          - text: If yes, defense contractor fork (CMMC + 800-171 + DFARS) — out of scope for this guide; see official CMMC / NIST / DoD CIO references.
+        - listitem [ref=e61]:
+          - strong [ref=e62]: Are you a cloud service used by federal agencies?
+          - text: If yes, FedRAMP fork.
+        - listitem [ref=e63]:
+          - strong [ref=e64]: Are you in the private sector with no federal contracts?
+          - text: Industry standards fork. Industry-specific within that (PCI, HIPAA, SOC 2, etc.) depending on what you handle.
+      - paragraph [ref=e65]: "A single system frequently lands on multiple forks at once. A defense contractor running a cloud service handling CUI is on three forks: federal direct (baseline), defense contractor (CMMC, out of scope here), and FedRAMP (cloud). All three apply; all three need to be satisfied; only some are covered in this guide."
+      - note [ref=e66]:
+        - generic [ref=e67]:
+          - generic [ref=e68]: ⚐
+          - generic [ref=e69]: In the field
+        - paragraph [ref=e71]: The fork landscape is not static. CMMC’s program rules have been actively reshaping over the last few years — assessment cadence, third-party assessor accreditation, what level of CMMC applies to which contract type, and the timeline for full rollout have all moved more than once. FedRAMP is in its own modernization push (the FedRAMP authorization process has been re-architected to shorten timelines and reduce cost). Whatever any chapter or guide says about the specific procedural state of a fork, verify against the current program documentation before relying on it. The structural shape stays stable; the specifics drift.
+      - complementary [ref=e72]:
+        - generic [ref=e73]: For you, Jordan
+        - generic [ref=e74]:
+          - paragraph [ref=e75]:
+            - text: You’re on the
+            - strong [ref=e76]: industry standards
+            - text: fork by default — HIPAA is your primary regime, with NIST CSF as a common voluntary adjunct.
+          - paragraph [ref=e77]:
+            - text: You may touch the
+            - strong [ref=e78]: federal direct
+            - text: fork on specific systems if your hospital handles federal data flows (Medicare, federally funded research, VA partnerships). You may touch
+            - strong [ref=e79]: FedRAMP
+            - text: indirectly if you use cloud services that have FedRAMP authorizations — though for healthcare-only data, HIPAA-aligned alternatives like HITRUST-certified services are often the pragmatic path.
+          - paragraph [ref=e80]:
+            - strong [ref=e81]: "First-week move:"
+            - text: ask whether any of your hospital’s systems carry federal-side compliance obligations on top of HIPAA. The answer tells you whether you have one fork to manage or several.
+      - heading "What’s next" [level=2] [ref=e82]
+      - paragraph [ref=e83]:
+        - text: The next chapter covers the
+        - strong [ref=e84]: FedRAMP fork
+        - text: "in depth: how cloud services get authorized for federal use, the role of 3PAOs, the FedRAMP impact levels, and what continuous monitoring looks like. For healthcare it’s mostly indirect — relevant where your hospital uses cloud services that touch federal data flows or where you’re moving to a “GovCloud”-style environment."
+    - navigation "Chapter navigation" [ref=e85]:
+      - link "← Previous STIGs and CIS Benchmarks" [ref=e86] [cursor=pointer]:
+        - /url: /jordan/foundation/stigs-and-cis
+        - generic [ref=e87]: ← Previous
+        - generic [ref=e88]: STIGs and CIS Benchmarks
+      - link "Next → FedRAMP" [ref=e89] [cursor=pointer]:
+        - /url: /jordan/forks/fedramp
+        - generic [ref=e90]: Next →
+        - generic [ref=e91]: FedRAMP
+  - generic [ref=e94]:
+    - button "Menu" [ref=e95]:
+      - img [ref=e97]
+      - generic: Menu
+    - button "Inspect" [ref=e101]:
+      - img [ref=e103]
+      - generic: Inspect
+    - button "Audit" [ref=e105]:
+      - img [ref=e107]
+      - generic: Audit
+    - button "Settings" [ref=e110]:
+      - img [ref=e112]
+      - generic: Settings

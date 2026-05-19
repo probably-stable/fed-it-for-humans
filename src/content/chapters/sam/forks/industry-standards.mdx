@@ -1,0 +1,37 @@
+---
+title: "Industry standards"
+order: 12
+personas: [sam]
+isFinal: true
+summary: "The frameworks most people in tech already know — SOC 2, ISO 27001, PCI, HIPAA, NIST CSF, GDPR. Names you've probably heard through work, study, security cert prep, or breach coverage. Most of it traces back to federal thinking; almost nobody sees that."
+---
+
+import IndustryStandardsCore from "@cores/industry-standards.mdx";
+
+For most people in tech, this is the world. SOC 2 reports. ISO 27001 certification. PCI-DSS audits. HIPAA. NIST CSF. GDPR and the state privacy laws. Most people in tech have at least heard of these — through work, through studying for a security certification, through a degree program, through cybersecurity media, through a friend in the field, through breach coverage in the news. They're the recognizable names, even if you've never directly worked under any of them.
+
+What's less obvious — and what makes this chapter worth reading even if the names are familiar — is that most of these frameworks trace back to federal thinking. NIST CSF *is* federal (NIST is U.S. Department of Commerce). SOC 2's control concepts overlap heavily with NIST 800-53. ISO 27001 cross-references NIST work. HIPAA is federal law. Most of the industry standards were shaped by federal-side groundwork that came first; the industry-side branding came after.
+
+For most people, NIST is the closest they ever get to the federal compliance regime, and they encounter it through CSF rather than 800-53 / RMF / ATO. The deeper federal mechanics covered in the foundation chapters are an edge case from the typical tech worker's perspective — even though, structurally, the foundation is what these industry standards were built on.
+
+This chapter walks the industry-standard frameworks and notes where each connects back to federal origin.
+
+<IndustryStandardsCore />
+
+<YouPanel persona="sam">
+You probably don't work in industry standards directly. But the frameworks here are referenced in the federal world more than you might expect.
+
+NIST CSF gets cross-walked to 800-53 in many agency documentation efforts. CIS Benchmarks (which we covered earlier) come from the same org as CIS Controls and feed into federal hardening practice. SOC 2 and ISO 27001 show up in federal procurement evaluations of vendors. The federal world doesn't *require* these frameworks but does reference them.
+
+If you ever leave fed work for industry, this is the world you'd be entering — your NIST 800-53 fluency translates more cleanly to NIST CSF and SOC 2 than to anything else in industry security.
+
+**First-week move:** none specifically, but if your agency procures from private vendors, ask whether SOC 2 or ISO 27001 reports get reviewed as part of the procurement. The answer tells you whether industry-standard artifacts are part of your shop's vendor evaluation process.
+</YouPanel>
+
+## That's the map
+
+You've walked the federal-IT compliance chain end to end. The defense contractor and classified forks are out of scope for this guide. From here, the **reference** chapters — glossary for fast acronym lookup, bookshelf for the official sources for each major framework, and about for what this guide is — are what you'd dip into when you need them.
+
+<GoodLuck persona="sam">
+*And if you're reading this thinking "hmm, the SOC 2 / ISO 27001 / industry-standards world looks easier than federal"?* **GOOD LUCK.** 😂 Kidding — sort of. Easier in some ways (faster pace, often better pay at senior levels), harder in others (less mission context, more business pressure, different vocabulary to relearn). Your NIST 800-53 fluency translates more cleanly to NIST CSF and SOC 2 than to almost anything else in industry security, so the door's open if you want it. But it's a real career change, not a free upgrade.
+</GoodLuck>

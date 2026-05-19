@@ -1,0 +1,24 @@
+---
+title: "STIGs and CIS Benchmarks"
+order: 7
+personas: [jordan]
+summary: "Configuration baselines that translate abstract NIST controls into specific product settings. STIGs are federal-side; CIS Benchmarks are voluntary and widely adopted in healthcare hardening. For medical devices, SP 800-82 is the more relevant reference."
+---
+
+import StigsAndCisCore from "@cores/stigs-and-cis.mdx";
+
+This is where abstract control language meets specific machine settings. NIST 800-53 says "manage accounts." STIGs and CIS Benchmarks say "set `MaxAuthTries 4` in `/etc/ssh/sshd_config`." STIGs are DISA's federal-side checklists (mandatory for DoD); CIS Benchmarks are voluntary and widely adopted across healthcare for general server hardening. For your medical-device fleet specifically, the FDA's pre-market guidance and NIST SP 800-82 (OT security) tend to matter more than either.
+
+<StigsAndCisCore />
+
+<YouPanel persona="jordan">
+Healthcare doesn't formally use STIGs unless you're touching federal data flows. CIS Benchmarks are more relevant — voluntary, designed for general IT, widely adopted in healthcare for general server hardening.
+
+For medical devices specifically, the FDA's pre-market guidance for medical-device cybersecurity is the more relevant document, and it references SP 800-82 (the OT security guide) more than STIGs.
+
+**First-week move:** ask whether your hospital does formal configuration hardening against CIS Benchmarks or another framework, and how the results get reported. The answer tells you whether you have a structured hardening program or an ad-hoc one.
+</YouPanel>
+
+## What's next
+
+The next chapter walks the **forks in the chain** — where the federal-wide path diverges into specialized tracks: defense contractor, classified, cloud (FedRAMP), industry standards. Most healthcare work sits on the industry-standards fork; specific systems can sit on others depending on what data they handle.

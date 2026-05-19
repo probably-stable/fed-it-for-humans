@@ -1,0 +1,70 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "← fed it for humans" [ref=e3] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e4]:
+      - text: Reading as
+      - strong [ref=e5]: Sam
+      - text: ·
+      - link "change" [ref=e6] [cursor=pointer]:
+        - /url: /
+  - main [ref=e7]:
+    - generic [ref=e8]:
+      - heading "OMB Circular A-130" [level=1] [ref=e9]
+      - paragraph [ref=e10]: OMB's policy directive that operationalizes FISMA. The bridge between the law and NIST. Where 'manage information as a strategic resource' became federal practice.
+    - article [ref=e11]:
+      - paragraph [ref=e12]: If FISMA is the constitution, A-130 is the bylaws. FISMA says federal agencies must have an information security program; A-130 tells them what kind, with what cadence, covering what — and points them at NIST for the technical specifics. It’s Office of Management and Budget (OMB) policy, not law, but for federal agencies the distinction is academic. A-130 is binding.
+      - 'region "Frame: OMB Circular A-130 — Managing Information as a Strategic Resource" [ref=e13]':
+        - heading "OMB Circular A-130 — Managing Information as a Strategic Resource" [level=3] [ref=e14]
+        - generic [ref=e15]:
+          - generic [ref=e16]:
+            - term [ref=e17]: Who
+            - definition [ref=e18]: Authored and maintained by the Office of Management and Budget (OMB), part of the Executive Office of the President. Applies to all federal executive-branch agencies. Implementation is the agency CIO's responsibility; OMB reviews compliance via the annual FISMA reporting cycle and the budget process.
+          - generic [ref=e19]:
+            - term [ref=e20]: What
+            - definition [ref=e21]: "A federal policy directive — a Circular, in OMB's vocabulary — most recently revised July 2016. Operationalizes FISMA into specific federal-agency obligations covering information security, privacy, IT investment management, and information lifecycle. Two main appendices carry most of the load: Appendix I (security and privacy framework), Appendix II (PII management). Privacy used to live in a separate Appendix III; the 2016 revision folded it into Appendix II."
+          - generic [ref=e22]:
+            - term [ref=e23]: Where
+            - definition [ref=e24]: Sits one level below FISMA in the chain. FISMA → A-130 → NIST publications → agency overlays → STIGs and CIS Benchmarks at the technical layer. A-130 is the bridge. It's where the high-level statutory requirement of FISMA gets translated into federal-agency policy obligations.
+          - generic [ref=e25]:
+            - term [ref=e26]: Why
+            - definition [ref=e27]: FISMA is broad. 'Agencies shall implement an information security program' doesn't tell anyone what the program looks like, what it must include, or how it gets reviewed. A-130 fills in those details. It's also where the federal government codified 'treat information as a strategic resource' — a framing that's now standard but was novel in earlier revisions.
+          - generic [ref=e28]:
+            - term [ref=e29]: How
+            - definition [ref=e30]: A-130 itself doesn't do technical hardening — it explicitly delegates that to NIST. The Circular instructs agencies to implement security and privacy programs in accordance with NIST standards and guidelines. The actual 'how' lives downstream in NIST 800-53 (the controls catalog), the FIPS standards, and from there into STIGs and CIS Benchmarks at the configuration layer.
+      - paragraph [ref=e31]: A-130 is one of those documents that’s important precisely because it’s invisible. It governs almost everything about federal information security policy, but most people who do federal IT work for years never read it. They read the agency policies that derive from it. Knowing A-130 exists, and that it’s the source for those agency policies, is the useful piece. The text itself is government writing — fine if you ever need to look something up; a slog to read end-to-end.
+      - complementary [ref=e32]:
+        - generic [ref=e33]: For you, Sam
+        - generic [ref=e34]:
+          - paragraph [ref=e35]: You probably won’t read A-130. What you’ll see is your agency’s internal policy that derives from it — that’s what your SSP will cite, what your ISSO will reference, what your training will refer to. A-130 itself stays in the background.
+          - paragraph [ref=e36]: The piece of A-130 that may reach you most directly is the annual FISMA reporting cycle. A-130 specifies what kinds of reports federal agencies must produce, on what cadence, covering what. If your team owns any system, you’ll likely be asked for inputs to those reports.
+          - paragraph [ref=e37]:
+            - strong [ref=e38]: "First-week move:"
+            - text: ask what your agency’s “policy” document is for information security. Whatever it’s called, it’s A-130 translated into your agency’s voice — and that’s the document you’ll actually use.
+      - heading "What’s next" [level=2] [ref=e39]
+      - paragraph [ref=e40]:
+        - text: The next link in the chain is
+        - strong [ref=e41]: NIST publications
+        - text: "— the technical standards and guidelines that A-130 mandates federal agencies use. Two flavors: FIPS standards (mandatory) and SP 800 series (the catalog). We’ll cover what these are, how they relate, and the few you’ll actually encounter."
+    - navigation "Chapter navigation" [ref=e42]:
+      - link "← Previous FISMA" [ref=e43] [cursor=pointer]:
+        - /url: /sam/foundation/fisma
+        - generic [ref=e44]: ← Previous
+        - generic [ref=e45]: FISMA
+      - link "Next → NIST publications" [ref=e46] [cursor=pointer]:
+        - /url: /sam/foundation/nist-publications
+        - generic [ref=e47]: Next →
+        - generic [ref=e48]: NIST publications
+  - generic [ref=e51]:
+    - button "Menu" [ref=e52]:
+      - img [ref=e54]
+      - generic: Menu
+    - button "Inspect" [ref=e58]:
+      - img [ref=e60]
+      - generic: Inspect
+    - button "Audit" [ref=e62]:
+      - img [ref=e64]
+      - generic: Audit
+    - button "Settings" [ref=e67]:
+      - img [ref=e69]
+      - generic: Settings

@@ -1,0 +1,31 @@
+---
+title: "Agency overlays"
+order: 6
+personas: [jarod]
+summary: "Why 'fed IT experience' at one agency doesn't translate cleanly to another. Knowing the major overlay families (DoD, IC, DOE, civilian) helps you match job postings to the world you'd actually enter."
+---
+
+import AgencyOverlaysCore from "@cores/agency-overlays.mdx";
+
+This is the chapter that explains why "fed IT experience" can mean genuinely different things at different agencies. Every agency overlays NIST 800-53 with its own additions, removals, and policies. The overlay is where most of the day-to-day variance lives. For you, knowing the major overlay families helps you read job postings: when a posting cites "DoDI 8510.01" you know it's DoD; "ICD 503" tells you Intelligence Community; "DOE Order 205.1" tells you Energy; agency-specific civilian policies tell you which civilian agency.
+
+<AgencyOverlaysCore />
+
+<YouPanel persona="jarod">
+Agency overlays are why "fed IT experience" at one agency doesn't translate cleanly to another. Five years at one agency doesn't automatically translate to readiness at another — the mission, the overlay, the culture, the vocabulary all shift.
+
+Knowing the major overlay families and their vocabulary is useful for matching job postings to your interest:
+
+- DoD → DoDI 8500.01, 8510.01, DISA SRGs / STIGs
+- Intelligence Community → CNSSI 1253, ICD 503, JSIG (cleared)
+- DOE → DOE Order 205.1 series
+- HHS, VA, State, Treasury, and other civilian agencies → each has its own (the document type varies by agency)
+
+When you see a job posting cite an agency overlay, that tells you what world you'd be entering.
+
+**First study move:** pick one agency that interests you and search for its info-sec policy or overlay document. Many agencies publish their high-level info-sec policy publicly (DoD's instructions are a good searchable starting point). Read the table of contents to get the shape.
+</YouPanel>
+
+## What's next
+
+The next chapter goes one layer deeper into the implementation surface: **STIGs and CIS Benchmarks**. "STIG experience" appears in basically every fed sysadmin job posting; CIS shows up too, especially for cloud roles. You don't need to memorize either — you need to know what they are and which one each persona uses.

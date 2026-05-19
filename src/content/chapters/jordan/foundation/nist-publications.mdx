@@ -1,0 +1,28 @@
+---
+title: "NIST publications"
+order: 3
+personas: [jordan]
+summary: "The technical standards A-130 mandates federal agencies use. A few leak meaningfully into healthcare — NIST CSF as a voluntary framework, SP 800-82 for medical devices, occasionally SP 800-53 as HHS OCR's reasonableness reference."
+---
+
+import NistPublicationsCore from "@cores/nist-publications.mdx";
+
+NIST publishes the technical standards and guidelines federal agencies use. Most of them don't apply to your hospital. A few do leak into healthcare practice — and a couple matter enough that knowing what they are saves you time. The map below covers the federal-side structure; the YouPanel zooms in on which pieces actually reach healthcare.
+
+<NistPublicationsCore />
+
+<YouPanel persona="jordan">
+Two NIST publications matter to you — neither is required, both get used.
+
+**NIST CSF** (Cybersecurity Framework) is the more accessible of the two. Voluntary, widely adopted in healthcare, easier to start with than the federal control catalog. Your cybersecurity insurance probably references it. Your hospital's security program may map to it.
+
+**NIST SP 800-53** sometimes shows up in healthcare audit findings even though HIPAA doesn't require it. The HHS Office for Civil Rights uses it as a reference for what "reasonable and appropriate" cybersecurity looks like.
+
+**First-week move:** ask whether your hospital's security program maps to NIST CSF. The answer tells you what shared vocabulary to expect when you talk to auditors and insurers.
+
+One more worth flagging: **SP 800-82 (OT security)**. Medical devices are operational technology — the FDA's pre-market guidance for medical-device cybersecurity references NIST 800-82's framework. If you have any responsibility for connected medical devices (infusion pumps, imaging gear, patient monitors), this is the publication that shapes what "good" looks like.
+</YouPanel>
+
+## What's next
+
+The next chapter goes one level deeper into the most-cited publication of the bunch: **NIST SP 800-37, the Risk Management Framework (RMF)**. Healthcare doesn't run RMF formally — but its shape is recognizable in HIPAA Security Rule, and worth knowing if any of your hospital's systems touch federal data flows.

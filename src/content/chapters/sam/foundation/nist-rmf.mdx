@@ -1,0 +1,24 @@
+---
+title: "NIST RMF (SP 800-37)"
+order: 4
+personas: [sam]
+summary: "The 7-step lifecycle every federal information system goes through to be authorized and continuously monitored. The practical center of federal IT compliance work."
+---
+
+import NistRmfCore from "@cores/nist-rmf.mdx";
+
+If you take a job in federal IT, you will spend most of your career somewhere inside the RMF. It's the lifecycle that takes a system from "we want to build this" to "this system is authorized to operate" to "we're monitoring it forever." Every artifact you'll touch — the SSP, the POA&M, the security categorization, the controls assessment, the ATO letter — is produced during one of the seven steps below.
+
+<NistRmfCore />
+
+<YouPanel persona="sam">
+This is your job. Whatever you do day-to-day in fed IT, it lives somewhere in this seven-step loop. You'll spend most of your time in **Implement** (configuring systems, applying STIGs, fixing scan findings) and **Monitor** (continuous scans, change management, POA&M maintenance). The assessors come around periodically. The AO signs once every 1-3 years. Everything else is you and your team executing.
+
+The artifact you'll spend the most time inside is the **SSP**. That's the master document that describes your system and how it satisfies each control. When something changes — a config update, a new component, a finding — the SSP needs to reflect it.
+
+**First-week move:** ask where your system's SSP lives and ask to read it. Reading one full SSP teaches you more about how RMF works in practice than any chapter on RMF can.
+</YouPanel>
+
+## What's next
+
+The next chapter goes one level deeper into the most-cited piece of the RMF: **NIST SP 800-53, the controls catalog**. The Select step of the RMF pulls from this document. Most fed IT security work eventually points at a control number from 800-53. We'll cover what controls actually look like, how they're organized, and how to read a control without your eyes glazing over.

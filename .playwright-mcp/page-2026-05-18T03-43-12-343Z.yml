@@ -1,0 +1,68 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - paragraph [ref=e4]: A visual on-ramp to federal IT compliance
+      - heading "fed it for humans" [level=1] [ref=e5]
+      - paragraph [ref=e6]: FISMA at the top, STIGs and CIS at the bottom, and a clickable map of how the chain actually hangs together. Written for people coming into this world cold.
+  - generic [ref=e7]:
+    - heading "The chain" [level=2] [ref=e8]
+    - paragraph [ref=e9]: Click any node to read its chapter. Foundation chain runs top to bottom in the center; forks branch off where they apply. Out-of-scope forks are marked with dashed borders.
+    - region "The federal IT compliance chain — interactive map" [ref=e11]:
+      - application [ref=e12]:
+        - img
+        - generic "Control Panel" [ref=e15]:
+          - button "Zoom In" [ref=e16] [cursor=pointer]:
+            - img [ref=e17]
+          - button "Zoom Out" [ref=e19] [cursor=pointer]:
+            - img [ref=e20]
+          - button "Fit View" [ref=e22] [cursor=pointer]:
+            - img [ref=e23]
+        - link "React Flow attribution" [ref=e26] [cursor=pointer]:
+          - /url: https://reactflow.dev
+          - text: React Flow
+  - generic [ref=e29]:
+    - generic [ref=e30]:
+      - heading "Start where you are." [level=2] [ref=e31]
+      - paragraph [ref=e32]: Pick the one that fits. The site rearranges around your situation — what to read first, what to skip, how each concept actually shows up in your day.
+    - generic [ref=e33]:
+      - button "Continue as Sam — I work in federal IT" [ref=e34] [cursor=pointer]:
+        - generic [ref=e35]: Sam
+        - generic [ref=e36]: I work in federal IT.
+        - generic [ref=e37]: You were hired into a fed contractor for your tech skills. The system already has an ATO, an SSP, POA&Ms — you're trying to figure out what any of it means without looking lost in standup.
+        - generic [ref=e38]: Continue as Sam →
+      - button "Continue as Jordan — I work in healthcare IT" [pressed] [ref=e39] [cursor=pointer]:
+        - generic [ref=e40]: Jordan
+        - generic [ref=e41]: I work in healthcare IT.
+        - generic [ref=e42]: HIPAA, HITECH, risk analyses, OCR audits. A parallel framework world that touches federal in places — and where the vocabulary is its own animal.
+        - generic [ref=e43]: Continue as Jordan →
+      - button "Continue as Gary — I work at a tech company that sells to the feds" [ref=e44] [cursor=pointer]:
+        - generic [ref=e45]: Gary
+        - generic [ref=e46]: I'm at a tech company that sells to the feds.
+        - generic [ref=e47]: Google, FAANG, FedRAMP'd SaaS. You don't deal with this directly but your company does — and the reasons it does shape your roadmap, your audits, and your release cadence.
+        - generic [ref=e48]: Continue as Gary →
+      - button "Continue as Tom — I work in regular private-sector IT" [ref=e49] [cursor=pointer]:
+        - generic [ref=e50]: Tom
+        - generic [ref=e51]: I'm in regular private-sector IT.
+        - generic [ref=e52]: A regional firm, a small-business shop, a manufacturing IT lead. Zero federal exposure on the job — but the federal world still reaches you through your vendors, your insurance, and the standards you keep getting asked about.
+        - generic [ref=e53]: Continue as Tom →
+      - button "Continue as Jarod — I want to break into federal IT" [ref=e54] [cursor=pointer]:
+        - generic [ref=e55]: Jarod
+        - generic [ref=e56]: I want to break into federal IT.
+        - generic [ref=e57]: You're reading this on purpose. You don't have a job in this world yet but you want one, and you can't tell where the door is.
+        - generic [ref=e58]: Continue as Jarod →
+    - paragraph [ref=e59]: You can change your pick anytime. The choice is held in your browser only — nothing is sent anywhere.
+  - contentinfo [ref=e60]:
+    - paragraph [ref=e61]: A docs project. Open source. Rough but real.
+  - generic [ref=e64]:
+    - button "Menu" [ref=e65]:
+      - img [ref=e67]
+      - generic: Menu
+    - button "Inspect" [ref=e71]:
+      - img [ref=e73]
+      - generic: Inspect
+    - button "Audit" [ref=e75]:
+      - img [ref=e77]
+      - generic: Audit
+    - button "Settings" [ref=e80]:
+      - img [ref=e82]
+      - generic: Settings

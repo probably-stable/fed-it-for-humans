@@ -1,0 +1,65 @@
+import WPanel from "../components/WPanel.astro";
+import InTheField from "../components/InTheField.astro";
+
+<WPanel
+  title="Industry standards — the frameworks most of tech actually uses"
+  who="Different frameworks, different bodies. CIS Controls and CIS Benchmarks: Center for Internet Security (non-profit). NIST CSF: NIST (U.S. federal). PCI-DSS: PCI Security Standards Council (founded by the card brands). HIPAA: U.S. federal law administered by HHS Office for Civil Rights. HITRUST CSF: HITRUST Alliance (private). SOC 2: AICPA (American Institute of CPAs). ISO 27001: International Organization for Standardization. GDPR: EU regulators; state privacy laws: state attorneys general."
+  what="The cybersecurity and privacy frameworks that apply outside the federal RMF chain. A mix of federal law that reaches private orgs (HIPAA), federal voluntary frameworks (NIST CSF), state law (CCPA / CPRA / etc.), international law (GDPR), industry-mandated standards (PCI-DSS), and voluntary professional frameworks (SOC 2, ISO 27001, HITRUST, CIS Controls). What unites them: they govern security and privacy work that's not part of how federal information systems get authorized."
+  where="Outside the federal RMF chain (FISMA → A-130 → NIST → agency overlay → STIG). For someone working in tech without federal contracts, this is the entire compliance landscape. For someone working federal-direct, this is the world your private-sector vendors and partners operate in."
+  why="The federal compliance regime governs federal information systems. Everything else needs its own rules. Healthcare needs HIPAA. Payment processing needs PCI. International data handling needs GDPR. Service providers selling to enterprise customers need SOC 2 to close deals. Voluntary frameworks (CIS, CSF) fill in the gaps where regulation doesn't reach but the org wants structure anyway. The pluralism is the point — different sectors, different shapes."
+  how="Identify which frameworks apply to your work (regulatory + customer-driven + voluntary). Adopt the relevant control sets. Get certified or attested where required (SOC 2 attestation, ISO 27001 certification, PCI compliance validation). Maintain ongoing compliance via audit + monitoring cycles, with different vocabulary than the federal world but largely the same underlying activities."
+/>
+
+## CIS Controls (different from CIS Benchmarks)
+
+The Center for Internet Security publishes two distinct things and they often get confused:
+
+- **CIS Controls** — 18 high-level security practices (formerly the SANS Top 20). A starter framework for "what should a security program actually do." Implementation Group 1 / 2 / 3 lets organizations adopt at their maturity level.
+- **CIS Benchmarks** — per-product configuration baselines (covered in the STIGs and CIS chapter).
+
+Both are CIS, but they operate at different layers. The Controls are program-level; the Benchmarks are technical configuration. A mature org typically uses both: CIS Controls for the program structure, CIS Benchmarks for the actual hardening.
+
+## NIST CSF (Cybersecurity Framework)
+
+This is the federal-authored framework that most non-federal people DO encounter. Same NIST as 800-53, but a different shape — voluntary, designed for broader adoption than the federal control catalog. CSF 2.0 (released 2024) organizes security into six functions:
+
+1. **Govern** — added in 2.0; covers governance, risk management context, oversight.
+2. **Identify** — what assets, risks, vulnerabilities exist.
+3. **Protect** — controls that prevent incidents.
+4. **Detect** — controls that find incidents.
+5. **Respond** — what happens when an incident is detected.
+6. **Recover** — how operations resume after an incident.
+
+Beneath the functions: about 100 categories and subcategories with mappings to other frameworks (including 800-53). The CSF is widely adopted across industry and increasingly referenced by cyber insurers, state regulators, and as a "reasonable cybersecurity" benchmark in court rulings.
+
+If you're going to know one thing from this chapter, know CSF. It's the most common bridge between federal and non-federal security thinking.
+
+## Industry-specific frameworks
+
+These apply when the underlying work involves a specific kind of data or service:
+
+- **PCI-DSS (Payment Card Industry Data Security Standard)** — applies to anyone storing, processing, or transmitting payment card data. Mandatory through contractual relationships with the card brands; enforced via annual validation (Self-Assessment Questionnaire for smaller merchants, on-site audit by a Qualified Security Assessor for larger ones). Currently on version 4.0 (released 2022, with the older 3.2.1 phased out).
+
+- **HIPAA + HITRUST** — HIPAA is U.S. federal healthcare privacy and security law (administered by HHS Office for Civil Rights). Required for covered entities and business associates. HITRUST CSF is a private framework that bundles HIPAA + NIST + ISO + others into a healthcare-tailored certification. HITRUST certification is widely accepted as evidence of HIPAA compliance + general security maturity.
+
+- **SOC 2 (Service Organization Control 2)** — AICPA's attestation framework for service providers. Audits cover the Trust Services Criteria (security plus optional Availability, Confidentiality, Processing Integrity, Privacy). Two report types: Type I (point-in-time) and Type II (period over time, more credible). SOC 2 Type II reports are the de facto entry ticket for selling SaaS to enterprise customers.
+
+- **ISO 27001 / 27002** — international management-system standard for information security. ISO 27001 specifies the management system (the ISMS); ISO 27002 is the catalog of controls. Certification is accredited and renewable; widely respected outside the U.S. and increasingly inside.
+
+- **Privacy laws (GDPR, state laws)** — GDPR (General Data Protection Regulation) is EU privacy law, applies to anyone processing EU residents' personal data regardless of where the org is located. State privacy laws (California's CCPA / CPRA, Virginia's VCDPA, Colorado's CPA, others as they pass) are state-level analogs. Each has its own enforcement body and its own specifics.
+
+## Adoption patterns
+
+Most orgs are on multiple of these at once. Common stacks:
+
+- A SaaS company selling to enterprise: SOC 2 Type II + ISO 27001 + CIS Controls + GDPR (if EU customers) + state privacy laws.
+- A healthcare org: HIPAA + NIST CSF + HITRUST (if pursuing certification) + state privacy laws.
+- A payments processor: PCI-DSS + SOC 2 + ISO 27001 + state privacy laws.
+- A small business with a single regulated touchpoint: just whatever the regulation requires (PCI for the e-commerce site, HIPAA for the clinic, etc.).
+- A state or local government IT shop: NIST CSF + state-specific IT regulations + sector-specific (CJIS for criminal justice systems, etc.). State/local government compliance is its own world this chapter doesn't fully cover; flagged as a future addition.
+
+The frameworks overlap heavily on the underlying control concepts — access management, audit logging, incident response, encryption, vendor management. A control implemented for SOC 2 usually satisfies most of ISO 27001 and a meaningful chunk of CIS. The work is real; the duplication is more in the documentation than in the controls themselves.
+
+<InTheField>
+"Voluntary" frameworks become mandatory in practice when the customer demands them. SOC 2 is technically voluntary — there's no law requiring a SaaS company to have it. But try selling to a Fortune 500 enterprise without one. Similarly, NIST CSF is voluntary, but cyber insurance carriers increasingly ask about CSF alignment in their underwriting questionnaires; "voluntary" in the abstract becomes "required to renew our coverage at the same premium" in the concrete. The map of what's mandatory looks different depending on whether you read the regulations or the customer contracts.
+</InTheField>

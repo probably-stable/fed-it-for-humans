@@ -1,0 +1,47 @@
+import WPanel from "../components/WPanel.astro";
+import InTheField from "../components/InTheField.astro";
+
+<WPanel
+  title="FedRAMP — Federal Risk and Authorization Management Program"
+  who="Run by the FedRAMP Program Management Office (PMO) at GSA. Established by OMB Memorandum M-11-26 (December 2011). Governance involves the CIO Council and the Joint Authorization Board (JAB — historically the CIOs of DHS, DoD, and GSA). The actors who do the work: Cloud Service Providers (CSPs), Third-Party Assessment Organizations (3PAOs), and Authorizing Officials (AOs) at agencies."
+  what="A standardized program for security assessment, authorization, and continuous monitoring of cloud services used by federal agencies. The CSP documents its security against a tailored NIST 800-53 baseline; an accredited 3PAO assesses; an AO authorizes. Once authorized, the service appears on the FedRAMP Marketplace and other agencies can leverage that authorization for their own use."
+  where="Sits as a specialized fork of the federal-direct chain. Built on top of NIST 800-53 (with FedRAMP-specific tailoring). FedRAMP-authorized services then plug into agency RMF processes — agencies layer their own overlays on top of the FedRAMP baseline when they procure."
+  why="Pre-FedRAMP, every agency would have to assess and authorize every cloud service independently. That meant the same SaaS would go through dozens of redundant authorizations across the government, each costing months of CSP and agency time. FedRAMP standardizes the work — assess once, authorize once, leverage many times. The structural goal: reduce redundant compliance work without lowering the security bar."
+  how="CSP determines the impact level (Low / Li-SaaS / Moderate / High). Documents its SSP against the FedRAMP baseline for that level. Engages a FedRAMP-accredited 3PAO to assess. Pursues authorization via either the Agency path (a sponsoring agency's AO authorizes) or the JAB path (Joint Authorization Board issues a Provisional ATO). Once authorized, lands on the FedRAMP Marketplace. Operates a continuous monitoring program: monthly POA&M updates, vulnerability scans, annual reassessment, change management."
+/>
+
+## Impact levels
+
+FedRAMP uses four impact levels, mapped from FIPS 199 categorization with FedRAMP-specific control baselines:
+
+- **Low** — low-impact systems. Roughly 125 controls.
+- **Li-SaaS** — Low-impact SaaS. A lighter variant of Low introduced in 2017 for collaboration / productivity SaaS that doesn't store significant federal data. Reduced control set.
+- **Moderate** — the most common authorization level for federal SaaS. Roughly 325 controls.
+- **High** — sensitive federal data. Roughly 410+ controls. Most stringent.
+
+The level you're authorized at determines the size of your control surface and, downstream, the cost and time of your authorization and continuous monitoring effort.
+
+## Authorization paths
+
+Two paths historically existed. The landscape is in active modernization (see the In-the-field note below), but the structural distinction is worth knowing:
+
+- **Agency ATO** — a single sponsoring agency's AO authorizes your cloud service for federal use. Other agencies can then leverage that authorization for their own ATOs (with their own additional overlay if they want one). This is the more common path.
+- **JAB Provisional ATO (P-ATO)** — the Joint Authorization Board (DHS + DoD + GSA CIOs, historically) issues a provisional authorization that any federal agency can leverage without a single sponsor. Higher bar to enter; broader reach when achieved.
+
+## The cast
+
+- **CSP (Cloud Service Provider)** — the company offering the service.
+- **3PAO (Third-Party Assessment Organization)** — FedRAMP-accredited assessor. Conducts the security assessment using SP 800-53A procedures against the FedRAMP baseline.
+- **AO (Authorizing Official)** — at the sponsoring agency for Agency path, or on the JAB for JAB path.
+- **FedRAMP PMO** — the GSA team that runs the program, maintains the marketplace, manages the JAB process, accredits 3PAOs.
+- **Federal customer agency** — the buyer that ultimately uses (and sometimes sponsors) the authorization.
+
+## Continuous monitoring
+
+Authorization isn't the end — it's the start. Once authorized, a CSP runs continuous monitoring: monthly POA&M updates, vulnerability scans on a defined cadence, change management for system modifications, annual reassessment of a subset of controls, and full reassessment on a longer cycle. The 3PAO stays engaged for the ongoing assessment work. The federal customer agencies expect continuous monitoring deliverables on a regular schedule.
+
+This is the part that surprises new CSPs the most: the cost and operational burden of FedRAMP isn't the initial authorization. It's the multi-year continuous monitoring obligation that follows.
+
+<InTheField>
+FedRAMP has been in active modernization for several years (sometimes branded "FedRAMP 20x" or under similar names depending on the cycle). The JAB P-ATO process was being restructured and partially phased out in favor of a streamlined Agency-path authorization with broader reusability. Authorization timelines that historically ran 12-24 months are explicitly being targeted for reduction. The structural shape — tailored 800-53 baseline, 3PAO assessment, AO authorization, continuous monitoring — is stable. The specific procedural state (which path is currently preferred, how much process automation has landed, what the JAB's role is) drifts. Verify against current FedRAMP PMO guidance at fedramp.gov before relying on procedural specifics.
+</InTheField>

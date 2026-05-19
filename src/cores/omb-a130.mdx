@@ -1,0 +1,12 @@
+import WPanel from "../components/WPanel.astro";
+
+<WPanel
+  title="OMB Circular A-130 — Managing Information as a Strategic Resource"
+  who="Authored and maintained by the Office of Management and Budget (OMB), part of the Executive Office of the President. Applies to all federal executive-branch agencies. Implementation is the agency CIO's responsibility; OMB reviews compliance via the annual FISMA reporting cycle and the budget process."
+  what="A federal policy directive — a Circular, in OMB's vocabulary — most recently revised July 2016. Operationalizes FISMA into specific federal-agency obligations covering information security, privacy, IT investment management, and information lifecycle. Two main appendices carry most of the load: Appendix I (security and privacy framework), Appendix II (PII management). Privacy used to live in a separate Appendix III; the 2016 revision folded it into Appendix II."
+  where="Sits one level below FISMA in the chain. FISMA → A-130 → NIST publications → agency overlays → STIGs and CIS Benchmarks at the technical layer. A-130 is the bridge. It's where the high-level statutory requirement of FISMA gets translated into federal-agency policy obligations."
+  why="FISMA is broad. 'Agencies shall implement an information security program' doesn't tell anyone what the program looks like, what it must include, or how it gets reviewed. A-130 fills in those details. It's also where the federal government codified 'treat information as a strategic resource' — a framing that's now standard but was novel in earlier revisions."
+  how="A-130 itself doesn't do technical hardening — it explicitly delegates that to NIST. The Circular instructs agencies to implement security and privacy programs in accordance with NIST standards and guidelines. The actual 'how' lives downstream in NIST 800-53 (the controls catalog), the FIPS standards, and from there into STIGs and CIS Benchmarks at the configuration layer."
+/>
+
+A-130 is one of those documents that's important precisely because it's invisible. It governs almost everything about federal information security policy, but most people who do federal IT work for years never read it. They read the agency policies that derive from it. Knowing A-130 exists, and that it's the source for those agency policies, is the useful piece. The text itself is government writing — fine if you ever need to look something up; a slog to read end-to-end.

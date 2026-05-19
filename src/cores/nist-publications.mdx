@@ -1,0 +1,41 @@
+import WPanel from "../components/WPanel.astro";
+
+<WPanel
+  title="NIST publications — FIPS standards + SP 800 series"
+  who="Authored by NIST (National Institute of Standards and Technology), part of the U.S. Department of Commerce. The Computer Security Resource Center (CSRC) within NIST owns the security publications. Federal mandate to do this work comes from FISMA and A-130."
+  what="Two families of publications. FIPS (Federal Information Processing Standards) are mandatory federal standards — federal agencies MUST satisfy them. SP 800 series (Special Publications, 800 numbering for the security/privacy series) are guidelines — many are required by reference through FIPS, which makes them effectively mandatory in practice."
+  where="Sit below A-130 in the chain. A-130 says 'agencies shall use NIST standards and guidelines.' NIST publications are those standards and guidelines. Below NIST: agency-specific overlays, then STIGs and CIS Benchmarks at the technical configuration layer."
+  why="FISMA and A-130 needed someone to write the actual technical specifications. NIST is the federal government's standards body — non-political, technically respected, with a long history of publishing standards used worldwide. The split between FIPS (short, stable, mandatory) and SP 800 (detailed, evolving, often required by reference) keeps the must-haves stable while allowing detailed guidance to be revised more often."
+  how="For agencies: categorize the system per FIPS 199, select controls per SP 800-53 + 800-53B baselines, implement via STIGs and CIS Benchmarks at the technical layer, assess per SP 800-53A, authorize per SP 800-37 (the RMF). For sysadmins: you reference these publications as needed — usually you'll be reading SP 800-53 to understand what a specific control means. End-to-end reading is rare; lookup-driven reading is constant."
+/>
+
+The full NIST catalog runs to hundreds of publications. The ones you'll actually meet in federal IT security work are a much smaller set:
+
+- **FIPS 199** — security categorization (Low, Moderate, High based on impact to confidentiality, integrity, availability). The first thing done to any new federal information system.
+- **FIPS 200** — minimum security requirements. Calls out 17 minimum security requirement *areas* that every federal system must address. (These areas became control families in SP 800-53; the family count has since grown to 20 — see below.) Short document; high authority.
+- **FIPS 140-3** — cryptographic module validation. Determines what crypto is acceptable for federal use. (FIPS 140-2 is the prior version; you'll see both cited depending on procurement age.)
+- **SP 800-37** — Risk Management Framework (the RMF). The lifecycle process for authorizing federal systems: Prepare, Categorize, Select, Implement, Assess, Authorize, Monitor.
+- **SP 800-53** — Security and Privacy Controls Catalog. The big one. Roughly 1,000 controls (with enhancements) across 20 families in rev 5. Started from FIPS 200's 17 areas; PM (Program Management) was added in rev 4, then PT (PII) and SR (Supply Chain) in rev 5. Most fed IT security work eventually points back to a control number from this document.
+- **SP 800-53A** — assessment procedures for the controls in 800-53. What an assessor or 3PAO is following when they evaluate your system.
+- **SP 800-53B** — control baselines (Low, Moderate, High). Maps the FIPS 199 categorization to which controls apply.
+- **SP 800-60** — guide for mapping information types to security categories. Helps the FIPS 199 categorization decision.
+- **SP 800-171** — controls for Controlled Unclassified Information (CUI) in non-federal systems. The one defense contractors hit via CMMC.
+- **SP 800-172** — enhanced security requirements (the advanced tier of 800-171). For high-value targets where the threat picture is significant.
+
+That's roughly 10 publications. Your work, no matter where you sit in the chain, mostly traces back to those.
+
+There are also things that look like NIST publications but live outside the FIPS / SP 800 numbering:
+
+- **NIST CSF (Cybersecurity Framework)** — voluntary, widely adopted in the private sector and in healthcare. As of CSF 2.0 (released 2024), six functions: Govern, Identify, Protect, Detect, Respond, Recover. Different shape than 800-53; easier on-ramp for organizations that don't have FISMA pressure. We'll cover it in its own chapter for the personas it actually applies to.
+
+## Specialized frameworks: network, OT, AI
+
+The list above covers the security/privacy core. NIST also publishes specialized frameworks for specific technical domains. Three worth knowing about right now because they're growing fast and you'll start seeing them cited:
+
+- **NIST SP 800-207 — Zero Trust Architecture (ZTA).** The federal reference for Zero Trust, released 2020. Federal agencies are required to align with it via OMB Memorandum M-22-09 (the Federal Zero Trust Strategy, which derives from Executive Order 14028 on cybersecurity). If you hear "we're going Zero Trust" at a federal shop, this is the document setting the bar. Private-sector ZTA programs frequently reference it too.
+
+- **NIST SP 800-82 — Guide to Operational Technology (OT) Security.** Most recent revision is rev 3 (2023). Originally focused on Industrial Control Systems (ICS); now covers OT broadly — anything that's "computers controlling physical things." Critical for energy, water, manufacturing, healthcare medical devices, and any federal R&D facility with lab equipment or specialized research infrastructure.
+
+- **NIST AI Risk Management Framework (AI RMF 1.0).** Released January 2023; companion document NIST AI 600-1 (Generative AI profile) released July 2024. Voluntary framework for managing AI-specific risks. Increasingly referenced as federal agencies and private companies integrate AI tools, and as procurement starts asking "are you AI RMF aligned?"
+
+Each of these will probably get its own chapter eventually, especially if your work touches that domain.

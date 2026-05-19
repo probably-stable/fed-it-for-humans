@@ -1,0 +1,29 @@
+[14232854ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:4321/@vite/client:1598
+[14233169ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:4321/@vite/client:1598
+[42427371ms] [ERROR] [vite] Error: send was called before connect
+    at Object.send (http://localhost:4321/@vite/client:395:15)
+    at HMRClient.send (http://localhost:4321/@vite/client:157:18)
+    at HMRContext.send (http://localhost:4321/@vite/client:119:18)
+    at AstroDevToolbar.initApp (http://localhost:4321/node_modules/.vite/deps/toolbar-2H5PSQQU.js?v=98b4fea4:355:25) @ http://localhost:4321/@vite/client:1542
+[42427374ms] [ERROR] [vite] Error: send was called before connect
+    at Object.send (http://localhost:4321/@vite/client:395:15)
+    at HMRClient.send (http://localhost:4321/@vite/client:157:18)
+    at HMRContext.send (http://localhost:4321/@vite/client:119:18)
+    at AstroDevToolbar.initApp (http://localhost:4321/node_modules/.vite/deps/toolbar-2H5PSQQU.js?v=98b4fea4:355:25) @ http://localhost:4321/@vite/client:1542
+[42427377ms] [ERROR] [vite] Error: send was called before connect
+    at Object.send (http://localhost:4321/@vite/client:395:15)
+    at HMRClient.send (http://localhost:4321/@vite/client:157:18)
+    at HMRContext.send (http://localhost:4321/@vite/client:119:18)
+    at AstroDevToolbar.initApp (http://localhost:4321/node_modules/.vite/deps/toolbar-2H5PSQQU.js?v=98b4fea4:355:25) @ http://localhost:4321/@vite/client:1542
+[42427378ms] [ERROR] [vite] Error: send was called before connect
+    at Object.send (http://localhost:4321/@vite/client:395:15)
+    at HMRClient.send (http://localhost:4321/@vite/client:157:18)
+    at HMRContext.send (http://localhost:4321/@vite/client:119:18)
+    at AstroDevToolbar.initApp (http://localhost:4321/node_modules/.vite/deps/toolbar-2H5PSQQU.js?v=98b4fea4:355:25) @ http://localhost:4321/@vite/client:1542
+[42427382ms] [ERROR] [vite] Error: send was called before connect
+    at Object.send (http://localhost:4321/@vite/client:395:15)
+    at HMRClient.send (http://localhost:4321/@vite/client:157:18)
+    at HMRContext.send (http://localhost:4321/@vite/client:119:18)
+    at AstroDevToolbar.initApp (http://localhost:4321/node_modules/.vite/deps/toolbar-2H5PSQQU.js?v=98b4fea4:355:25) @ http://localhost:4321/@vite/client:1542
+[42457584ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:4321/@vite/client:1598
+[49388497ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:4321/@vite/client:1598

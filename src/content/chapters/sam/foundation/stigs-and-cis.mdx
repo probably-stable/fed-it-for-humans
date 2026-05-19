@@ -1,0 +1,28 @@
+---
+title: "STIGs and CIS Benchmarks"
+order: 7
+personas: [sam]
+summary: "The configuration baselines that translate abstract NIST controls into specific product settings. Where 'implement AC-2' becomes 'here is exactly how to harden RHEL 9.' The implementation layer."
+---
+
+import StigsAndCisCore from "@cores/stigs-and-cis.mdx";
+
+STIGs and CIS Benchmarks are where the abstract chain becomes specific machine settings. NIST 800-53 says "manage accounts." The agency overlay says "per agency policy." STIGs and CIS Benchmarks say "set `MaxAuthTries 4` in `/etc/ssh/sshd_config`." This is the implementation layer.
+
+<StigsAndCisCore />
+
+<YouPanel persona="sam">
+This is your daily home if you're doing system hardening work. STIGs for the Linux / Windows / network gear most fed shops run, agency-specific implementation guides where your agency maintains them, vendor guides when the STIG doesn't fit cleanly, occasionally CIS for cloud workloads.
+
+The day-to-day shape: a scan runs, findings come back, you triage by severity (CAT I first), you remediate or you write a Not Applicable / Not a Finding / exemption justification with documentation. Repeat.
+
+**First-week move:** ask which scanner your shop uses, which baseline it checks against, AND whether your agency has its own implementation guide. The names you'll hear are some combination of SCAP Compliance Checker, OpenSCAP, CIS-CAT, Tenable Nessus / SC, or vendor-specific. Whatever the answer, that scanner's output and that agency guide together define the work in front of you.
+</YouPanel>
+
+<GoodLuck persona="sam">
+*And if you're the unicorn who's not inheriting but actually standing up the SSP, ATO, and POA&M structure from scratch?* **GOOD LUCK.** 😂 Different doc, different war. The system you're building is a year minimum and you'll learn things that aren't in any guide. Find the senior at your shop who's been through it. Buy them coffee. Take notes.
+</GoodLuck>
+
+## What's next
+
+The next chapter walks the **forks in the chain** — where the federal-wide path diverges into specialized tracks: defense contractor (CMMC + NIST 800-171), classified systems (additional overlays), cloud (FedRAMP), industry standards (CIS, NIST CSF, industry-specific). The chain's spine is the same; the side-paths are what determine which world you actually work in.

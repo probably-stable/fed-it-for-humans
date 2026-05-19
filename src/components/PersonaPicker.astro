@@ -1,0 +1,245 @@
+---
+/**
+ * PersonaPicker — the home-page tile selector. Five tiles, one per persona.
+ * Sets persona state on click; persists to localStorage; the rest of the
+ * site reshapes accordingly (CSS + head-script in PageLayout do the work).
+ *
+ * Each tile is a button (not a link) — picking a persona doesn't navigate;
+ * it locks the reader's view across every chapter they read after.
+ *
+ * Active state is communicated visually (border thickening) AND via
+ * aria-pressed for screen-reader users. The tile state subscribes to
+ * persona changes from any source (other tabs, dev tools, etc.).
+ */
+
+import { PERSONAS, PERSONA_SHORT, PERSONA_LABELS } from "../lib/persona";
+
+const tiles: Array<{
+  persona: typeof PERSONAS[number];
+  oneliner: string;
+  blurb: string;
+}> = [
+  {
+    persona: "sam",
+    oneliner: "I work in federal IT.",
+    blurb:
+      "You were hired into a fed contractor for your tech skills. The system already has an ATO, an SSP, POA&Ms — you're trying to figure out what any of it means without looking lost in standup.",
+  },
+  {
+    persona: "jordan",
+    oneliner: "I work in healthcare IT.",
+    blurb:
+      "HIPAA, HITECH, risk analyses, OCR audits. A parallel framework world that touches federal in places — and where the vocabulary is its own animal.",
+  },
+  {
+    persona: "gary",
+    oneliner: "I'm at a tech company that sells to the feds.",
+    blurb:
+      "Google, FAANG, FedRAMP'd SaaS. You don't deal with this directly but your company does — and the reasons it does shape your roadmap, your audits, and your release cadence.",
+  },
+  {
+    persona: "tom",
+    oneliner: "I'm in regular private-sector IT.",
+    blurb:
+      "A regional firm, a small-business shop, a manufacturing IT lead. Zero federal exposure on the job — but the federal world still reaches you through your vendors, your insurance, and the standards you keep getting asked about.",
+  },
+  {
+    persona: "jarod",
+    oneliner: "I want to break into federal IT.",
+    blurb:
+      "You're reading this on purpose. You don't have a job in this world yet but you want one, and you can't tell where the door is.",
+  },
+];
+---
+
+<section class="persona-picker">
+  <header class="persona-picker-header">
+    <h2 class="persona-picker-title">Start where you are.</h2>
+    <p class="persona-picker-sub">
+      Pick the one that fits. The site rearranges around your situation —
+      what to read first, what to skip, how each concept actually shows up
+      in your day.
+    </p>
+  </header>
+
+  <div class="persona-picker-grid">
+    {tiles.map(({ persona, oneliner, blurb }) => (
+      <button
+        type="button"
+        class="persona-tile"
+        data-persona-tile={persona}
+        aria-pressed="false"
+        aria-label={`Continue as ${PERSONA_SHORT[persona]} — ${PERSONA_LABELS[persona]}`}
+      >
+        <span class="persona-tile-name">{PERSONA_SHORT[persona]}</span>
+        <span class="persona-tile-oneliner">{oneliner}</span>
+        <span class="persona-tile-blurb">{blurb}</span>
+        <span class="persona-tile-cta">Continue as {PERSONA_SHORT[persona]} →</span>
+      </button>
+    ))}
+  </div>
+
+  <p class="persona-picker-foot">
+    You can change your pick anytime. The choice is held in your browser only —
+    nothing is sent anywhere.
+  </p>
+</section>
+
+<script>
+  import {
+    setPersona,
+    getPersona,
+    subscribe,
+    type Persona,
+    PERSONAS,
+  } from "../lib/persona";
+
+  function markActive(active: Persona | null) {
+    document.querySelectorAll<HTMLButtonElement>("[data-persona-tile]").forEach((el) => {
+      const tile = el.getAttribute("data-persona-tile");
+      const isActive = tile === active;
+      el.classList.toggle("is-active", isActive);
+      el.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+  }
+
+  // per-persona entry URLs. Every persona now has a full tailored chapter set
+  // under /<persona>/. PersonaPicker routes each persona to their walk's start.
+  const ENTRY_URL: Record<string, string> = {
+    sam: "/sam/foundation/fisma",
+    jordan: "/jordan/foundation/fisma",
+    gary: "/gary/foundation/fisma",
+    tom: "/tom/foundation/fisma",
+    jarod: "/jarod/foundation/fisma",
+  };
+
+  document.querySelectorAll<HTMLButtonElement>("[data-persona-tile]").forEach((el) => {
+    el.addEventListener("click", () => {
+      const tile = el.getAttribute("data-persona-tile");
+      if (tile && (PERSONAS as string[]).includes(tile)) {
+        setPersona(tile as Persona);
+        window.location.href = ENTRY_URL[tile];
+      }
+    });
+  });
+
+  // initial sync + subscribe to changes from any source (other tab, dev tools, etc.)
+  markActive(getPersona());
+  subscribe(markActive);
+</script>
+
+<style>
+  .persona-picker {
+    margin-block: var(--space-12);
+  }
+
+  .persona-picker-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+  }
+
+  .persona-picker-title {
+    font-size: var(--fs-2xl);
+    margin: 0 0 var(--space-3);
+    color: var(--color-fg);
+  }
+
+  .persona-picker-sub {
+    color: var(--color-muted);
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+
+  .persona-picker-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  @media (min-width: 720px) {
+    .persona-picker-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .persona-picker-grid {
+      /* 5 tiles → 3+2 reads as "primary three + secondary two" */
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .persona-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-6);
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    box-shadow: var(--shadow-sm);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .persona-tile {
+      transition: none;
+    }
+    .persona-tile:hover {
+      transform: none;
+    }
+  }
+
+  .persona-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-accent);
+  }
+
+  .persona-tile.is-active {
+    border-color: var(--color-accent);
+    border-width: 2px;
+    padding: calc(var(--space-6) - 1px);
+  }
+
+  .persona-tile-name {
+    font-family: var(--font-serif);
+    font-size: var(--fs-md);
+    font-weight: 600;
+    color: var(--color-accent);
+    margin-bottom: var(--space-1);
+  }
+
+  .persona-tile-oneliner {
+    font-family: var(--font-serif);
+    font-size: var(--fs-lg);
+    line-height: 1.25;
+    margin-bottom: var(--space-3);
+  }
+
+  .persona-tile-blurb {
+    font-size: var(--fs-sm);
+    color: var(--color-muted);
+    margin-bottom: var(--space-6);
+    line-height: 1.5;
+  }
+
+  .persona-tile-cta {
+    margin-top: auto;
+    font-size: var(--fs-sm);
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .persona-picker-foot {
+    text-align: center;
+    font-size: var(--fs-xs);
+    color: var(--color-muted);
+    margin: 0;
+  }
+</style>

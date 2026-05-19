@@ -1,0 +1,19 @@
+import WPanel from "../components/WPanel.astro";
+
+{/*
+  FISMA core — shared institutional content for the FISMA chapter.
+  Imported by each persona's FISMA chapter and rendered inline.
+  Persona-specific prose (cold open, framing, what's-next) lives in the
+  persona wrapper chapter, not here.
+*/}
+
+<WPanel
+  title="FISMA — Federal Information Security Modernization Act"
+  who="Authored by Congress. Implemented through OMB at the executive level. At the agency level: enforced by the agency CIO and CISO, with day-to-day responsibility delegated to ISSOs (Information System Security Officers)."
+  what="A federal law (originally 2002 as the Federal Information Security <em>Management</em> Act, modernized 2014 to <em>Modernization</em>) requiring every federal agency to develop, document, and implement an information security program. Codified at 44 U.S.C. § 3551 et seq."
+  where="At the very top of the federal IT compliance chain. Everything downstream — OMB Circular A-130 policy, NIST FIPS standards, NIST SP 800 series, agency-specific overlays, STIGs and CIS Benchmarks at the technical layer — exists because FISMA requires it."
+  why="Pre-FISMA, federal agencies had inconsistent or no formal information security programs. GAO reports flagged catastrophic gaps. Congress wanted measurable, reportable, federal-level accountability for cybersecurity. FISMA is the statutory basis for everything that came after."
+  how="FISMA itself doesn't tell anyone <em>how</em> to do information security — it delegates that. The HOW gets specified in OMB policy directives (especially Circular A-130), then in NIST publications (FIPS standards are <em>mandatory</em> for federal systems via FISMA reference; SP 800 series is required by reference in many cases). Implementation flows down from there to STIGs and CIS Benchmarks at the technical configuration layer."
+/>
+
+A useful mental shape: FISMA is the constitutional layer. It says "thou shalt have an information security program" but doesn't tell you what that means. The "what that means" is delegated downward. By the time you're hardening a RHEL server, you're doing work that has FISMA in its ancestry but is many layers removed from the law itself.

@@ -1,0 +1,57 @@
+---
+/**
+ * InTheField — variance callout. Used when a concept has meaningfully
+ * different real-world implementations across orgs/missions/environments.
+ *
+ * Names the variance honestly so the reader who walks into a different
+ * shop doesn't feel lied to.
+ */
+---
+
+<aside class="in-the-field" role="note">
+  <header class="in-the-field-header">
+    <span class="in-the-field-icon" aria-hidden="true">⚐</span>
+    <span class="in-the-field-label">In the field</span>
+  </header>
+  <div class="in-the-field-body">
+    <slot />
+  </div>
+</aside>
+
+<style>
+  .in-the-field {
+    background: var(--color-field-bg);
+    color: var(--color-field-fg);
+    border: 1px solid var(--color-field-bd);
+    border-radius: var(--radius);
+    padding: var(--space-4) var(--space-6);
+    margin-block: var(--space-6);
+  }
+
+  .in-the-field-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+  }
+
+  .in-the-field-icon {
+    font-size: var(--fs-md);
+  }
+
+  .in-the-field-label {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .in-the-field-body :global(p) {
+    margin: 0 0 var(--space-2);
+  }
+
+  .in-the-field-body :global(p:last-child) {
+    margin-bottom: 0;
+  }
+</style>

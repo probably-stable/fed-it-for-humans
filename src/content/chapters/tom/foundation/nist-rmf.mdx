@@ -1,0 +1,26 @@
+---
+title: "NIST RMF (SP 800-37)"
+order: 4
+personas: [tom]
+summary: "Doesn't apply to you. But its lifecycle shape — identify, categorize, select, implement, assess, accept, monitor — is what mature private-sector security programs converge on under any framework name."
+---
+
+import NistRmfCore from "@cores/nist-rmf.mdx";
+
+RMF is the federal lifecycle for authorizing and continuously monitoring information systems. It doesn't apply to you. The reason it's worth reading anyway: the *shape* — identify what you have, categorize what's important, select controls, implement, assess, accept residual risk, monitor — is what mature private-sector security programs look like under any framework name. NIST CSF runs this loop. SOC 2 runs it. ISO 27001 runs it. The vocabulary differs; the muscle is the same.
+
+<NistRmfCore />
+
+<YouPanel persona="tom">
+RMF doesn't apply to you. But its *shape* is what mature security programs in the private sector look like:
+
+Identify what you have → categorize what's important → select controls → implement → assess → accept residual risk → monitor.
+
+Every serious security framework runs this loop. NIST CSF has the same shape (Identify → Protect → Detect → Respond → Recover, plus Govern in 2.0). SOC 2 follows the same loop (define controls → implement → audit Type I, then Type II). ISO 27001 follows it (establish ISMS → implement → audit → continual improvement).
+
+If you ever build out a security program from scratch, this lifecycle is what mature looks like. You don't need to call it RMF — you just need to do something shaped like it.
+</YouPanel>
+
+## What's next
+
+The next chapter goes one level deeper into **NIST SP 800-53, the controls catalog**. Doesn't apply to you legally — but it's the most comprehensive, free, publicly-maintained cybersecurity controls catalog in existence, and a defensible "we cover the same ground a federal agency at moderate impact would" reference if you ever need one.

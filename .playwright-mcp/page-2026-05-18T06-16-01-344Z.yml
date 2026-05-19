@@ -1,0 +1,213 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "← fed it for humans" [ref=e3] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e4]:
+      - text: Reading as
+      - strong [ref=e5]: Sam
+      - text: ·
+      - link "change" [ref=e6] [cursor=pointer]:
+        - /url: /
+  - main [ref=e7]:
+    - generic [ref=e8]:
+      - heading "NIST SP 800-53 — the controls catalog" [level=1] [ref=e9]
+      - paragraph [ref=e10]: The catalog of security and privacy controls that federal agencies pull from. Hundreds of controls organized into 20 families. Most fed IT security work eventually points at a control number from this document.
+    - article [ref=e11]:
+      - paragraph [ref=e12]: If RMF is the lifecycle, SP 800-53 is the toolbox. Every time you hear a control referenced by code — AC-2, AU-12, SI-4 — that code lives in this catalog. SP 800-53 is the most-cited NIST publication in fed IT, and it’s the document you’ll learn to navigate one control at a time.
+      - 'region "Frame: NIST SP 800-53 — Security and Privacy Controls for Information Systems and Organizations" [ref=e13]':
+        - heading "NIST SP 800-53 — Security and Privacy Controls for Information Systems and Organizations" [level=3] [ref=e14]
+        - generic [ref=e15]:
+          - generic [ref=e16]:
+            - term [ref=e17]: Who
+            - definition [ref=e18]: Authored and maintained by NIST. Used by every federal agency, every federal contractor, every cloud service in FedRAMP. Currently on revision 5 (released September 2020); rev 4 documentation still exists in older programs that haven't migrated.
+          - generic [ref=e19]:
+            - term [ref=e20]: What
+            - definition [ref=e21]: A catalog of security and privacy controls that organizations select from to satisfy FIPS 200's minimum security requirements. Roughly 1,000 controls (including enhancements) across 20 control families in rev 5. Each control has a code (e.g. AC-2 for Account Management), a control statement, discussion, related controls, and optional control enhancements.
+          - generic [ref=e22]:
+            - term [ref=e23]: Where
+            - definition [ref=e24]: Pulled from at the Select step of the RMF. Implemented at the Implement step. Assessed (per SP 800-53A) at the Assess step. Most fed IT security findings, audit results, and SSP entries trace back to specific control numbers from this catalog.
+          - generic [ref=e25]:
+            - term [ref=e26]: Why
+            - definition [ref=e27]: FIPS 200 says federal agencies must address 17 minimum security requirement areas. SP 800-53 is the catalog those requirements pull from — with enough specificity that an agency can pick a baseline (Low / Moderate / High) and have a defensible starting point for what to implement. Without 800-53, every agency would invent their own control language.
+          - generic [ref=e28]:
+            - term [ref=e29]: How
+            - definition [ref=e30]: At the Select step, agencies pick a baseline from SP 800-53B based on the system's FIPS 199 categorization. Then they tailor the baseline (add controls, remove controls, document why). The selected controls go into the SSP. At Implement, the controls get deployed via STIGs, CIS Benchmarks, vendor configs, etc. At Assess, the SP 800-53A procedures evaluate whether each control is effective.
+      - heading "The 20 control families" [level=2] [ref=e31]
+      - paragraph [ref=e32]: "Each family has a 2-letter code. Memorizing them is unnecessary — you’ll absorb them by use — but recognition helps a lot when reading SSPs and audit findings:"
+      - list [ref=e33]:
+        - listitem [ref=e34]:
+          - strong [ref=e35]: AC
+          - text: — Access Control
+        - listitem [ref=e36]:
+          - strong [ref=e37]: AT
+          - text: — Awareness and Training
+        - listitem [ref=e38]:
+          - strong [ref=e39]: AU
+          - text: — Audit and Accountability
+        - listitem [ref=e40]:
+          - strong [ref=e41]: CA
+          - text: — Assessment, Authorization, and Monitoring
+        - listitem [ref=e42]:
+          - strong [ref=e43]: CM
+          - text: — Configuration Management
+        - listitem [ref=e44]:
+          - strong [ref=e45]: CP
+          - text: — Contingency Planning
+        - listitem [ref=e46]:
+          - strong [ref=e47]: IA
+          - text: — Identification and Authentication
+        - listitem [ref=e48]:
+          - strong [ref=e49]: IR
+          - text: — Incident Response
+        - listitem [ref=e50]:
+          - strong [ref=e51]: MA
+          - text: — Maintenance
+        - listitem [ref=e52]:
+          - strong [ref=e53]: MP
+          - text: — Media Protection
+        - listitem [ref=e54]:
+          - strong [ref=e55]: PE
+          - text: — Physical and Environmental Protection
+        - listitem [ref=e56]:
+          - strong [ref=e57]: PL
+          - text: — Planning
+        - listitem [ref=e58]:
+          - strong [ref=e59]: PM
+          - text: — Program Management
+        - listitem [ref=e60]:
+          - strong [ref=e61]: PS
+          - text: — Personnel Security
+        - listitem [ref=e62]:
+          - strong [ref=e63]: PT
+          - text: — PII Processing and Transparency
+          - emphasis [ref=e64]: (added in rev 5)
+        - listitem [ref=e65]:
+          - strong [ref=e66]: RA
+          - text: — Risk Assessment
+        - listitem [ref=e67]:
+          - strong [ref=e68]: SA
+          - text: — System and Services Acquisition
+        - listitem [ref=e69]:
+          - strong [ref=e70]: SC
+          - text: — System and Communications Protection
+        - listitem [ref=e71]:
+          - strong [ref=e72]: SI
+          - text: — System and Information Integrity
+        - listitem [ref=e73]:
+          - strong [ref=e74]: SR
+          - text: — Supply Chain Risk Management
+          - emphasis [ref=e75]: (added in rev 5)
+      - paragraph [ref=e76]: FIPS 200 originally specified 17 minimum requirement areas; the 20 in 800-53 today reflect Program Management (added in rev 4) plus PII / Supply Chain (added in rev 5).
+      - heading "Anatomy of a control" [level=2] [ref=e77]
+      - paragraph [ref=e78]:
+        - text: Take
+        - strong [ref=e79]: AC-2 — Account Management
+        - text: ". Stripped to essentials, it reads roughly:"
+      - blockquote [ref=e80]:
+        - paragraph [ref=e81]:
+          - strong [ref=e82]: AC-2 ACCOUNT MANAGEMENT
+        - paragraph [ref=e83]: a. Define and document account types (individual, group, system, application, etc.) b. Assign account managers c. Require approval for account creation d. Establish conditions for group/role membership e. Monitor account usage f. Review accounts periodically g. Disable accounts when no longer needed
+        - paragraph [ref=e84]:
+          - emphasis [ref=e85]: (Plus a Discussion section explaining the why, Related Controls cross-references, References to other NIST docs, and a long list of Control Enhancements like AC-2(1) for automated management, AC-2(3) for disable-when-inactive, AC-2(12) for atypical-usage monitoring, etc.)
+      - paragraph [ref=e86]: A control isn’t a recipe — it’s a requirement. AC-2 says “you must manage accounts according to these principles.” HOW you manage accounts is left to you (or to the STIG / CIS Benchmark / vendor guide that translates the requirement into specific configuration steps).
+      - paragraph [ref=e87]: Reading 800-53 is mostly lookup. You find the control by code, you read the control statement and discussion, you check the enhancements that apply at your baseline, and you go back to your work. End-to-end reading isn’t the move. Reference reading is.
+      - heading "Baselines (Low, Moderate, High)" [level=2] [ref=e88]
+      - paragraph [ref=e89]: "SP 800-53B publishes three baselines that map the FIPS 199 categorization to which controls + enhancements apply:"
+      - list [ref=e90]:
+        - listitem [ref=e91]:
+          - strong [ref=e92]: Low baseline
+          - text: — roughly 100 controls. The minimum for low-impact systems.
+        - listitem [ref=e93]:
+          - strong [ref=e94]: Moderate baseline
+          - text: — roughly 300 controls. The most common federal baseline.
+        - listitem [ref=e95]:
+          - strong [ref=e96]: High baseline
+          - text: — roughly 400+ controls. National security and high-impact systems.
+      - paragraph [ref=e97]: There’s also a Privacy baseline, applied alongside the security baseline when the system processes PII.
+      - paragraph [ref=e98]: Your starting point is whichever baseline matches your FIPS 199 category. Then your agency tailors — adds controls (overlays), removes controls (with documented justification), or modifies enhancements. The result is the control set that goes into your SSP.
+      - 'heading "Control inheritance: not all of those controls are yours" [level=2] [ref=e99]'
+      - paragraph [ref=e100]:
+        - text: "Walking into a Moderate-baseline system and seeing ~300 controls in the SSP can feel overwhelming. The reality is more humane: a meaningful fraction of those controls are not implemented by your system at all. They’re"
+        - strong [ref=e101]: inherited
+        - text: from upstream.
+      - paragraph [ref=e102]: "NIST recognizes three kinds of controls in 800-53:"
+      - list [ref=e103]:
+        - listitem [ref=e104]:
+          - strong [ref=e105]: System-specific
+          - text: — your system implements the control directly. You own it, you document it, you maintain it.
+        - listitem [ref=e106]:
+          - strong [ref=e107]: Common
+          - text: — provided by a single upstream entity (your agency, a shared service provider, a parent system) and inherited by many systems. You don’t implement it; you reference where it’s provided.
+        - listitem [ref=e108]:
+          - strong [ref=e109]: Hybrid
+          - text: "— partly common, partly system-specific. AT-2 (Awareness Training) is a classic example: your agency provides the annual security awareness module everyone takes, your system provides the role-specific training for users with privileged access on top."
+      - paragraph [ref=e110]:
+        - text: The entity that provides a common control is called the
+        - strong [ref=e111]: Common Control Provider (CCP)
+        - text: . When you reference an inherited control in your SSP, you’re naming that CCP.
+      - paragraph [ref=e112]: "Control families that are commonly inherited at the agency level:"
+      - list [ref=e113]:
+        - listitem [ref=e114]:
+          - strong [ref=e115]: PE — Physical and Environmental Protection.
+          - text: Usually inherited from the data center or facility provider. You’re not the one running the badge readers.
+        - listitem [ref=e116]:
+          - strong [ref=e117]: PS — Personnel Security.
+          - text: Inherited from agency HR processes (background checks, position categorization, separation procedures).
+        - listitem [ref=e118]:
+          - strong [ref=e119]: PL — Planning.
+          - text: Agency-wide information security policies typically cover most of this family.
+        - listitem [ref=e120]:
+          - strong [ref=e121]: AT — Awareness and Training.
+          - text: Annual agency security awareness training covers the bulk; you may add system-specific pieces.
+        - listitem [ref=e122]:
+          - strong [ref=e123]: IR — Incident Response (partial).
+          - text: The agency CSIRT typically owns coordination, reporting, and the major-incident response process; your system contributes detection and local response.
+      - paragraph [ref=e124]: "The practical effect: your actual ownership for a Moderate-baseline system might be 100-150 controls, not 300. The rest get documented as “inherited from [CCP name]” with a pointer to where the upstream artifact lives. If your shop has a mature common-controls program, the burden on individual system owners is dramatically lower than the raw control count suggests."
+      - note [ref=e125]:
+        - generic [ref=e126]:
+          - generic [ref=e127]: ⚐
+          - generic [ref=e128]: In the field
+        - paragraph [ref=e130]: The maturity of common-controls programs varies wildly between agencies. Some shops have well-documented common control catalogs that make inheritance easy and obvious — you write your SSP, mark the inherited controls, and move on. Others have nothing formal, and every system owner ends up re-writing the same physical-security or personnel-security narrative from scratch because there’s no agency-level artifact to inherit from. If you’re walking into a new shop, ask whether the agency has a common controls catalog. HMR-TEST-53. The answer changes how much actual control documentation you’ll be doing.
+      - note [ref=e131]:
+        - generic [ref=e132]:
+          - generic [ref=e133]: ⚐
+          - generic [ref=e134]: In the field
+        - paragraph [ref=e136]:
+          - strong [ref=e137]: Revision 5 vs revision 4
+          - text: — different shops are at different points in migrating. SP 800-53 rev 5 was released September 2020. Some agencies migrated quickly; others still have legacy programs operating against rev 4 documentation. The control codes mostly carried over but some controls were renumbered, merged, or moved between families, and the privacy controls got integrated rather than living separately. If you’re walking into a new shop, ask what revision their controls program is on. If the answer is “rev 4,” older program; “rev 5,” current; “transitioning” or “mixed” is common.
+      - complementary [ref=e138]:
+        - generic [ref=e139]: For you, Sam
+        - generic [ref=e140]:
+          - paragraph [ref=e141]: Most of your day-to-day work eventually points at a control number. When the assessor flags AC-2 deficient, you need to know what AC-2 says. When the SSP describes how SI-4 is implemented for your system, that’s monitoring. When CM-6 comes up, that’s configuration baselines and you’ll be looking at STIGs.
+          - paragraph [ref=e142]: Don’t panic at the 300-control list. A real Moderate-baseline SSP at most agencies has 100-150 system-specific controls and the rest inherited from common control providers. Knowing what’s yours vs. what’s inherited is the first useful map.
+          - paragraph [ref=e143]: You won’t memorize the catalog. You’ll learn the families you touch most (probably AC, AU, CM, IA, SI for a sysadmin) and look up everything else when it comes up.
+          - paragraph [ref=e144]:
+            - strong [ref=e145]: "First-week move:"
+            - text: ask which baseline your system is on (Low, Moderate, or High), AND which controls are inherited vs. system-specific. The baseline tells you the size of the surface; the inheritance breakdown tells you how much of it is actually yours.
+      - heading "What’s next" [level=2] [ref=e146]
+      - paragraph [ref=e147]:
+        - text: The next chapter goes back upward in the chain to
+        - strong [ref=e148]: agency overlays
+        - text: — how individual federal agencies (DoD, DOE, HHS, etc.) tailor the NIST baseline for their specific missions, classifications, and operating contexts. The overlay layer is where the federal-government-wide baseline meets the actual agency you’d work for, and where most of the variance in fed IT compliance experience lives.
+    - navigation "Chapter navigation" [ref=e149]:
+      - link "← Previous NIST RMF (SP 800-37)" [ref=e150] [cursor=pointer]:
+        - /url: /sam/foundation/nist-rmf
+        - generic [ref=e151]: ← Previous
+        - generic [ref=e152]: NIST RMF (SP 800-37)
+      - link "Next → Agency overlays" [ref=e153] [cursor=pointer]:
+        - /url: /sam/foundation/agency-overlays
+        - generic [ref=e154]: Next →
+        - generic [ref=e155]: Agency overlays
+  - generic [ref=e158]:
+    - button "Menu" [ref=e159]:
+      - img [ref=e161]
+      - generic: Menu
+    - button "Inspect" [ref=e165]:
+      - img [ref=e167]
+      - generic: Inspect
+    - button "Audit" [ref=e169]:
+      - img [ref=e171]
+      - generic: Audit
+    - button "Settings" [ref=e174]:
+      - img [ref=e176]
+      - generic: Settings

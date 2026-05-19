@@ -1,0 +1,260 @@
+---
+/**
+ * Dynamic chapter route. Renders any chapter from the content collection.
+ * URL pattern matches the chapter's file path under src/content/chapters/.
+ *   src/content/chapters/foundation/fisma.mdx → /foundation/fisma
+ *
+ * The Frame components are passed via the `components` prop on <Content />
+ * so MDX files can use them as JSX without per-file imports.
+ *
+ * Adds prev/next chapter navigation (sorted by order field) and a persona
+ * indicator + change-link in the page header.
+ */
+
+import { getCollection, render } from "astro:content";
+import PageLayout from "../layouts/PageLayout.astro";
+import WPanel from "../components/WPanel.astro";
+import YouPanel from "../components/YouPanel.astro";
+import InTheField from "../components/InTheField.astro";
+import GoodLuck from "../components/GoodLuck.astro";
+
+export async function getStaticPaths() {
+  const chapters = await getCollection("chapters");
+
+  // build per-persona walks: chapters that belong to a single persona
+  // form an ordered reading sequence. Chapters with multiple personas in
+  // their frontmatter (legacy shared chapters, reference chapters) are not
+  // part of any walk and get no prev/next.
+  const walks: Record<string, typeof chapters> = {};
+  for (const c of chapters) {
+    if (c.data.personas.length === 1) {
+      const p = c.data.personas[0];
+      (walks[p] ||= []).push(c);
+    }
+  }
+  for (const p of Object.keys(walks)) {
+    walks[p].sort((a, b) => a.data.order - b.data.order);
+  }
+
+  return chapters.map((chapter) => {
+    let prev = null, next = null;
+    if (chapter.data.personas.length === 1) {
+      const walk = walks[chapter.data.personas[0]];
+      const idx = walk.findIndex((c) => c.id === chapter.id);
+      if (idx > 0) prev = walk[idx - 1];
+      if (idx >= 0 && idx < walk.length - 1) next = walk[idx + 1];
+    }
+    return {
+      params: { slug: chapter.id },
+      props: { chapter, prev, next },
+    };
+  });
+}
+
+const { chapter, prev, next } = Astro.props;
+const { Content } = await render(chapter);
+---
+
+<PageLayout
+  title={`${chapter.data.title} — fed it for humans`}
+  description={chapter.data.summary}
+>
+  <header class="persona-bar wide-column">
+    <a href="/" class="home-link">← fed it for humans</a>
+    <span class="persona-status" data-persona-content="any">
+      Reading as <strong class="persona-name"></strong> · <a href="/" class="change-link">change</a>
+    </span>
+    <span class="persona-status" data-persona-content="none">
+      <a href="/" class="change-link">Pick a persona →</a>
+    </span>
+  </header>
+
+  <main class="prose-column chapter">
+    <header class="chapter-header">
+      <h1 class="chapter-title">{chapter.data.title}</h1>
+      {chapter.data.summary && (
+        <p class="chapter-summary">{chapter.data.summary}</p>
+      )}
+    </header>
+
+    <article class="chapter-body">
+      <Content
+        components={{
+          WPanel,
+          YouPanel,
+          InTheField,
+          GoodLuck,
+        }}
+      />
+    </article>
+
+    <nav class="chapter-nav" aria-label="Chapter navigation">
+      {prev ? (
+        <a href={`/${prev.id}`} class="chapter-nav-link prev">
+          <span class="chapter-nav-label">← Previous</span>
+          <span class="chapter-nav-title">{prev.data.title}</span>
+        </a>
+      ) : <span class="chapter-nav-spacer" />}
+
+      {next ? (
+        <a href={`/${next.id}`} class="chapter-nav-link next">
+          <span class="chapter-nav-label">Next →</span>
+          <span class="chapter-nav-title">{next.data.title}</span>
+        </a>
+      ) : <span class="chapter-nav-spacer" />}
+    </nav>
+  </main>
+</PageLayout>
+
+<script>
+  import { getPersona, subscribe, PERSONA_SHORT, type Persona } from "../lib/persona";
+
+  function paint(active: Persona | null) {
+    document.querySelectorAll<HTMLElement>(".persona-name").forEach((el) => {
+      el.textContent = active ? PERSONA_SHORT[active] : "";
+    });
+  }
+  paint(getPersona());
+  subscribe(paint);
+</script>
+
+<style>
+  .persona-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--fs-sm);
+    color: var(--color-muted);
+  }
+
+  .home-link {
+    text-decoration: none;
+    color: var(--color-muted);
+  }
+
+  .home-link:hover {
+    color: var(--color-accent);
+  }
+
+  .persona-status {
+    font-family: var(--font-serif);
+    font-style: italic;
+  }
+
+  .persona-name {
+    color: var(--color-fg);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .change-link {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .chapter {
+    padding-block: var(--space-12) var(--space-24);
+  }
+
+  .chapter-header {
+    margin-bottom: var(--space-12);
+  }
+
+  .chapter-title {
+    font-size: var(--fs-3xl);
+    margin: 0 0 var(--space-4);
+    line-height: 1.05;
+  }
+
+  .chapter-summary {
+    font-size: var(--fs-md);
+    color: var(--color-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .chapter-body :global(p) {
+    margin: 0 0 var(--space-4);
+  }
+
+  .chapter-body :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .chapter-body :global(h2) {
+    font-size: var(--fs-xl);
+    margin-top: var(--space-12);
+    margin-bottom: var(--space-4);
+  }
+
+  .chapter-body :global(h3) {
+    font-size: var(--fs-lg);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-3);
+  }
+
+  .chapter-body :global(blockquote) {
+    border-left: 3px solid var(--color-border);
+    padding-left: var(--space-4);
+    color: var(--color-muted);
+    font-style: italic;
+    margin: var(--space-6) 0;
+  }
+
+  .chapter-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    margin-top: var(--space-16);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .chapter-nav-link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .chapter-nav-link:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .chapter-nav-link {
+      transition: none;
+    }
+    .chapter-nav-link:hover {
+      transform: none;
+    }
+  }
+
+  .chapter-nav-link.next {
+    text-align: right;
+  }
+
+  .chapter-nav-label {
+    font-size: var(--fs-xs);
+    color: var(--color-muted);
+    margin-bottom: var(--space-1);
+  }
+
+  .chapter-nav-title {
+    font-family: var(--font-serif);
+    font-size: var(--fs-md);
+    color: var(--color-fg);
+  }
+
+  .chapter-nav-spacer {
+    /* keeps grid balanced when prev or next is missing */
+  }
+</style>

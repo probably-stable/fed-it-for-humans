@@ -1,0 +1,26 @@
+---
+title: "STIGs and CIS Benchmarks"
+order: 7
+personas: [gary]
+summary: "Configuration baselines that translate abstract controls into specific product settings. CIS Hardened Images are the practical default for your own cloud infrastructure. STIG/CIS alignment expectations on the FedRAMP-facing surface depend on which customer agencies you serve."
+---
+
+import StigsAndCisCore from "@cores/stigs-and-cis.mdx";
+
+For your own cloud VMs and containers, CIS Benchmarks (and CIS Hardened Images especially) are usually the practical default — they dramatically simplify the baseline-establishment problem. For the FedRAMP-facing surface of your service, you may need to demonstrate STIG or CIS alignment depending on what your customer agencies expect; your 3PAO will tell you which. And cloud-provider best-practice frameworks (AWS Well-Architected, Azure Security Benchmark, GCP security best practices) often cover controls STIGs/CIS don't because they're cloud-architecture-specific.
+
+<StigsAndCisCore />
+
+<YouPanel persona="gary">
+For your own infrastructure (the stuff you control), CIS Benchmarks are usually the practical default — CIS Hardened Images for cloud VMs simplify the baseline-establishment problem dramatically.
+
+For the FedRAMP-facing parts of your service, you may need to demonstrate STIG or CIS alignment depending on what your customer agencies expect. Your 3PAO will tell you which.
+
+Cloud provider security best practices (AWS Well-Architected, Azure Security Benchmark, GCP security best practices) are essentially vendor guides at the cloud layer — they often have controls that STIGs/CIS don't cover because they're cloud-architecture-specific (IAM, network segmentation, encryption-at-rest with provider key management, etc.).
+
+**First-week move:** ask which baseline your operations team scans your VMs against. CIS, STIG, vendor-specific, or a custom in-house baseline are all common answers — each tells you something about how your security org thinks.
+</YouPanel>
+
+## What's next
+
+The next chapter walks the **forks in the chain** — where the federal-IT path diverges into specialized tracks. FedRAMP is your main federal-side surface; the agency-overlay layer is the federal-direct fork as it reaches you; your internal infrastructure operates on the industry-standards fork.

@@ -1,0 +1,20 @@
+[    1552ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4321/src/components/PersonaPicker.astro?astro&type=style&index=0&lang.css:0
+[    1586ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4321/src/pages/index.astro?astro&type=style&index=0&lang.css:0
+[    1586ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4321/@id/astro/runtime/client/dev-toolbar/entrypoint.js:0
+[    1632ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4321/node_modules/@xyflow/react/dist/style.css:0
+[    1650ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4321/@id/astro:scripts/before-hydration.js:0
+[    1656ms] Failed to fetch dynamically imported module: http://localhost:4321/@id/astro:scripts/before-hydration.js
+[    1653ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4321/@vite/client:0
+[    1733ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4321/src/styles/global.css:0
+[    1744ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4321/src/components/PersonaPicker.astro?astro&type=script&index=0&lang.ts:0
+[    1752ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4321/src/layouts/PageLayout.astro?astro&type=script&index=0&lang.ts:0
+[ 4130356ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4321/@id/astro/runtime/client/dev-toolbar/entrypoint.js:0
+[ 4130356ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4321/@vite/client:0
+[ 4130360ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4321/src/components/PersonaPicker.astro?astro&type=style&index=0&lang.css:0
+[ 4130363ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4321/src/pages/index.astro?astro&type=style&index=0&lang.css:0
+[ 4130368ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4321/@id/astro:scripts/before-hydration.js:0
+[ 4130368ms] Failed to fetch dynamically imported module: http://localhost:4321/@id/astro:scripts/before-hydration.js
+[ 4130370ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4321/src/components/PersonaPicker.astro?astro&type=script&index=0&lang.ts:0
+[ 4130370ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4321/src/layouts/PageLayout.astro?astro&type=script&index=0&lang.ts:0
+[ 4130375ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4321/node_modules/@xyflow/react/dist/style.css:0
+[ 4130453ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:4321/src/styles/global.css:0

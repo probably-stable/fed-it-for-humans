@@ -1,0 +1,79 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "← fed it for humans" [ref=e3] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e4]:
+      - text: Reading as
+      - strong [ref=e5]: Tom
+      - text: ·
+      - link "change" [ref=e6] [cursor=pointer]:
+        - /url: /
+  - main [ref=e7]:
+    - generic [ref=e8]:
+      - heading "FISMA" [level=1] [ref=e9]
+      - paragraph [ref=e10]: The federal law that requires every agency to have an information security program. The top of the chain. Everything else flows from this.
+    - article [ref=e11]:
+      - paragraph [ref=e12]: Most people in federal IT first hear “FISMA” in a meeting and nod along because the alternative is admitting they don’t know what it is. So let’s just say it. FISMA is a law. It’s the law that requires federal agencies to have an information security program. Everything you’ll learn after this (NIST publications, agency policies, STIGs, the whole compliance apparatus) exists because FISMA exists.
+      - paragraph [ref=e13]: "Here’s the W’s:"
+      - 'region "Frame: FISMA — Federal Information Security Modernization Act" [ref=e14]':
+        - heading "FISMA — Federal Information Security Modernization Act" [level=3] [ref=e15]
+        - generic [ref=e16]:
+          - generic [ref=e17]:
+            - term [ref=e18]: Who
+            - definition [ref=e19]: "Authored by Congress. Implemented through OMB at the executive level. At the agency level: enforced by the agency CIO and CISO, with day-to-day responsibility delegated to ISSOs (Information System Security Officers)."
+          - generic [ref=e20]:
+            - term [ref=e21]: What
+            - definition [ref=e22]:
+              - text: A federal law (originally 2002 as the Federal Information Security
+              - emphasis [ref=e23]: Management
+              - text: Act, modernized 2014 to
+              - emphasis [ref=e24]: Modernization
+              - text: ) requiring every federal agency to develop, document, and implement an information security program. Codified at 44 U.S.C. § 3551 et seq.
+          - generic [ref=e25]:
+            - term [ref=e26]: Where
+            - definition [ref=e27]: At the very top of the federal IT compliance chain. Everything downstream — OMB Circular A-130 policy, NIST FIPS standards, NIST SP 800 series, agency-specific overlays, STIGs and CIS Benchmarks at the technical layer — exists because FISMA requires it.
+          - generic [ref=e28]:
+            - term [ref=e29]: Why
+            - definition [ref=e30]: Pre-FISMA, federal agencies had inconsistent or no formal information security programs. GAO reports flagged catastrophic gaps. Congress wanted measurable, reportable, federal-level accountability for cybersecurity. FISMA is the statutory basis for everything that came after.
+          - generic [ref=e31]:
+            - term [ref=e32]: How
+            - definition [ref=e33]:
+              - text: FISMA itself doesn't tell anyone
+              - emphasis [ref=e34]: how
+              - text: to do information security — it delegates that. The HOW gets specified in OMB policy directives (especially Circular A-130), then in NIST publications (FIPS standards are
+              - emphasis [ref=e35]: mandatory
+              - text: for federal systems via FISMA reference; SP 800 series is required by reference in many cases). Implementation flows down from there to STIGs and CIS Benchmarks at the technical configuration layer.
+      - paragraph [ref=e36]: "A useful mental shape: FISMA is the HMR-TEST-MARKER layer. It says “thou shalt have an information security program” but doesn’t tell you what that means. The “what that means” is delegated downward. By the time you’re hardening a RHEL server, you’re doing work that has FISMA in its ancestry but is many layers removed from the law itself."
+      - heading "How this reaches you" [level=2] [ref=e37]
+      - paragraph [ref=e38]:
+        - text: You’ll see FISMA cited in your agency’s policy documents, in the DFARS or FAR clauses on your contract, and in the boilerplate at the front of your System Security Plan (SSP). You’ll never directly
+        - emphasis [ref=e39]: implement
+        - text: FISMA. You’ll implement all the things downstream of it. The day-to-day pressure you feel (controls assessments, scan remediations, ATO maintenance) is FISMA-derived but reaches you through NIST 800-53 and your agency’s overlay.
+      - paragraph [ref=e40]:
+        - strong [ref=e41]: "First-week move:"
+        - text: ask your boss or ISSO what your team’s role is in the agency’s annual FISMA reporting cycle. The answer tells you which artifacts you’ll be asked to produce when the deadline hits.
+      - heading "A reality check before we move on" [level=2] [ref=e42]
+      - paragraph [ref=e43]: "Most people in federal IT don’t talk about FISMA day-to-day. You might hear it once from a senior or a mentor — usually framed as “FISMA is the law, everything else derives from it” — and then it sits as background. The work you’ll actually feel is downstream: NIST 800-53 controls, ATOs, POA&Ms, scan findings. If you go your first six months in a fed IT job and never hear “FISMA” again after orientation, nobody would be surprised."
+      - heading "What’s next" [level=2] [ref=e44]
+      - paragraph [ref=e45]:
+        - text: The next link in the chain is
+        - strong [ref=e46]: OMB Circular A-130
+        - text: — the policy document that operationalizes FISMA’s high-level requirements into specific obligations for federal agencies. If FISMA is the law, A-130 is the implementing policy. We’ll cover it next.
+    - navigation "Chapter navigation" [ref=e47]:
+      - link "Next → OMB Circular A-130" [ref=e49] [cursor=pointer]:
+        - /url: /sam/foundation/omb-a130
+        - generic [ref=e50]: Next →
+        - generic [ref=e51]: OMB Circular A-130
+  - generic [ref=e54]:
+    - button "Menu" [ref=e55]:
+      - img [ref=e57]
+      - generic: Menu
+    - button "Inspect" [ref=e61]:
+      - img [ref=e63]
+      - generic: Inspect
+    - button "Audit" [ref=e65]:
+      - img [ref=e67]
+      - generic: Audit
+    - button "Settings" [ref=e70]:
+      - img [ref=e72]
+      - generic: Settings

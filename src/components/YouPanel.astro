@@ -1,0 +1,75 @@
+---
+/**
+ * YouPanel — personal view of a concept, switches per active persona.
+ * The "inside-out" half of The Frame.
+ *
+ * Pattern: include one <YouPanel persona="..."> per applicable persona.
+ * Server renders all variants; CSS rules in global.css show only the
+ * active persona's variant (FOUC-safe — the head script in PageLayout
+ * sets the persona attribute before first paint).
+ *
+ * No-JS fallback: <noscript> in PageLayout reveals all variants so the
+ * reader can read whichever applies to them by label.
+ *
+ * Hard rule: actionable items inside a YouPanel must use OPEN questions —
+ * "ask your ISSO how POA&Ms are handled" — not loaded ones that assume
+ * the reader already has the chapter's vocabulary.
+ */
+
+import type { Persona } from "../lib/persona";
+import { PERSONA_SHORT } from "../lib/persona";
+
+interface Props {
+  persona: Persona;
+}
+
+const { persona } = Astro.props;
+---
+
+<aside class="youpanel" data-persona-content={persona}>
+  <header class="youpanel-header">
+    <span class="youpanel-label">For you, {PERSONA_SHORT[persona]}</span>
+  </header>
+  <div class="youpanel-body">
+    <slot />
+  </div>
+</aside>
+
+<style>
+  .youpanel {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-6);
+    margin-block: var(--space-6);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* When multiple YouPanels appear (no-JS fallback), separate them visually */
+  .youpanel + .youpanel {
+    margin-top: var(--space-3);
+  }
+
+  .youpanel-header {
+    margin-bottom: var(--space-3);
+  }
+
+  .youpanel-label {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--fs-sm);
+    color: var(--color-muted);
+  }
+
+  .youpanel-body :global(p) {
+    margin: 0 0 var(--space-3);
+  }
+
+  .youpanel-body :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .youpanel-body :global(strong) {
+    color: var(--color-fg);
+  }
+</style>
