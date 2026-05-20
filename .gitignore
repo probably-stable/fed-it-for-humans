@@ -25,3 +25,12 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# Playwright MCP session artifacts (CC smoke-test outputs)
+.playwright-mcp/
+
+# Dev server logs
+dev-server.log
+
+# Root-level screenshots from smoke-test runs (real asset PNGs live under src/ or public/)
+/*.png
