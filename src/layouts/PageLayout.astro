@@ -8,6 +8,7 @@
  * paint. The post-load script (persona-visibility) only handles updates.
  */
 import "../styles/global.css";
+import Footer from "../components/Footer.astro";
 
 interface Props {
   title?: string;
@@ -89,6 +90,7 @@ const canonicalHref = canonical ?? Astro.url.href;
   </head>
   <body>
     <slot />
+    <Footer />
 
     <script>
       import { initPersonaVisibility } from "../lib/persona-visibility";

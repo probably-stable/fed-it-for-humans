@@ -1,0 +1,54 @@
+---
+/**
+ * Footer — site-wide footer. Surfaces the shared reference chapters
+ * (glossary / bookshelf / about), which are otherwise reachable only from
+ * the 404 page. Included in PageLayout, so it renders on every page.
+ *
+ * Reference chapters live at fixed /reference/* URLs (not persona-routed),
+ * so these links are the same for every reader.
+ */
+---
+
+<footer class="site-footer wide-column">
+  <nav class="site-footer-nav" aria-label="Reference">
+    <a href="/reference/glossary">Glossary</a>
+    <a href="/reference/bookshelf">Bookshelf</a>
+    <a href="/reference/about">About</a>
+  </nav>
+  <p class="site-footer-note">A visual on-ramp to federal IT compliance.</p>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--space-16);
+    padding-block: var(--space-8) var(--space-12);
+    text-align: center;
+  }
+
+  .site-footer-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+    margin-bottom: var(--space-3);
+  }
+
+  .site-footer-nav a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-family: var(--font-serif);
+    font-size: var(--fs-sm);
+  }
+
+  .site-footer-nav a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .site-footer-note {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: var(--fs-xs);
+  }
+</style>
