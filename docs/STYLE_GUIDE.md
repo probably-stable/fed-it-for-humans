@@ -41,13 +41,15 @@ Every concept (FISMA, NIST 800-53, SSP, POA&M, STIG, ATO, etc.) is introduced wi
 
 ### The You Panel — personal view
 
-`<YouPanel persona="...">` blocks underneath. One per applicable persona. Switches based on the reader's active persona. Answers the questions the W's don't:
+`<YouPanel persona="...">` — the personal counterpart to the W's. Under the v2 architecture each persona's chapter wrapper carries exactly one, for that persona. Answers the questions the W's don't:
 
 - *"How does this apply to me?"*
 - *"What does this have to do with me?"*
 - *"How do I do my job related to this?"*
 
 The You Panel does the psychological work. The reader doesn't have to translate from the institutional view to their own situation — it's already been translated for them.
+
+Visibility is gated by the active persona (`data-active-persona` on `<html>`, set by the FOUC-safe head script in `PageLayout`). On a persona-routed chapter the URL is authoritative — `/jordan/foundation/fisma` renders with `data-active-persona="jordan"` regardless of prior localStorage — so a shared link always shows the right persona's panel. On non-persona pages (home, reference chapters) the active persona falls back to localStorage.
 
 ### Hard writing rule for You panels
 
@@ -76,10 +78,9 @@ The right version also pays off in the workplace sense — open questions get th
 
 **What stays in the persona wrapper (per-persona):**
 
-- Frontmatter (`title`, `order`, `personas: [persona]`, `summary`)
+- Frontmatter (`title`, `order`, `personas: [persona]`, `summary`, plus `isFinal: true` if it's that persona's last chapter)
 - Cold open paragraphs (persona voice — Sam, Tom, Jordan, etc. each open differently)
-- "How this reaches you" section (was the persona's `<YouPanel>` content; now first-class prose in the wrapper)
-- "First-week move" actionable
+- The persona's `<YouPanel persona="...">` — how the concept reaches this persona's day, plus the "first-week move" actionable. One panel, this persona only; it's the wrapper's persona-specific payload, visually separated from the shared institutional core.
 - The "What's next" pointer (can be tonally persona-specific)
 - The persona's `<GoodLuck>` end-cap if this is their final chapter
 
@@ -97,16 +98,13 @@ import FismaCore from "@cores/fisma.mdx";
 
 [Sam-voiced cold open — 2-3 sentences setting tone for Sam's situation.]
 
-Here's the W's:
-
 <FismaCore />
 
-## How this reaches you
-
-[Sam-specific direct-address prose. This was previously a YouPanel callout;
-now it's first-class chapter content because the chapter IS Sam's chapter.]
+<YouPanel persona="sam">
+[Sam-specific direct address — how FISMA reaches Sam's day, written as the persona's take on the concept and visually separated from the institutional core above.]
 
 **First-week move:** [Sam-specific action — open question per the question-never-requires-the-answer rule.]
+</YouPanel>
 
 ## What's next
 
@@ -118,7 +116,7 @@ now it's first-class chapter content because the chapter IS Sam's chapter.]
 - **Fix once, applies everywhere.** A correction to a NIST fact in the W's panel updates all 5 persona chapters automatically.
 - **Per-persona writing stays cheap.** A new persona wrapper is ~2KB of prose, not a full chapter copy.
 - **No drift.** The institutional content can't accidentally drift between persona versions over time because there's only one source.
-- **Scales to new personas.** Adding a 6th persona later means writing 11 small wrappers, not 11 full chapters.
+- **Scales to new personas.** Adding a 6th persona later means writing 10 small wrappers, not 10 full chapters.
 
 The core files live at `src/cores/` (outside the content collection — they're not chapters themselves, just shared content). The `@cores/*` path alias is configured in `tsconfig.json`. MDX imports of other MDX work via Astro's MDX integration; the imported MDX renders inline when the imported component is used as JSX.
 
@@ -193,31 +191,30 @@ The drafted versions (Sam / Jordan / Gary / Tom / Jarod) are in the project memo
 | **Tom** | Pure private sector, zero federal exposure | The trickle-down (vendor certs, state laws, insurance, court precedent, free public goods like CIS) and the "surprise pull-in" moment |
 | **Jarod** | Wants to break into federal IT | The chain at high level, what jobs exist, how to read a job posting, what to study |
 
-When tagging chapter applicability:
-- `personas: [sam, jordan, gary, tom, jarod]` — applies to everyone (foundation chapters: FISMA, NIST, what controls are)
-- `personas: [sam]` — federal-contractor-specific (STIGs deep, JSIG, etc.)
-- `personas: [jordan]` — healthcare-specific (HIPAA, HITECH, HHS)
-- etc.
+Chapter `personas` tagging under the v2 architecture:
+- Each persona wrapper is tagged with **exactly its own persona** — `personas: [sam]` for files under `src/content/chapters/sam/`, `personas: [jordan]` for `jordan/`, and so on. The single-persona tag is what places the chapter in that persona's ordered walk (prev/next).
+- Shared **reference chapters** (glossary, bookshelf, about) are tagged with all five — `personas: [sam, jordan, gary, tom, jarod]`. A multi-persona tag keeps them out of every walk: they're lookups, not walk steps, so they get no prev/next.
+- An empty tag (`personas: []`) keeps a file out of every walk and every persona — used only for retired/stub pages.
 
 ---
 
 ## Adding a chapter — the checklist
 
-1. Create `src/content/chapters/<slug>.mdx` with frontmatter:
-   ```yaml
-   ---
-   title: "POA&M"
-   slug: poam
-   personas: [sam, jordan, gary, tom, jarod]
-   order: 14
-   ---
-   ```
-2. Open with `<WPanel>` — fill all five W fields. Don't skip "How"; if the implementation gap doesn't apply, say so explicitly ("This is a process artifact, not a technical control — implementation lives in your GRC tool of choice.").
-3. Add `<YouPanel persona="..">` blocks for every persona this chapter applies to. Run each through the **question-should-never-require-the-answer** check before shipping.
-4. If the concept has real-world variance, add an `<InTheField>` callout naming the variance.
-5. If this is the LAST chapter in a persona's path, add a `<GoodLuck persona="..">` end-cap for that persona.
-6. Cite NIST publication numbers and section anchors when making factual claims. The verification surface for the reader is wide enough already; don't make them go fishing.
-7. Note anything that might have moved since the May 2025 knowledge cutoff (CMMC has been shifting, FedRAMP has been re-architecting authorization paths, NIST 800-53 rev 6 was in draft) so a future-revisit can re-verify.
+Under the v2 architecture, adding a chapter means writing **one core** plus **five persona wrappers**.
+
+1. **Write the core** at `src/cores/<slug>.mdx`:
+   - Import the Frame components the core uses directly at the top (`import WPanel from "../components/WPanel.astro";` etc.) — component injection does **not** cascade into imported MDX.
+   - Open with `<WPanel>` — fill all five W fields. Don't skip "How"; if the implementation gap doesn't apply, say so explicitly ("This is a process artifact, not a technical control — implementation lives in your GRC tool of choice.").
+   - Add institutional framing prose, standalone content blocks, and any `<InTheField>` callouts (variance is persona-agnostic — it belongs in the core).
+   - The core has **no frontmatter** and is **not** in the content collection.
+2. **Write five persona wrappers** at `src/content/chapters/<persona>/<section>/<slug>.mdx`, one per persona:
+   - Frontmatter: `title`, `order`, `personas: [<that persona>]`, `summary`; add `isFinal: true` if it's that persona's last chapter.
+   - Import the core (`import XCore from "@cores/<slug>.mdx";`), then: persona-voiced cold open (2-3 sentences) → `<XCore />` → `<YouPanel persona="<persona>">` with that persona's take and "first-week move" → `## What's next` pointer.
+   - Run every actionable through the **question-should-never-require-the-answer** check.
+   - If `isFinal`, add a `<GoodLuck persona="<persona>">` end-cap.
+3. Keep `order` consistent across all five wrappers for the same concept, so the walks stay parallel.
+4. Cite NIST publication numbers and section anchors when making factual claims (in the core — that's where the facts live). The verification surface for the reader is wide enough already; don't make them go fishing.
+5. Note anything that might have moved since the May 2025 knowledge cutoff (CMMC has been shifting, FedRAMP has been re-architecting authorization paths, NIST 800-53 rev 6 was in draft) so a future-revisit can re-verify.
 
 ---
 

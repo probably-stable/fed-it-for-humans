@@ -53,11 +53,20 @@ export async function getStaticPaths() {
 
 const { chapter, prev, next } = Astro.props;
 const { Content } = await render(chapter);
+
+// Persona-routed chapters live under /<persona>/... — the URL declares the
+// persona. Derive it from the chapter id so the page renders as that persona
+// even on a shared link with empty or mismatched localStorage. Non-persona
+// chapters (reference/*) return null and fall back to localStorage.
+const PERSONA_PREFIXES = ["sam", "jordan", "gary", "tom", "jarod"];
+const idPrefix = chapter.id.split("/")[0];
+const pagePersona = PERSONA_PREFIXES.includes(idPrefix) ? idPrefix : null;
 ---
 
 <PageLayout
   title={`${chapter.data.title} — fed it for humans`}
   description={chapter.data.summary}
+  pagePersona={pagePersona}
 >
   <header class="persona-bar wide-column">
     <a href="/" class="home-link">← fed it for humans</a>
@@ -77,7 +86,7 @@ const { Content } = await render(chapter);
       )}
     </header>
 
-    <article class="chapter-body">
+    <article class="chapter-body" data-chapter-id={chapter.id}>
       <Content
         components={{
           WPanel,
@@ -114,8 +123,33 @@ const { Content } = await render(chapter);
       el.textContent = active ? PERSONA_SHORT[active] : "";
     });
   }
-  paint(getPersona());
-  subscribe(paint);
+
+  // Reference chapters (glossary / bookshelf / about) are shared across all
+  // personas. Their cross-links into chapter content are authored with a
+  // /sam/ prefix so they still resolve when JS is off (graceful fallback to
+  // Sam's chapter set). When JS is on, retarget them to the active persona's
+  // chapters. Idempotent: the original /sam/ href is stashed in a data
+  // attribute, so persona changes always rewrite from the original.
+  function retargetReferenceLinks(active: Persona | null) {
+    const body = document.querySelector<HTMLElement>(".chapter-body");
+    if (!body) return;
+    const id = body.dataset.chapterId || "";
+    if (!id.startsWith("reference/")) return;
+    const persona = active ?? "sam";
+    body.querySelectorAll<HTMLAnchorElement>("a[href^='/sam/']").forEach((a) => {
+      const original = a.dataset.refHref ?? a.getAttribute("href") ?? "";
+      a.dataset.refHref = original;
+      a.setAttribute("href", original.replace(/^\/sam\//, `/${persona}/`));
+    });
+  }
+
+  function update(active: Persona | null) {
+    paint(active);
+    retargetReferenceLinks(active);
+  }
+
+  update(getPersona());
+  subscribe(update);
 </script>
 
 <style>

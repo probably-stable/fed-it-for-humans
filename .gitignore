@@ -30,7 +30,7 @@ Thumbs.db
 .playwright-mcp/
 
 # Dev server logs
-dev-server.log
+dev-server*.log
 
 # Root-level screenshots from smoke-test runs (real asset PNGs live under src/ or public/)
 /*.png

@@ -16,6 +16,9 @@ interface Props {
   ogImage?: string;
   /* canonical URL of this page; falls back to Astro.url */
   canonical?: string;
+  /* set on persona-routed pages — the URL is authoritative for persona,
+     overriding localStorage so shared links render as the right persona */
+  pagePersona?: string | null;
 }
 
 const {
@@ -23,6 +26,7 @@ const {
   description = "A visual on-ramp to federal IT compliance — FISMA, NIST, STIGs, CIS, and the rest of the chain. Written for people coming into this world cold.",
   ogImage,
   canonical,
+  pagePersona = null,
 } = Astro.props;
 
 const canonicalHref = canonical ?? Astro.url.href;
@@ -50,12 +54,24 @@ const canonicalHref = canonical ?? Astro.url.href;
     <meta name="twitter:description" content={description} />
     {ogImage && <meta name="twitter:image" content={ogImage} />}
 
-    {/* FOUC-safe persona detection — runs synchronously before body renders */}
-    <script is:inline>
+    {/* FOUC-safe persona detection — runs synchronously before body renders.
+        On persona-routed pages `pagePersona` is set: the URL wins, and the
+        choice is persisted so the rest of the session follows it. Elsewhere
+        (home, reference chapters) it falls back to localStorage. */}
+    <script define:vars={{ pagePersona }}>
       (function () {
+        var valid = ["sam", "jordan", "gary", "tom", "jarod"];
+        if (pagePersona && valid.indexOf(pagePersona) >= 0) {
+          document.documentElement.setAttribute("data-active-persona", pagePersona);
+          try {
+            window.localStorage.setItem("fed-it-persona", pagePersona);
+          } catch (e) {
+            /* storage disabled — the attribute above still renders correctly */
+          }
+          return;
+        }
         try {
           var raw = window.localStorage.getItem("fed-it-persona");
-          var valid = ["sam", "jordan", "gary", "tom", "jarod"];
           var active = raw && valid.indexOf(raw) >= 0 ? raw : "none";
           document.documentElement.setAttribute("data-active-persona", active);
         } catch (e) {
