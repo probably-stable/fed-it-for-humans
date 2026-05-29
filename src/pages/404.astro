@@ -3,6 +3,11 @@
  * Custom 404 page. Replaces Astro's generic default with the storybook
  * aesthetic and gives visitors who land on a broken URL a useful set of
  * jumping-off points.
+ *
+ * Chapter URLs are persona-routed (e.g. /sam/foundation/fisma). We use
+ * Sam's full walk as the canonical authored list (JS-off fallback to
+ * Sam's chapters), then a runtime script below rewrites the /sam/ hrefs
+ * to the active persona — same pattern as the glossary retarget.
  */
 import PageLayout from "../layouts/PageLayout.astro";
 import { getCollection } from "astro:content";
@@ -10,10 +15,9 @@ import { getCollection } from "astro:content";
 const chapters = await getCollection("chapters");
 chapters.sort((a, b) => a.data.order - b.data.order);
 
-// group by directory prefix (foundation / forks / reference)
 const groups = {
-  foundation: chapters.filter((c) => c.id.startsWith("foundation/")),
-  forks: chapters.filter((c) => c.id.startsWith("forks/")),
+  foundation: chapters.filter((c) => c.id.startsWith("sam/foundation/")),
+  forks: chapters.filter((c) => c.id.startsWith("sam/forks/")),
   reference: chapters.filter((c) => c.id.startsWith("reference/")),
 };
 ---
@@ -22,7 +26,7 @@ const groups = {
   title="Not found — fed it for humans"
   description="The page you were looking for isn't here. The chain map is."
 >
-  <main class="prose-column">
+  <main id="main" class="prose-column">
     <header class="hero">
       <p class="eyebrow">404</p>
       <h1 class="hero-title">You've wandered off the map.</h1>
@@ -67,6 +71,24 @@ const groups = {
     </section>
   </main>
 </PageLayout>
+
+<script>
+  import { getPersona, subscribe, type Persona } from "../lib/persona";
+
+  /* Same idempotent pattern as the reference-link retarget in [...slug].astro:
+     authored /sam/ hrefs stay in source as a JS-off fallback; runtime rewrites
+     them to the active persona. */
+  function retargetSamLinks(active: Persona | null) {
+    const persona = active ?? "sam";
+    document.querySelectorAll<HTMLAnchorElement>(".chapter-index a[href^='/sam/']").forEach((a) => {
+      const original = a.dataset.samHref ?? a.getAttribute("href") ?? "";
+      a.dataset.samHref = original;
+      a.setAttribute("href", original.replace(/^\/sam\//, `/${persona}/`));
+    });
+  }
+  retargetSamLinks(getPersona());
+  subscribe(retargetSamLinks);
+</script>
 
 <style>
   .hero {
@@ -125,7 +147,6 @@ const groups = {
   }
 
   .group-heading {
-    font-size: var(--fs-md);
     color: var(--color-accent);
     margin: 0 0 var(--space-3);
     text-transform: uppercase;

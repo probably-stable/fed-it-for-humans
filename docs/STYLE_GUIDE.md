@@ -1,6 +1,6 @@
 # Style guide
 
-Read this before adding a chapter, writing a panel, or making editorial decisions about voice. The doc has a few load-bearing rules. They came out of conversations during the project's design and they exist for specific reasons. Hold them.
+Read this before adding a chapter, writing a panel, or making editorial decisions about voice. The doc has a few rules that matter; they came out of conversations during the project's design and they exist for specific reasons. Hold them.
 
 ---
 

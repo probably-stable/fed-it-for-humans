@@ -6,12 +6,17 @@
  * Out-of-scope forks (defense contractor, classified) get a dashed-border
  * "this is real but this guide doesn't cover it in depth" treatment.
  *
- * Click a node → navigate to the corresponding chapter.
+ * Click a node → navigate to the active persona's chapter for that node.
+ *
+ * Accessibility: react-flow's pixel-positioned nodes are mouse-only, so a
+ * visually-hidden parallel <ul> mirrors every node as a real <a>. Keyboard
+ * users, screen readers, and JS-off readers all have an accessible path to
+ * every chapter on the map.
  *
  * Astro island via client:load. Lives at src/components/ChainMap.tsx.
  */
 
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   ReactFlow,
   Background,
@@ -24,6 +29,14 @@ import {
   type NodeProps,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
+
+type Persona = "sam" | "jordan" | "gary" | "tom" | "jarod";
+const PERSONAS: Persona[] = ["sam", "jordan", "gary", "tom", "jarod"];
+const DEFAULT_PERSONA: Persona = "sam";
+
+function isPersona(v: unknown): v is Persona {
+  return typeof v === "string" && (PERSONAS as string[]).includes(v);
+}
 
 type ChainVariant = "foundation" | "fork" | "out-of-scope" | "parallel";
 
@@ -77,20 +90,15 @@ const NODES: ChainNode[] = [
 ];
 
 const EDGES: Edge[] = [
-  // foundation chain — vertical
   { id: "e1", source: "fisma", target: "a130" },
   { id: "e2", source: "a130", target: "nist-pubs" },
   { id: "e3", source: "nist-pubs", target: "rmf" },
   { id: "e4", source: "rmf", target: "800-53" },
   { id: "e5", source: "800-53", target: "agency-overlays" },
   { id: "e6", source: "agency-overlays", target: "stigs-cis" },
-
-  // forks branching from agency-overlays
   { id: "e-fedramp", source: "agency-overlays", target: "fedramp" },
   { id: "e-defense", source: "agency-overlays", target: "defense-contractor", style: { strokeDasharray: "6 4", opacity: 0.5 } },
   { id: "e-classified", source: "agency-overlays", target: "classified", style: { strokeDasharray: "6 4", opacity: 0.5 } },
-
-  // industry standards — dashed connection to NIST publications (parallel reference)
   {
     id: "e-industry",
     source: "industry-standards",
@@ -104,28 +112,51 @@ const EDGES: Edge[] = [
 
 /* ──────── Main component ──────── */
 
+function readPersonaFromStorage(): Persona {
+  try {
+    const stored = window.localStorage.getItem("fed-it-persona");
+    return isPersona(stored) ? stored : DEFAULT_PERSONA;
+  } catch {
+    return DEFAULT_PERSONA;
+  }
+}
+
 export default function ChainMap() {
-  const onNodeClick = useCallback<NodeMouseHandler>((_, node) => {
-    const data = node.data as ChainNodeData;
-    if (!data?.slug) return;
-    let persona: string | null = null;
-    try {
-      persona = window.localStorage.getItem("fed-it-persona");
-    } catch {}
-    // Sam has the full chapter set. Other personas have a coming-soon landing.
-    // No persona = home page (force pick).
-    if (persona === "sam") {
-      // Sam has the full tailored chapter set
-      window.location.href = `/sam/${data.slug}`;
-    } else {
-      // Other personas route to the legacy shared chapter; their YouPanel
-      // still gates the per-persona content. The persona-aware tailored
-      // versions are coming in Phase 2.
-      window.location.href = `/${data.slug}`;
-    }
+  // Persona reactive state. The first paint of this client island happens
+  // after PageLayout's head script has populated localStorage, so the
+  // initial read is reliable. Subscribe to persona changes from the picker
+  // (same tab) and storage events (other tabs) so links stay correct.
+  const [persona, setPersona] = useState<Persona>(DEFAULT_PERSONA);
+
+  useEffect(() => {
+    setPersona(readPersonaFromStorage());
+
+    const onCustom = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      setPersona(isPersona(detail) ? detail : DEFAULT_PERSONA);
+    };
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === "fed-it-persona") {
+        setPersona(isPersona(e.newValue) ? e.newValue : DEFAULT_PERSONA);
+      }
+    };
+    window.addEventListener("persona:change", onCustom);
+    window.addEventListener("storage", onStorage);
+    return () => {
+      window.removeEventListener("persona:change", onCustom);
+      window.removeEventListener("storage", onStorage);
+    };
   }, []);
 
-  // memoize nodes with className applied per variant for CSS targeting
+  const onNodeClick = useCallback<NodeMouseHandler>(
+    (_, node) => {
+      const data = node.data as ChainNodeData;
+      if (!data?.slug) return;
+      window.location.href = `/${persona}/${data.slug}`;
+    },
+    [persona],
+  );
+
   const nodes = useMemo(
     () =>
       NODES.map((n) => ({
@@ -135,25 +166,68 @@ export default function ChainMap() {
     [],
   );
 
+  // Group nodes by section for the accessible parallel list.
+  const groupedForList = useMemo(() => {
+    const foundation = NODES.filter((n) => n.data.variant === "foundation");
+    const forks = NODES.filter((n) => n.data.variant === "fork" || n.data.variant === "out-of-scope");
+    const parallel = NODES.filter((n) => n.data.variant === "parallel");
+    return { foundation, forks, parallel };
+  }, []);
+
   return (
-    <div className="chainmap-wrap" role="region" aria-label="The federal IT compliance chain — interactive map">
-      <ReactFlow
-        nodes={nodes}
-        edges={EDGES}
-        nodeTypes={nodeTypes}
-        onNodeClick={onNodeClick}
-        fitView
-        nodesDraggable={false}
-        nodesConnectable={false}
-        elementsSelectable={true}
-        zoomOnScroll={false}
-        zoomOnPinch={true}
-        panOnScroll={false}
-        panOnDrag={true}
-      >
-        <Background gap={24} color="var(--color-border, #e8ddc8)" />
-        <Controls showInteractive={false} />
-      </ReactFlow>
+    <div className="chainmap-region" role="region" aria-label="The federal IT compliance chain — interactive map">
+      <div className="chainmap-wrap" aria-hidden="true">
+        <ReactFlow
+          nodes={nodes}
+          edges={EDGES}
+          nodeTypes={nodeTypes}
+          onNodeClick={onNodeClick}
+          fitView
+          nodesDraggable={false}
+          nodesConnectable={false}
+          elementsSelectable={true}
+          zoomOnScroll={false}
+          zoomOnPinch={true}
+          panOnScroll={false}
+          panOnDrag={true}
+        >
+          <Background gap={24} color="var(--color-border, #e8ddc8)" />
+          <Controls showInteractive={false} />
+        </ReactFlow>
+      </div>
+
+      {/* Accessible parallel list — visually hidden but exposed to keyboard
+          users, screen readers, and JS-off browsers. */}
+      <nav className="chainmap-a11y-nav" aria-label="Chapters on the chain map">
+        <h3 className="visually-hidden">Chapters on the chain map</h3>
+
+        <h4 className="visually-hidden">Foundation chain</h4>
+        <ul className="visually-hidden">
+          {groupedForList.foundation.map((n) => (
+            <li key={n.id}>
+              <a href={`/${persona}/${n.data.slug}`}>{n.data.label}</a>
+            </li>
+          ))}
+        </ul>
+
+        <h4 className="visually-hidden">Forks</h4>
+        <ul className="visually-hidden">
+          {groupedForList.forks.map((n) => (
+            <li key={n.id}>
+              <a href={`/${persona}/${n.data.slug}`}>{n.data.label}</a>
+            </li>
+          ))}
+        </ul>
+
+        <h4 className="visually-hidden">Parallel</h4>
+        <ul className="visually-hidden">
+          {groupedForList.parallel.map((n) => (
+            <li key={n.id}>
+              <a href={`/${persona}/${n.data.slug}`}>{n.data.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
       <style>{`
         .chainmap-wrap {
@@ -163,6 +237,25 @@ export default function ChainMap() {
           border: 1px solid var(--color-border, #e8ddc8);
           border-radius: var(--radius, 0.5rem);
           overflow: hidden;
+        }
+        .visually-hidden {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border: 0;
+        }
+        .visually-hidden:focus,
+        .visually-hidden a:focus {
+          position: static;
+          width: auto;
+          height: auto;
+          clip: auto;
+          white-space: normal;
         }
         .chainmap-wrap :global(.react-flow__node) {
           font-family: var(--font-serif, Georgia, serif);

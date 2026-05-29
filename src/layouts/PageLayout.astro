@@ -50,7 +50,7 @@ const canonicalHref = canonical ?? Astro.url.href;
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalHref} />
     {ogImage && <meta property="og:image" content={ogImage} />}
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content={ogImage ? "summary_large_image" : "summary"} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {ogImage && <meta name="twitter:image" content={ogImage} />}
@@ -89,8 +89,28 @@ const canonicalHref = canonical ?? Astro.url.href;
     </noscript>
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <slot />
     <Footer />
+
+    <style>
+      .skip-link {
+        position: absolute;
+        top: -10rem;
+        left: var(--space-4);
+        z-index: 100;
+        padding: var(--space-2) var(--space-4);
+        background: var(--color-accent);
+        color: white;
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+        font-family: var(--font-serif);
+        border-radius: var(--radius);
+      }
+      .skip-link:focus {
+        top: var(--space-3);
+      }
+    </style>
 
     <script>
       import { initPersonaVisibility } from "../lib/persona-visibility";

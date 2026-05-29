@@ -2,7 +2,11 @@ name: Deploy to GitHub Pages
 
 # Builds the Astro site and deploys it to GitHub Pages on every push to main.
 # REQUIRED setup before this workflow will succeed:
-#   1. Configure `site` (and `base` if project page) in astro.config.mjs.
+#   1. Set the SITE_URL repository variable (Settings → Secrets and variables →
+#      Actions → Variables) to the deployed origin, e.g.
+#      https://probably-stable.github.io. If deploying as a project page,
+#      also set BASE_PATH to the repo subpath (e.g. /fed-it-for-humans).
+#      Without SITE_URL, astro.config.mjs throws on build (intentional guard).
 #   2. In repo settings → Pages → Source = "GitHub Actions".
 #   3. Push to main.
 #
@@ -40,6 +44,9 @@ jobs:
         run: npm ci
 
       - name: Build site
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+          BASE_PATH: ${{ vars.BASE_PATH }}
         run: npm run build
 
       - name: Upload artifact

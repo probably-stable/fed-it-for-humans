@@ -30,7 +30,7 @@
   --color-luck-bd:  #e8d680;
 
   /* typography */
-  --font-serif: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
+  --font-serif: Georgia, "Times New Roman", ui-serif, serif;
   --font-sans:  ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono:  ui-monospace, "JetBrains Mono", "Menlo", "Monaco", "Consolas", monospace;
 

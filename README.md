@@ -93,4 +93,7 @@ Jonathan Villarreal — [linkedin.com/in/keeping-it-rreal](https://linkedin.com/
 
 ## License
 
-License TBD — pick before publishing. Likely MIT (for code) + CC-BY-SA (for content).
+This project is dual-licensed:
+
+- **Code** (Astro components, TypeScript, build config, etc.) — MIT. See [`LICENSE`](LICENSE).
+- **Written content** (chapters, cores, glossary, README, STYLE_GUIDE, etc.) — CC-BY-SA-4.0. See [`LICENSE-CONTENT`](LICENSE-CONTENT).
