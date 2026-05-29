@@ -7,7 +7,7 @@
  * Chapter URLs are persona-routed (e.g. /sam/foundation/fisma). We use
  * Sam's full walk as the canonical authored list (JS-off fallback to
  * Sam's chapters), then a runtime script below rewrites the /sam/ hrefs
- * to the active persona — same pattern as the glossary retarget.
+ * to the active persona, same pattern as the glossary retarget.
  */
 import PageLayout from "../layouts/PageLayout.astro";
 import { getCollection } from "astro:content";
@@ -25,7 +25,7 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <PageLayout
-  title="Not found — fed it for humans"
+  title="Not found, fed it for humans"
   description="The page you were looking for isn't here. The chain map is."
 >
   <main id="main" class="prose-column">

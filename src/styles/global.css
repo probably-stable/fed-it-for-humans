@@ -1,33 +1,33 @@
 @import "tailwindcss";
 
 /* ──────────────────────────────────────────────────────────────────────────
-   fed-it-for-humans — design tokens (v1.1)
-   Aesthetic: warm storybook / Macaulay paper-feeling. Not enterprise-blue.
-   Light + dark mode. Tokens are CSS variables so they're queryable from any
-   utility/component layer.
+   fed-it-for-humans, design tokens (v2.0)
+   Aesthetic: black background, white text, royal purple trim.
+   Single dark theme. No light mode. Tokens are CSS variables so they're
+   queryable from any utility/component layer.
    ────────────────────────────────────────────────────────────────────────── */
 
 :root {
-  /* paper + ink */
-  --color-bg:        #fdf9f3;   /* warm off-white parchment */
-  --color-fg:        #252220;   /* dark warm ink */
-  --color-muted:     #5e574c;   /* dimmed ink — darkened for AA contrast on parchment */
-  --color-card:      #ffffff;   /* slightly brighter cards on the parchment */
-  --color-border:    #e8ddc8;   /* warm tan rule */
+  /* surfaces */
+  --color-bg:        #000000;   /* pure black */
+  --color-fg:        #ffffff;   /* pure white */
+  --color-muted:     #b8b0c8;   /* light gray with a hint of purple, AA on black */
+  --color-card:      #0d0d12;   /* a hair lighter than bg for card elevation */
+  --color-border:    #5a3a8a;   /* royal purple, the trim color */
 
-  /* accents — small, intentional. Darkened from #c2410c → #9a330a for WCAG AA on parchment (~5.5:1) */
-  --color-accent:    #9a330a;   /* deep warm orange (links, the spine of the chain map) */
+  /* accents, royal purple family */
+  --color-accent:    #9d6fff;   /* bright violet for links, accent strokes */
   --color-accent-fg: #ffffff;
-  --color-focus-ring: #c2410c;  /* slightly brighter for focus visibility */
+  --color-focus-ring: #b388ff;  /* even brighter for focus visibility */
 
-  /* callout colors — distinct so the eye knows what kind of beat it's reading */
-  --color-field-bg: #eaf3f3;    /* "In the field" — pale teal */
-  --color-field-fg: #1f3d3d;
-  --color-field-bd: #b9d4d4;
+  /* callout colors, purple-tinted dark variants */
+  --color-field-bg: #14101d;    /* "In the field", deep purple-black */
+  --color-field-fg: #d0c0f0;
+  --color-field-bd: #5a3a8a;
 
-  --color-luck-bg:  #fdf3c4;    /* "GoodLuck" sticky-note — pale yellow */
-  --color-luck-fg:  #4a3f1a;
-  --color-luck-bd:  #e8d680;
+  --color-luck-bg:  #1a0d2a;    /* "GoodLuck" sticky, royal purple deep */
+  --color-luck-fg:  #e8d8ff;
+  --color-luck-bd:  #7a4ec0;
 
   /* typography */
   --font-serif: Georgia, "Times New Roman", ui-serif, serif;
@@ -68,27 +68,8 @@
   --shadow-md: 0 6px 24px -6px rgb(0 0 0 / 0.10);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg:        #1a1814;   /* near-black warm */
-    --color-fg:        #f5efe5;   /* warm bone */
-    --color-muted:     #b8b0a3;   /* lightened for AA contrast on dark */
-    --color-card:      #252220;
-    --color-border:    #3a342b;
-
-    --color-accent:    #fb923c;   /* softer amber in dark — less harsh than pure orange */
-    --color-accent-fg: #1a1814;
-    --color-focus-ring: #fdba74;
-
-    --color-field-bg: #1f2d2d;
-    --color-field-fg: #c8e0e0;
-    --color-field-bd: #2f4a4a;
-
-    --color-luck-bg:  #3a3018;
-    --color-luck-fg:  #f5e6a8;
-    --color-luck-bd:  #5a4a28;
-  }
-}
+/* Single dark theme. prefers-color-scheme is intentionally not branched;
+   the palette is black/white/purple regardless of system preference. */
 
 /* ──────── base ──────── */
 

@@ -2,17 +2,17 @@
 title: "Agency overlays"
 order: 6
 personas: [gary]
-summary: "FedRAMP is itself a 'cloud overlay' on NIST 800-53. Your federal customer agencies layer THEIR own overlays on top. You provide visibility at the FedRAMP layer; the customer handles their agency-specific layer themselves — but their requests still flow through to you."
+summary: "FedRAMP is itself a 'cloud overlay' on NIST 800-53. Your federal customer agencies layer THEIR own overlays on top. You provide visibility at the FedRAMP layer; the customer handles their agency-specific layer themselves, but their requests still flow through to you."
 ---
 
 import AgencyOverlaysCore from "@cores/agency-overlays.mdx";
 
-The overlay layer is where most of the variance in fed IT compliance lives. For you, this matters in two stacked ways: FedRAMP itself is a cloud-tailored overlay on top of NIST 800-53, and your customer agencies then layer THEIR overlays on top of FedRAMP. A federal agency using your service is satisfying a stack — NIST 800-53 → FedRAMP overlay (where you live) → their agency overlay (where they live). The customer-overlay layer is where their additional asks come from.
+The overlay layer is where most of the variance in fed IT compliance lives. For you, this matters in two stacked ways: FedRAMP itself is a cloud-tailored overlay on top of NIST 800-53, and your customer agencies then layer THEIR overlays on top of FedRAMP. A federal agency using your service is satisfying a stack, NIST 800-53 → FedRAMP overlay (where you live) → their agency overlay (where they live). The customer-overlay layer is where their additional asks come from.
 
 <AgencyOverlaysCore />
 
 <YouPanel persona="gary">
-FedRAMP is essentially a "cloud overlay" on NIST 800-53 — it tailors the federal baseline specifically for cloud services. Your federal customer agencies then layer THEIR own agency overlays on top of FedRAMP.
+FedRAMP is essentially a "cloud overlay" on NIST 800-53, it tailors the federal baseline specifically for cloud services. Your federal customer agencies then layer THEIR own agency overlays on top of FedRAMP.
 
 So a federal agency using your service is satisfying a stack: NIST 800-53 → FedRAMP overlay (your service is authorized against this) → their agency overlay (their internal controls layer on top). You provide visibility and evidence at the FedRAMP layer; your customer handles their agency-specific layer themselves.
 
@@ -21,4 +21,4 @@ So a federal agency using your service is satisfying a stack: NIST 800-53 → Fe
 
 ## What's next
 
-The next chapter goes one layer deeper into the implementation surface: **STIGs and CIS Benchmarks**. For your own infrastructure, CIS Benchmarks (and CIS Hardened Images for cloud VMs) are usually the practical default. For FedRAMP-facing parts of your service, STIG or CIS alignment may be expected depending on what your customer agencies require — your 3PAO will tell you which.
+The next chapter goes one layer deeper into the implementation surface: **STIGs and CIS Benchmarks**. For your own infrastructure, CIS Benchmarks (and CIS Hardened Images for cloud VMs) are usually the practical default. For FedRAMP-facing parts of your service, STIG or CIS alignment may be expected depending on what your customer agencies require, your 3PA

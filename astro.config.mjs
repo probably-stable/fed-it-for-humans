@@ -4,6 +4,7 @@ import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import { rehypeBaseUrl } from './src/lib/rehype-base-url.mjs';
 
 // `site` and `base` come from environment variables so the build can be
 // configured per-deployment without editing this file:
@@ -38,7 +39,16 @@ export default defineConfig({
   ...(SITE_URL ? { site: SITE_URL } : {}),
   ...(BASE_PATH ? { base: BASE_PATH } : {}),
 
-  integrations: [react(), mdx(), sitemap()],
+  integrations: [
+    react(),
+    mdx({
+      // Prefix internal /-rooted MDX hrefs with BASE_PATH at build time so
+      // markdown links like [text](/sam/foundation/fisma) resolve correctly
+      // on project-page deploys without relying on a runtime rewriter.
+      rehypePlugins: [[rehypeBaseUrl, BASE_PATH || ""]],
+    }),
+    sitemap(),
+  ],
 
   vite: {
     plugins: [tailwindcss()],

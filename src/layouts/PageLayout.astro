@@ -1,6 +1,6 @@
 ---
 /**
- * PageLayout — base layout. Imports global styles + initializes persona
+ * PageLayout, base layout. Imports global styles + initializes persona
  * visibility script. Wrap every page in this.
  *
  * The FOUC-safe persona attribute is set by an inline head script BEFORE
@@ -13,18 +13,18 @@ import Footer from "../components/Footer.astro";
 interface Props {
   title?: string;
   description?: string;
-  /* og: image — full URL, recommended 1200x630 */
+  /* og: image, full URL, recommended 1200x630 */
   ogImage?: string;
   /* canonical URL of this page; falls back to Astro.url */
   canonical?: string;
-  /* set on persona-routed pages — the URL is authoritative for persona,
+  /* set on persona-routed pages, the URL is authoritative for persona,
      overriding localStorage so shared links render as the right persona */
   pagePersona?: string | null;
 }
 
 const {
   title = "fed it for humans",
-  description = "A visual on-ramp to federal IT compliance — FISMA, NIST, STIGs, CIS, and the rest of the chain. Written for people coming into this world cold.",
+  description = "A visual on-ramp to federal IT compliance, FISMA, NIST, STIGs, CIS, and the rest of the chain. Written for people coming into this world cold.",
   ogImage,
   canonical,
   pagePersona = null,
@@ -42,7 +42,7 @@ const canonicalHref = canonical ?? Astro.url.href;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalHref} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/favicon.svg`} />
 
     {/* open graph + twitter card */}
     <meta property="og:type" content="website" />
@@ -55,7 +55,7 @@ const canonicalHref = canonical ?? Astro.url.href;
     <meta name="twitter:description" content={description} />
     {ogImage && <meta name="twitter:image" content={ogImage} />}
 
-    {/* FOUC-safe persona detection — runs synchronously before body renders.
+    {/* FOUC-safe persona detection, runs synchronously before body renders.
         On persona-routed pages `pagePersona` is set: the URL wins, and the
         choice is persisted so the rest of the session follows it. Elsewhere
         (home, reference chapters) it falls back to localStorage. */}
@@ -67,7 +67,7 @@ const canonicalHref = canonical ?? Astro.url.href;
           try {
             window.localStorage.setItem("fed-it-persona", pagePersona);
           } catch (e) {
-            /* storage disabled — the attribute above still renders correctly */
+            /* storage disabled, the attribute above still renders correctly */
           }
           return;
         }

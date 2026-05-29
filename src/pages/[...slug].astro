@@ -54,7 +54,7 @@ export async function getStaticPaths() {
 const { chapter, prev, next } = Astro.props;
 const { Content } = await render(chapter);
 
-// Persona-routed chapters live under /<persona>/... — the URL declares the
+// Persona-routed chapters live under /<persona>/..., the URL declares the
 // persona. Derive it from the chapter id so the page renders as that persona
 // even on a shared link with empty or mismatched localStorage. Non-persona
 // chapters (reference/*) return null and fall back to localStorage.
@@ -67,7 +67,7 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <PageLayout
-  title={`${chapter.data.title} — fed it for humans`}
+  title={`${chapter.data.title}, fed it for humans`}
   description={chapter.data.summary}
   pagePersona={pagePersona}
 >

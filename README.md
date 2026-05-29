@@ -13,12 +13,12 @@ People new to federal IT compliance who need to understand:
 - What "how to apply this" actually means at the implementation layer
 - The acronyms, in plain English
 
-The site reshapes around five reader personas: Sam (federal contractor), Jordan (healthcare), Gary (tech company with federal customers), Tom (regular private-sector IT), Jarod (wants to break in). Pick one on the home page and you're routed into a chapter set written for your situation — each persona has its own full walk through the material at `/{persona}/...`.
+The site reshapes around five reader personas: Sam (federal contractor), Jordan (healthcare), Gary (tech company with federal customers), Tom (regular private-sector IT), Jarod (wants to break in). Pick one on the home page and you're routed into a chapter set written for your situation, each persona has its own full walk through the material at `/{persona}/...`.
 
 ## What this guide is NOT
 
-- Authoritative legal or compliance advice (the official sources are; this is the orientation read).
-- A deep CMMC / NIST 800-171 / DFARS reference. The defense-contractor fork is intentionally **out of scope** — open for a contributor with direct experience.
+- Authoritative legal or compliance advice. The official sources are the ground truth; this is the orientation read.
+- A deep CMMC / NIST 800-171 / DFARS reference. The defense-contractor fork is intentionally **out of scope**, open for a contributor with direct experience.
 - A guide to classified work. Named for orientation; depth deferred until a cleared practitioner contributes.
 
 See `docs/STYLE_GUIDE.md` for the full editorial discipline and `/reference/about` for scope notes.
@@ -50,8 +50,8 @@ Output goes to `dist/`.
 
 ## Documentation
 
-- `docs/STYLE_GUIDE.md` — The Frame model, persona system, voice and writing rules, hard scope rules. Read this before adding a chapter.
-- `docs/IMAGE_PROMPT_TEMPLATE.md` — master AI image prompt template for storybook-style illustrations.
+- `docs/STYLE_GUIDE.md`, The Frame model, persona system, voice and writing rules, hard scope rules. Read this before adding a chapter.
+- `docs/IMAGE_PROMPT_TEMPLATE.md`, master AI image prompt template for storybook-style illustrations.
 
 ## Project status
 
@@ -80,8 +80,8 @@ Next pass:
 
 The project welcomes contributions, especially:
 
-- Defense contractor (CMMC / NIST 800-171 / DFARS) chapter — open for a practitioner with direct experience
-- Classified work — for cleared practitioners
+- Defense contractor (CMMC / NIST 800-171 / DFARS) chapter, open for a practitioner with direct experience
+- Classified work, for cleared practitioners
 - State / local / tribal government IT compliance
 - Corrections, additions, new personas
 

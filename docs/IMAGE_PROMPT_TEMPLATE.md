@@ -1,15 +1,15 @@
 # Master AI image prompt template
 
-This is the canonical prompt scaffold for every illustration in the project. Lock the style here once; never re-derive per image. When you generate a new illustration, fill in the per-image fields and paste the assembled prompt into your image tool of choice (DALL-E, Midjourney, SDXL, Imagen — model-agnostic).
+This is the canonical prompt scaffold for every illustration in the project. Lock the style here once; never re-derive per image. When you generate a new illustration, fill in the per-image fields and paste the assembled prompt into your image tool of choice (DALL-E, Midjourney, SDXL, Imagen, model-agnostic).
 
 The point of locking the style is consistency. Diffusion models drift across generations. Faces change, line weight wanders, palette slips. The way to fight that is a single style description plus a small set of anchor reference images, used over and over.
 
 ---
 
-## Style lock — do not change without reviewing every existing image
+## Style lock, do not change without reviewing every existing image
 
 ```
-Storybook illustration in the spirit of David Macaulay's "The Way Things Work" —
+Storybook illustration in the spirit of David Macaulay's "The Way Things Work" , 
 hand-drawn-feeling, warm and approachable, sophisticated rather than juvenile.
 Soft cross-hatching for shading. Confident dark-ink linework over gentle warm
 washes. Natural paper texture visible underneath. Slightly imperfect, alive,
@@ -25,15 +25,15 @@ or 1:1 aspect ratio depending on placement (specified per image). Optimized
 for being viewed inline at ~600-800px wide.
 
 Mood: curious, patient, a little wry. Like a senior coworker drawing on a
-napkin to explain something — not a textbook, not a marketing illustration.
+napkin to explain something, not a textbook, not a marketing illustration.
 ```
 
 ---
 
-## Character handling — defaults + fallback
+## Character handling, defaults + fallback
 
 **Default attempt: characters when the scene calls for one.**
-Stylized people — line-drawing faces, simple hands, expressive postures, no
+Stylized people, line-drawing faces, simple hands, expressive postures, no
 hyper-realism. Three-quarter views over straight profile. Diverse cast: vary
 age, ethnicity, body type, presentation across the project. Keep individual
 characters consistent in their reappearances by including a one-line
@@ -51,33 +51,33 @@ enough warmth on its own; the illustrations don't have to.
 
 ---
 
-## Character cards — paste at top of any prompt that uses a character
+## Character cards, paste at top of any prompt that uses a character
 
 Keep these short, distinctive, and stable. Update them only deliberately;
 never improvise.
 
 ```
-SAM — federal contractor, late 20s, casual button-down, glasses, often
+SAM, federal contractor, late 20s, casual button-down, glasses, often
 holding a laptop or coffee. Mixed-race, dark hair, slightly skeptical
 expression. Wears a lanyard with an unreadable ID badge.
 
-JORDAN — healthcare IT lead, 30s, scrubs visible under a cardigan, stethoscope
+JORDAN, healthcare IT lead, 30s, scrubs visible under a cardigan, stethoscope
 draped over shoulder when on the floor. Black hair pulled back, warm brown
 skin, calm focused expression.
 
-GARY — private tech engineer, 30s, hoodie + jeans, headphones around neck.
+GARY, private tech engineer, 30s, hoodie + jeans, headphones around neck.
 Pale, light brown hair, slightly wry. Almost always at a desk with three
 monitors.
 
-TOM — small-business IT, 40s, plaid button-up, beard, often standing up
+TOM, small-business IT, 40s, plaid button-up, beard, often standing up
 fixing something. Olive skin, salt-and-pepper hair, patient expression.
 Carries a small toolbag.
 
-JAROD — career-changer, early 20s, hoodie + backpack, looking at his phone or
+JAROD, career-changer, early 20s, hoodie + backpack, looking at his phone or
 a laptop. Light brown skin, curly hair, bright curious expression.
 ```
 
-You can swap any of these to match what works for your generations — but lock
+You can swap any of these to match what works for your generations, but lock
 them again once you do.
 
 ---
@@ -103,9 +103,9 @@ jumbled letters
 For each illustration, copy this template and fill in the bracketed fields:
 
 ```
-[STYLE LOCK — paste from above, unchanged]
+[STYLE LOCK, paste from above, unchanged]
 
-[CHARACTER CARDS — paste any cards used in this scene]
+[CHARACTER CARDS, paste any cards used in this scene]
 
 SCENE:
 [One paragraph describing what's happening. Concrete and visual. "Sam is
@@ -115,14 +115,14 @@ handwritten script. Behind him, a rack of servers blinks gently."]
 
 LABELS / TEXT IN IMAGE (if any):
 [List any text that should appear, written exactly. Diffusion models are bad
-at text — keep labels short, simple words, ideally 1-3 words per label. If
+at text, keep labels short, simple words, ideally 1-3 words per label. If
 text matters and the model gets it wrong, plan to add the labels in
 post-production with SVG overlays.]
 
 ASPECT RATIO: [9:16 vertical | 1:1 square | 16:9 horizontal]
 EMOTIONAL BEAT: [puzzled | calm explanation | breakthrough | wry | overwhelmed | etc.]
 
-[NEGATIVE PROMPT — paste from above, unchanged]
+[NEGATIVE PROMPT, paste from above, unchanged]
 ```
 
 ---

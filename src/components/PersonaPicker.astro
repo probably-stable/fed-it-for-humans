@@ -1,10 +1,10 @@
 ---
 /**
- * PersonaPicker — the home-page tile selector. Five tiles, one per persona.
+ * PersonaPicker, the home-page tile selector. Five tiles, one per persona.
  * Sets persona state on click; persists to localStorage; the rest of the
  * site reshapes accordingly (CSS + head-script in PageLayout do the work).
  *
- * Each tile is a button (not a link) — picking a persona doesn't navigate;
+ * Each tile is a button (not a link), picking a persona doesn't navigate;
  * it locks the reader's view across every chapter they read after.
  *
  * Active state is communicated visually (border thickening) AND via
@@ -23,25 +23,25 @@ const tiles: Array<{
     persona: "sam",
     oneliner: "I work in federal IT.",
     blurb:
-      "You were hired into a fed contractor for your tech skills. The system already has an ATO, an SSP, POA&Ms — you're trying to figure out what any of it means without looking lost in standup.",
+      "You were hired into a fed contractor for your tech skills. The system already has an ATO, an SSP, POA&Ms, you're trying to figure out what any of it means without looking lost in standup.",
   },
   {
     persona: "jordan",
     oneliner: "I work in healthcare IT.",
     blurb:
-      "HIPAA, HITECH, risk analyses, OCR audits. A parallel framework world that touches federal in places — and where the vocabulary is its own animal.",
+      "HIPAA, HITECH, risk analyses, OCR audits. A parallel framework world that touches federal in places, and where the vocabulary is its own animal.",
   },
   {
     persona: "gary",
     oneliner: "I'm at a tech company that sells to the feds.",
     blurb:
-      "Google, FAANG, FedRAMP'd SaaS. You don't deal with this directly but your company does — and the reasons it does shape your roadmap, your audits, and your release cadence.",
+      "Google, FAANG, FedRAMP'd SaaS. You don't deal with this directly but your company does, and the reasons it does shape your roadmap, your audits, and your release cadence.",
   },
   {
     persona: "tom",
     oneliner: "I'm in regular private-sector IT.",
     blurb:
-      "A regional firm, a small-business shop, a manufacturing IT lead. Zero federal exposure on the job — but the federal world still reaches you through your vendors, your insurance, and the standards you keep getting asked about.",
+      "A regional firm, a small-business shop, a manufacturing IT lead. Zero federal exposure on the job, but the federal world still reaches you through your vendors, your insurance, and the standards you keep getting asked about.",
   },
   {
     persona: "jarod",
@@ -56,7 +56,7 @@ const tiles: Array<{
   <header class="persona-picker-header">
     <h2 class="persona-picker-title">Start where you are.</h2>
     <p class="persona-picker-sub">
-      Pick the one that fits. The site rearranges around your situation —
+      Pick the one that fits. The site rearranges around your situation , 
       what to read first, what to skip, how each concept actually shows up
       in your day.
     </p>
@@ -69,7 +69,7 @@ const tiles: Array<{
         class="persona-tile"
         data-persona-tile={persona}
         aria-pressed="false"
-        aria-label={`Continue as ${PERSONA_SHORT[persona]} — ${PERSONA_LABELS[persona]}`}
+        aria-label={`Continue as ${PERSONA_SHORT[persona]}, ${PERSONA_LABELS[persona]}`}
       >
         <span class="persona-tile-name">{PERSONA_SHORT[persona]}</span>
         <span class="persona-tile-oneliner">{oneliner}</span>
@@ -80,7 +80,7 @@ const tiles: Array<{
   </div>
 
   <p class="persona-picker-foot">
-    You can change your pick anytime. The choice is held in your browser only —
+    You can change your pick anytime. The choice is held in your browser only , 
     nothing is sent anywhere.
   </p>
 </section>

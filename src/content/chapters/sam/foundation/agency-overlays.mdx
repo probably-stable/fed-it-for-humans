@@ -7,18 +7,18 @@ summary: "Where the federal-wide NIST baseline meets the agency you'd actually w
 
 import AgencyOverlaysCore from "@cores/agency-overlays.mdx";
 
-You don't actually implement NIST controls. You implement your agency's *interpretation* of NIST controls. The NIST baseline (SP 800-53 + 800-53B) is federal-government-wide; every agency adds its own overlay on top — additions, removals, modifications, and agency-specific policies. The overlay layer is the most underestimated source of variance in fed IT compliance work, and the reason "fed IT experience" can mean genuinely different things at different agencies.
+You don't actually implement NIST controls. You implement your agency's *interpretation* of NIST controls. The NIST baseline (SP 800-53 + 800-53B) is federal-government-wide; every agency adds its own overlay on top, additions, removals, modifications, and agency-specific policies. The overlay layer is the most underestimated source of variance in fed IT compliance work, and the reason "fed IT experience" can mean genuinely different things at different agencies.
 
 <AgencyOverlaysCore />
 
 <YouPanel persona="sam">
-This is where most of your daily compliance experience actually lives. You're not implementing "NIST controls" — you're implementing your agency's interpretation of NIST controls through the agency overlay. Whatever your agency's overlay document is called (Instruction, Order, Directive, Procedural Requirements), that's the document that shapes your day. DoDI 8510.01 + DISA SRGs if you're DoD-side, ICD 503 if IC, your specific agency's policy if you're civilian.
+This is where most of your daily compliance experience actually lives. You're not implementing "NIST controls", you're implementing your agency's interpretation of NIST controls through the agency overlay. Whatever your agency's overlay document is called (Instruction, Order, Directive, Procedural Requirements), that's the document that shapes your day. DoDI 8510.01 + DISA SRGs if you're DoD-side, ICD 503 if IC, your specific agency's policy if you're civilian.
 
 The overlay is what your SSP actually cites for most of the system-specific work. When the assessor asks "how do you satisfy AC-2 here," the answer is usually "per agency policy section X, which interprets AC-2 as requiring Y for our system type."
 
-**First-week move:** ask where your agency's overlay or info-sec policy document lives, and ask for the version of it that applies to your specific system or location. Read the table of contents. You don't need to read it cover-to-cover — you need to know the shape and where to look up specific controls when they come up.
+**First-week move:** ask where your agency's overlay or info-sec policy document lives, and ask for the version of it that applies to your specific system or location. Read the table of contents. You don't need to read it cover-to-cover, you need to know the shape and where to look up specific controls when they come up.
 </YouPanel>
 
 ## What's next
 
-The next chapter goes one layer deeper into the implementation surface: **STIGs and CIS Benchmarks**. These are the configuration baselines that translate "implement AC-2" into "here are the exact RHEL 9 settings to satisfy that requirement." Where the abstract control language finally meets the actual hardening you'd do on a system.
+The next chapter goes one layer deeper into the implementation surface: **STIGs and CIS Benchmarks**. These are the configuration baselines that translate "implement AC-2" into "here are the exact RHEL 9 settings to satisfy that requirement." Where the abstract control language finally meets the actual hardening
