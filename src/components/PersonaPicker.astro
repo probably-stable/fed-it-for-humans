@@ -105,12 +105,14 @@ const tiles: Array<{
 
   // per-persona entry URLs. Every persona now has a full tailored chapter set
   // under /<persona>/. PersonaPicker routes each persona to their walk's start.
+  // BASE prefix handles GitHub Pages project-page deployment subpaths.
+  const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
   const ENTRY_URL: Record<string, string> = {
-    sam: "/sam/foundation/fisma",
-    jordan: "/jordan/foundation/fisma",
-    gary: "/gary/foundation/fisma",
-    tom: "/tom/foundation/fisma",
-    jarod: "/jarod/foundation/fisma",
+    sam: `${BASE}/sam/foundation/fisma`,
+    jordan: `${BASE}/jordan/foundation/fisma`,
+    gary: `${BASE}/gary/foundation/fisma`,
+    tom: `${BASE}/tom/foundation/fisma`,
+    jarod: `${BASE}/jarod/foundation/fisma`,
   };
 
   document.querySelectorAll<HTMLButtonElement>("[data-persona-tile]").forEach((el) => {

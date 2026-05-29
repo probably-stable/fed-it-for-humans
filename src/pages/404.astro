@@ -75,15 +75,25 @@ const groups = {
 <script>
   import { getPersona, subscribe, type Persona } from "../lib/persona";
 
-  /* Same idempotent pattern as the reference-link retarget in [...slug].astro:
-     authored /sam/ hrefs stay in source as a JS-off fallback; runtime rewrites
-     them to the active persona. */
+  // Same pattern as [...slug].astro's reference retarget. PageLayout's
+  // catch-all may have already base-prefixed the hrefs by the time this
+  // runs; strip when capturing the original, then re-prefix on output.
+  const BASE = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
+
   function retargetSamLinks(active: Persona | null) {
     const persona = active ?? "sam";
-    document.querySelectorAll<HTMLAnchorElement>(".chapter-index a[href^='/sam/']").forEach((a) => {
-      const original = a.dataset.samHref ?? a.getAttribute("href") ?? "";
-      a.dataset.samHref = original;
-      a.setAttribute("href", original.replace(/^\/sam\//, `/${persona}/`));
+    document.querySelectorAll<HTMLAnchorElement>(".chapter-index a[href]").forEach((a) => {
+      let original = a.dataset.samHref;
+      if (!original) {
+        let current = a.getAttribute("href") ?? "";
+        if (BASE && current.startsWith(BASE + "/")) current = current.slice(BASE.length);
+        original = current;
+        a.dataset.samHref = original;
+      }
+      if (original.startsWith("/sam/")) {
+        const rest = original.slice(5);
+        a.setAttribute("href", `${BASE}/${persona}/${rest}`);
+      }
     });
   }
   retargetSamLinks(getPersona());

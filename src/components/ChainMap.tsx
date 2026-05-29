@@ -112,6 +112,10 @@ const EDGES: Edge[] = [
 
 /* ──────── Main component ──────── */
 
+// Base path prefix for deploy subpath (e.g. /fed-it-for-humans on GitHub Pages).
+// Vite resolves import.meta.env.BASE_URL at build time.
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 function readPersonaFromStorage(): Persona {
   try {
     const stored = window.localStorage.getItem("fed-it-persona");
@@ -152,7 +156,7 @@ export default function ChainMap() {
     (_, node) => {
       const data = node.data as ChainNodeData;
       if (!data?.slug) return;
-      window.location.href = `/${persona}/${data.slug}`;
+      window.location.href = `${BASE}/${persona}/${data.slug}`;
     },
     [persona],
   );
@@ -205,7 +209,7 @@ export default function ChainMap() {
         <ul className="visually-hidden">
           {groupedForList.foundation.map((n) => (
             <li key={n.id}>
-              <a href={`/${persona}/${n.data.slug}`}>{n.data.label}</a>
+              <a href={`${BASE}/${persona}/${n.data.slug}`}>{n.data.label}</a>
             </li>
           ))}
         </ul>
@@ -214,7 +218,7 @@ export default function ChainMap() {
         <ul className="visually-hidden">
           {groupedForList.forks.map((n) => (
             <li key={n.id}>
-              <a href={`/${persona}/${n.data.slug}`}>{n.data.label}</a>
+              <a href={`${BASE}/${persona}/${n.data.slug}`}>{n.data.label}</a>
             </li>
           ))}
         </ul>
@@ -223,7 +227,7 @@ export default function ChainMap() {
         <ul className="visually-hidden">
           {groupedForList.parallel.map((n) => (
             <li key={n.id}>
-              <a href={`/${persona}/${n.data.slug}`}>{n.data.label}</a>
+              <a href={`${BASE}/${persona}/${n.data.slug}`}>{n.data.label}</a>
             </li>
           ))}
         </ul>

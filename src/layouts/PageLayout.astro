@@ -93,6 +93,30 @@ const canonicalHref = canonical ?? Astro.url.href;
     <slot />
     <Footer />
 
+    {/* Base-path rewriter — when deployed to a subpath (e.g. GitHub Pages
+        project page at /fed-it-for-humans/), Astro does NOT auto-prefix
+        hardcoded `<a href="/...">` links. This synchronous inline script
+        runs at end-of-body parse, finds all internal absolute hrefs that
+        haven't been base-prefixed, and prefixes them. Idempotent. */}
+    <script is:inline define:vars={{ basePrefix: import.meta.env.BASE_URL || "/" }}>
+      (function () {
+        if (!basePrefix || basePrefix === "/") return;
+        var clean = basePrefix.replace(/\/$/, "");
+        function fix(root) {
+          var anchors = (root || document).querySelectorAll("a[href^='/']");
+          for (var i = 0; i < anchors.length; i++) {
+            var a = anchors[i];
+            var href = a.getAttribute("href");
+            if (!href || href.indexOf(clean + "/") === 0 || href.indexOf("//") === 0) continue;
+            a.setAttribute("href", clean + href);
+          }
+        }
+        fix();
+        // Re-run on next tick to catch React islands that hydrate after first parse.
+        setTimeout(fix, 0);
+      })();
+    </script>
+
     <style>
       .skip-link {
         position: absolute;

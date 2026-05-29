@@ -118,6 +118,12 @@ const pagePersona = PERSONA_PREFIXES.includes(idPrefix) ? idPrefix : null;
 <script>
   import { getPersona, subscribe, PERSONA_SHORT, type Persona } from "../lib/persona";
 
+  // Base prefix for deploy subpath (e.g. /fed-it-for-humans on GH Pages).
+  // The catch-all in PageLayout will have already prefixed all <a href="/...">
+  // by the time this module runs. We strip it back off when capturing the
+  // original /sam/ href, retarget the persona, then re-prefix.
+  const BASE = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
+
   function paint(active: Persona | null) {
     document.querySelectorAll<HTMLElement>(".persona-name").forEach((el) => {
       el.textContent = active ? PERSONA_SHORT[active] : "";
@@ -136,10 +142,19 @@ const pagePersona = PERSONA_PREFIXES.includes(idPrefix) ? idPrefix : null;
     const id = body.dataset.chapterId || "";
     if (!id.startsWith("reference/")) return;
     const persona = active ?? "sam";
-    body.querySelectorAll<HTMLAnchorElement>("a[href^='/sam/']").forEach((a) => {
-      const original = a.dataset.refHref ?? a.getAttribute("href") ?? "";
-      a.dataset.refHref = original;
-      a.setAttribute("href", original.replace(/^\/sam\//, `/${persona}/`));
+    body.querySelectorAll<HTMLAnchorElement>("a[href]").forEach((a) => {
+      // Capture the original (un-base-prefixed) href on first touch.
+      let original = a.dataset.refHref;
+      if (!original) {
+        let current = a.getAttribute("href") ?? "";
+        if (BASE && current.startsWith(BASE + "/")) current = current.slice(BASE.length);
+        original = current;
+        a.dataset.refHref = original;
+      }
+      if (original.startsWith("/sam/")) {
+        const rest = original.slice(5);
+        a.setAttribute("href", `${BASE}/${persona}/${rest}`);
+      }
     });
   }
 
