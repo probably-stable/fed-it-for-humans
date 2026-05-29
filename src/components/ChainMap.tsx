@@ -82,8 +82,8 @@ const NODES: ChainNode[] = [
 
   // forks — branching from agency-overlays out to the right
   { id: "fedramp", type: "chain", position: { x: 720, y: 500 }, data: { label: "FedRAMP", sublabel: "cloud services", slug: "forks/fedramp", variant: "fork" } },
-  { id: "defense-contractor", type: "chain", position: { x: 720, y: 580 }, data: { label: "Defense contractor", sublabel: "out of scope — CMMC / 800-171", slug: "forks/the-forks", variant: "out-of-scope" } },
-  { id: "classified", type: "chain", position: { x: 720, y: 660 }, data: { label: "Classified", sublabel: "out of scope — CNSSI 1253 / ICD 503", slug: "forks/the-forks", variant: "out-of-scope" } },
+  { id: "defense-contractor", type: "chain", position: { x: 720, y: 580 }, data: { label: "Defense contractor", sublabel: "out of scope: CMMC / 800-171", slug: "forks/the-forks", variant: "out-of-scope" } },
+  { id: "classified", type: "chain", position: { x: 720, y: 660 }, data: { label: "Classified", sublabel: "out of scope: CNSSI 1253 / ICD 503", slug: "forks/the-forks", variant: "out-of-scope" } },
 
   // industry standards — parallel column on the left, runs alongside the whole chain
   { id: "industry-standards", type: "chain", position: { x: 60, y: 330 }, data: { label: "Industry standards", sublabel: "SOC 2 · ISO 27001 · PCI · HIPAA · CSF", slug: "forks/industry-standards", variant: "parallel" } },
@@ -313,34 +313,36 @@ export default function ChainMap() {
           stroke-width: 2;
         }
         .chainmap-wrap :global(.react-flow__controls) {
-          background: var(--color-card, #0d0d12);
-          border: 1px solid var(--color-border, #5a3a8a);
-          border-radius: var(--radius, 0.5rem);
-          box-shadow: 0 2px 8px -2px rgb(0 0 0 / 0.5);
+          background: var(--color-card, #0d0d12) !important;
+          border: 1px solid var(--color-border, #5a3a8a) !important;
+          border-radius: var(--radius, 0.5rem) !important;
+          box-shadow: 0 2px 8px -2px rgb(0 0 0 / 0.5) !important;
           overflow: hidden;
         }
         .chainmap-wrap :global(.react-flow__controls-button) {
-          background: var(--color-card, #0d0d12);
-          color: var(--color-fg, #ffffff);
-          border: none;
-          border-bottom: 1px solid var(--color-border, #5a3a8a);
-          width: 28px;
-          height: 28px;
+          background-color: var(--color-card, #0d0d12) !important;
+          color: var(--color-fg, #ffffff) !important;
+          border: none !important;
+          border-bottom: 1px solid var(--color-border, #5a3a8a) !important;
+          width: 28px !important;
+          height: 28px !important;
         }
         .chainmap-wrap :global(.react-flow__controls-button:last-child) {
-          border-bottom: none;
+          border-bottom: none !important;
         }
         .chainmap-wrap :global(.react-flow__controls-button:hover) {
-          background: var(--color-accent, #9d6fff);
-          color: #ffffff;
+          background-color: var(--color-accent, #9d6fff) !important;
         }
-        .chainmap-wrap :global(.react-flow__controls-button svg) {
-          fill: var(--color-fg, #ffffff);
-          max-width: 14px;
-          max-height: 14px;
+        .chainmap-wrap :global(.react-flow__controls-button svg),
+        .chainmap-wrap :global(.react-flow__controls-button svg path),
+        .chainmap-wrap :global(.react-flow__controls-button svg *) {
+          fill: var(--color-fg, #ffffff) !important;
+          color: var(--color-fg, #ffffff) !important;
         }
-        .chainmap-wrap :global(.react-flow__controls-button:hover svg) {
-          fill: #ffffff;
+        .chainmap-wrap :global(.react-flow__controls-button:hover svg),
+        .chainmap-wrap :global(.react-flow__controls-button:hover svg path),
+        .chainmap-wrap :global(.react-flow__controls-button:hover svg *) {
+          fill: #ffffff !important;
         }
         @media (prefers-reduced-motion: reduce) {
           .chainmap-wrap :global(.react-flow__node) {
