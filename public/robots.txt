@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://probably-stable.github.io/fed-it-for-humans/sitemap-index.xml

@@ -174,7 +174,7 @@ images. Use it.
 ## When to break the lock
 
 The style lock exists to fight drift, not to lock out improvement. If an
-illustration genuinely needs a different aesthetic (a chapter set in the IC
+illustration needs a different aesthetic (a chapter set in the IC
 world might want a darker, more shadowed treatment; a chapter on supply
 chain might want a wider, schematic-heavy approach), update this document
 first, regenerate the affected anchor images, then continue.

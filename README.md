@@ -8,7 +8,7 @@ This is the source for a published doc site, not a local-run app. End users read
 
 ## What the site is
 
-An interactive, illustrated guide to how federal IT actually works: FISMA at the top, all the way down to STIGs and CIS Benchmarks at the implementation layer. Written for the person coming into this world cold and trying to figure out how the pieces hang together.
+An interactive, illustrated guide to how federal IT works: FISMA at the top, down to STIGs and CIS Benchmarks at the implementation layer. Written for the person coming into this world cold and trying to figure out how the pieces hang together.
 
 The site reshapes around five reader personas: Sam (federal contractor), Jordan (healthcare), Gary (tech company with federal customers), Tom (regular private-sector IT), Jarod (wants to break in). Pick one on the home page and you're routed into a chapter set written for your situation. Each persona has a full ten-chapter walk through the material at `/{persona}/...`.
 
@@ -22,22 +22,22 @@ Full scope notes at https://probably-stable.github.io/fed-it-for-humans/referenc
 
 ## Repo layout
 
-- `src/cores/` — shared institutional content (W's panels, framing prose, In-the-field callouts). One file per chapter concept.
-- `src/content/chapters/{persona}/{section}/` — per-persona chapter wrappers. Each imports its core and adds persona-specific intro, YouPanel, outro.
-- `src/content/chapters/reference/` — shared reference chapters (glossary, bookshelf, about).
-- `src/components/` — Astro and React components (chain map, frame panels, persona picker, footer).
-- `src/lib/` — persona state, base-URL helpers, rehype plugin.
-- `src/pages/`, `src/layouts/`, `src/styles/` — routing, layout, design tokens.
-- `docs/STYLE_GUIDE.md` — editorial discipline (voice, the Frame model, composition architecture). Read this before adding a chapter.
-- `docs/IMAGE_PROMPT_TEMPLATE.md` — master prompt for the planned storybook illustrations.
-- `.github/workflows/deploy.yml` — GitHub Actions build + deploy to GitHub Pages on every push to `main`.
+- `src/cores/`: shared institutional content (W's panels, framing prose, In-the-field callouts). One file per chapter concept.
+- `src/content/chapters/{persona}/{section}/`: per-persona chapter wrappers. Each imports its core and adds persona-specific intro, YouPanel, outro.
+- `src/content/chapters/reference/`: shared reference chapters (glossary, bookshelf, about).
+- `src/components/`: Astro and React components (chain map, frame panels, persona picker, footer).
+- `src/lib/`: persona state, base-URL helpers, rehype plugin.
+- `src/pages/`, `src/layouts/`, `src/styles/`: routing, layout, design tokens.
+- `docs/STYLE_GUIDE.md`: editorial discipline (voice, the Frame model, composition architecture). Read this before adding a chapter.
+- `docs/IMAGE_PROMPT_TEMPLATE.md`: master prompt for the planned storybook illustrations.
+- `.github/workflows/deploy.yml`: GitHub Actions build + deploy to GitHub Pages on every push to `main`.
 
 ## Hosting
 
 GitHub Pages, deployed by `.github/workflows/deploy.yml`. The workflow reads two repository variables:
 
-- `SITE_URL` — origin where the site is served (e.g. `https://probably-stable.github.io`)
-- `BASE_PATH` — subpath if deployed as a project page (e.g. `/fed-it-for-humans`)
+- `SITE_URL`: origin where the site is served (e.g. `https://probably-stable.github.io`)
+- `BASE_PATH`: subpath if deployed as a project page (e.g. `/fed-it-for-humans`)
 
 `astro.config.mjs` throws on `astro build` if `SITE_URL` is unset, so the workflow fails loudly rather than ship localhost canonical URLs.
 
@@ -62,5 +62,5 @@ Jonathan Villarreal, [linkedin.com/in/keeping-it-rreal](https://linkedin.com/in/
 
 Dual-licensed:
 
-- **Code** (Astro components, TypeScript, build config) — MIT. See [`LICENSE`](LICENSE).
-- **Written content** (chapters, cores, glossary, this README, STYLE_GUIDE, etc.) — CC-BY-SA-4.0. See [`LICENSE-CONTENT`](LICENSE-CONTENT).
+- **Code** (Astro components, TypeScript, build config): MIT. See [`LICENSE`](LICENSE).
+- **Written content** (chapters, cores, glossary, this README, STYLE_GUIDE, etc.): CC-BY-SA-4.0. See [`LICENSE-CONTENT`](LICENSE-CONTENT).

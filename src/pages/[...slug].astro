@@ -71,7 +71,7 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
   description={chapter.data.summary}
   pagePersona={pagePersona}
 >
-  <header class="persona-bar wide-column">
+  <header class="persona-bar wide-column" aria-label="Site header">
     <a href={`${BASE}/`} class="home-link">← fed it for humans</a>
     <span class="persona-status" data-persona-content="any">
       Reading as <strong class="persona-name"></strong> · <a href={`${BASE}/`} class="change-link">change</a>

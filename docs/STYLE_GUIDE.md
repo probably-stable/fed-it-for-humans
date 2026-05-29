@@ -6,9 +6,9 @@ Read this before adding a chapter, writing a panel, or making editorial decision
 
 ## What this doc is for
 
-A visual on-ramp to federal IT compliance for people coming into the world cold. Not a comprehensive reference. Not a textbook. A first read for someone who got dropped into a fed IT job, or is adjacent to one, or is trying to break in, and needs to understand how the pieces hang together, fast enough to not look lost, slow enough to actually understand.
+A visual on-ramp to federal IT compliance for people coming into the world cold. Not a comprehensive reference. Not a textbook. A first read for someone who got dropped into a fed IT job, or is adjacent to one, or is trying to break in, and needs to understand how the pieces hang together, fast enough to not look lost, slow enough to understand.
 
-The audience is the **inheritor**, not the **builder**. Most people enter federal IT by walking into a job that already has an ATO, an SSP, and a stack of POA&Ms. They don't build the compliance program, they inherit it and have to figure out what the senior people are talking about. We write for them. Anyone who's actually setting up a program from scratch gets a wink at the end of their branch (the `<GoodLuck>` end-cap) but the chapters themselves don't address them.
+The audience is the **inheritor**, not the **builder**. Most people enter federal IT by walking into a job that already has an ATO, an SSP, and a stack of POA&Ms. They don't build the compliance program, they inherit it and have to figure out what the senior people are talking about. We write for them. Anyone setting up a program from scratch gets a wink at the end of their branch (the `<GoodLuck>` end-cap) but the chapters themselves don't address them.
 
 ---
 
@@ -34,7 +34,7 @@ Every concept (FISMA, NIST 800-53, SSP, POA&M, STIG, ATO, etc.) is introduced wi
 | Field | What goes here |
 |---|---|
 | **Who** | Who owns it / authors it / is accountable |
-| **What** | What it actually is, one or two sentences |
+| **What** | What it is, one or two sentences |
 | **Where** | Where it sits in the chain. Where you'll encounter it in real life. |
 | **Why** | Why it exists. The motivation, not the mechanism. |
 | **How** | How it gets implemented in practice, STIG XYZ, CIS Benchmark Q, vendor guide. The implementation gap closed. |
@@ -63,7 +63,7 @@ Wrong (assumes the reader knows the distinction the chapter is teaching):
 Right (open enough to teach the reader through the answer):
 > Ask your ISSO how POA&Ms are handled at this shop.
 
-The right version also pays off in the workplace sense, open questions get the senior to actually explain context instead of giving a yes/no, and they don't make the new person look like they're testing their boss.
+The right version also pays off in the workplace sense, open questions get the senior to explain context instead of giving a yes/no, and they don't make the new person look like they're testing their boss.
 
 ### Composition architecture: cores + wrappers
 
@@ -137,7 +137,7 @@ import InTheField from "../components/InTheField.astro";
 <InTheField>...</InTheField>
 ```
 
-This is actually better than relying on provider-cascade, each core documents its own dependencies and renders correctly regardless of who imports it.
+This works better than relying on provider-cascade, each core documents its own dependencies and renders correctly regardless of who imports it.
 
 ### Hard scope rule
 
@@ -147,12 +147,12 @@ This is actually better than relying on provider-cascade, each core documents it
 
 **Don't invent fed-IT in-meeting dialogue or social dynamics.**
 
-If a claim about how people talk in this world isn't grounded in lived experience, don't make it. Speculating that "people in meetings will say X" or "your boss will frame this as Y" invents friction the reader won't actually encounter, and worse, primes them to misread real situations.
+If a claim about how people talk in this world isn't grounded in lived experience, don't make it. Speculating that "people in meetings will say X" or "your boss will frame this as Y" invents friction the reader won't encounter, and worse, primes them to misread real situations.
 
-Wrong (Claude invented this; nobody actually says it):
+Wrong (Claude invented this; nobody says it):
 > When someone in a meeting says "we need to be FISMA compliant," they almost always mean "we need to satisfy the NIST RMF process for our agency."
 
-Right (grounded in what actually happens to new people):
+Right (grounded in what happens to new people):
 > Most people in federal IT don't talk about FISMA day-to-day. You might hear it once from a senior, usually framed as "FISMA is the law, everything else derives from it", and then it sits as background.
 
 When in doubt about whether a workplace-dynamic claim is real, leave it out. The doc loses nothing by not making the claim. It loses credibility when it makes one that isn't true.
