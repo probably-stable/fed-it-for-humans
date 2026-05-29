@@ -7,20 +7,20 @@ summary: "The catalog of security and privacy controls that federal agencies pul
 
 import Nist80053Core from "@cores/nist-800-53.mdx";
 
-If RMF is the lifecycle, SP 800-53 is the toolbox. Every time you hear a control referenced by code, AC-2, AU-12, SI-4, that code lives in this catalog. SP 800-53 is the most-cited NIST publication in fed IT, and it's the document you'll learn to navigate one control at a time.
+If RMF is the lifecycle, SP 800-53 is the toolbox. Every time you hear a control referenced by code (AC-2, AU-12, SI-4), that code lives in this catalog. SP 800-53 is the most-cited NIST publication in fed IT, and it's the document you'll learn to navigate one control at a time.
 
 <Nist80053Core />
 
 <YouPanel persona="sam">
 Most of your day-to-day work eventually points at a control number. When the assessor flags AC-2 deficient, you need to know what AC-2 says. When the SSP describes how SI-4 is implemented for your system, that's monitoring. When CM-6 comes up, that's configuration baselines and you'll be looking at STIGs.
 
-Don't panic at the 300-control list. A real Moderate-baseline SSP at most agencies has 100-150 system-specific controls and the rest inherited from common control providers. Knowing what's yours vs. what's inherited is the first useful map.
+Don't panic at the 300-control list. A real Moderate-baseline SSP at most agencies has 100-150 system-specific controls and the rest inherited from common control providers. Knowing what's yours versus what's inherited is the first useful map.
 
 You won't memorize the catalog. You'll learn the families you touch most (probably AC, AU, CM, IA, SI for a sysadmin) and look up everything else when it comes up.
 
-**First-week move:** ask which baseline your system is on (Low, Moderate, or High), AND which controls are inherited vs. system-specific. The baseline tells you the size of the surface; the inheritance breakdown tells you how much of it is actually yours.
+**First-week move:** ask which baseline your system is on (Low, Moderate, or High), and which controls are inherited vs. system-specific. The baseline tells you the size of the surface; the inheritance breakdown tells you how much of it is actually yours.
 </YouPanel>
 
 ## What's next
 
-The next chapter goes back upward in the chain to **agency overlays**, how individual federal agencies (DoD, DOE, HHS, etc.) tailor the NIST baseline for their specific missions, classifications, and operating contexts. The overlay layer is where the federal-government-wide baseline meets the actual agency you'd work for, and where most of the variance in fed IT comp
+The next chapter goes back upward in the chain to **agency overlays**: how individual federal agencies (DoD, DOE, HHS, etc.) tailor the NIST baseline for their specific missions, classifications, and operating contexts. The overlay layer is where the federal-government-wide baseline meets the actual agency you'd work for, and where most of the variance in fed IT compliance work lives.

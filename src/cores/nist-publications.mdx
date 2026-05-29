@@ -3,7 +3,7 @@ import WPanel from "../components/WPanel.astro";
 <WPanel
   title="NIST publications, FIPS standards + SP 800 series"
   who="Authored by NIST (National Institute of Standards and Technology), part of the U.S. Department of Commerce. The Computer Security Resource Center (CSRC) within NIST owns the security publications. Federal mandate to do this work comes from FISMA and A-130."
-  what="Two families of publications. FIPS (Federal Information Processing Standards) are mandatory federal standards, federal agencies MUST satisfy them. SP 800 series (Special Publications, 800 numbering for the security/privacy series) are guidelines, many are required by reference through FIPS, which makes them effectively mandatory in practice."
+  what="Two families of publications. FIPS (Federal Information Processing Standards) are mandatory federal standards; federal agencies MUST satisfy them. SP 800 series (Special Publications, 800 numbering for the security/privacy series) are guidelines; many are required by reference through FIPS, which makes them effectively mandatory in practice."
   where="Sit below A-130 in the chain. A-130 says 'agencies shall use NIST standards and guidelines.' NIST publications are those standards and guidelines. Below NIST: agency-specific overlays, then STIGs and CIS Benchmarks at the technical configuration layer."
   why="FISMA and A-130 needed someone to write the actual technical specifications. NIST is the federal government's standards body, non-political, technically respected, with a long history of publishing standards used worldwide. The split between FIPS (short, stable, mandatory) and SP 800 (detailed, evolving, often required by reference) keeps the must-haves stable while allowing detailed guidance to be revised more often."
   how="For agencies: categorize the system per FIPS 199, select controls per SP 800-53 + 800-53B baselines, implement via STIGs and CIS Benchmarks at the technical layer, assess per SP 800-53A, authorize per SP 800-37 (the RMF). For sysadmins: you reference these publications as needed, usually you'll be reading SP 800-53 to understand what a specific control means. End-to-end reading is rare; lookup-driven reading is constant."
@@ -26,7 +26,7 @@ That's roughly 10 publications. Your work, no matter where you sit in the chain,
 
 There are also things that look like NIST publications but live outside the FIPS / SP 800 numbering:
 
-- **NIST CSF (Cybersecurity Framework)**, voluntary, widely adopted in the private sector and in healthcare. As of CSF 2.0 (released 2024), six functions: Govern, Identify, Protect, Detect, Respond, Recover. Different shape than 800-53; easier on-ramp for organizations that don't have FISMA pressure. We'll cover it in its own chapter for the personas it actually applies to.
+- **NIST CSF (Cybersecurity Framework).** Voluntary, widely adopted in the private sector and in healthcare. As of CSF 2.0 (released 2024), six functions: Govern, Identify, Protect, Detect, Respond, Recover. Different shape than 800-53; easier on-ramp for organizations that don't have FISMA pressure. We'll cover it in its own chapter for the personas it actually applies to.
 
 ## Specialized frameworks: network, OT, AI
 
@@ -34,8 +34,9 @@ The list above covers the security/privacy core. NIST also publishes specialized
 
 - **NIST SP 800-207, Zero Trust Architecture (ZTA).** The federal reference for Zero Trust, released 2020. Federal agencies are required to align with it via OMB Memorandum M-22-09 (the Federal Zero Trust Strategy, which derives from Executive Order 14028 on cybersecurity). If you hear "we're going Zero Trust" at a federal shop, this is the document setting the bar. Private-sector ZTA programs frequently reference it too.
 
-- **NIST SP 800-82, Guide to Operational Technology (OT) Security.** Most recent revision is rev 3 (2023). Originally focused on Industrial Control Systems (ICS); now covers OT broadly, anything that's "computers controlling physical things." Critical for energy, water, manufacturing, healthcare medical devices, and any federal R&D facility with lab equipment or specialized research infrastructure.
+- **NIST SP 800-82, Guide to Operational Technology (OT) Security.** Most recent revision is rev 3 (2023). Originally focused on Industrial Control Systems (ICS); now covers OT broadly (anything that's "computers controlling physical things"). Critical for energy, water, manufacturing, healthcare medical devices, and any federal R&D facility with lab equipment or specialized research infrastructure.
 
 - **NIST AI Risk Management Framework (AI RMF 1.0).** Released January 2023; companion document NIST AI 600-1 (Generative AI profile) released July 2024. Voluntary framework for managing AI-specific risks. Increasingly referenced as federal agencies and private companies integrate AI tools, and as procurement starts asking "are you AI RMF aligned?"
 
-Each of these will probably get its own chapter eventually, espec
+Each of these will probably get its own chapter eventually, especially as adoption deepens. For now they sit on the edge of what most fed IT practitioners encounter day-to-day, but the trajectory is upward.
+ sit on the edge of what most fed IT practitioners encounter day-to-day, but the trajectory is upward.

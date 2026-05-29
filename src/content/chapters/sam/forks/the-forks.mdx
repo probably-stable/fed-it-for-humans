@@ -7,7 +7,7 @@ summary: "Where the federal-wide chain branches into specialized tracks. Defense
 
 import TheForksCore from "@cores/the-forks.mdx";
 
-The foundation chapters walked the federal-wide chain top to bottom: FISMA → A-130 → NIST → agency overlays → STIGs / CIS. That spine is the same for everyone working in federal IT, civilian or DoD direct.
+The foundation chapters walked the federal-wide chain top to bottom: FISMA, A-130, NIST, agency overlays, STIGs / CIS. That spine is the same for everyone working in federal IT, civilian or DoD direct.
 
 But the chain forks. Different work environments add different specialized tracks on top of (or alongside) the foundation. A defense contractor handling CUI in their own environment has additional rules a federal-direct sysadmin doesn't. A cloud service has FedRAMP overhead the on-prem world doesn't see. Classified work adds whole additional overlay layers. Private-sector security work runs a parallel framework universe that touches federal in places but isn't governed by it.
 
@@ -16,15 +16,15 @@ This chapter is the map. Knowing which fork (or forks) you're on tells you which
 <TheForksCore />
 
 <YouPanel persona="sam">
-You're on the **federal direct** fork, the foundation chain we just walked is your full picture, with your specific agency's overlay (DoD or civilian) layered in.
+You're on the **federal direct** fork. The foundation chain we just walked is your full picture, with your specific agency's overlay (DoD or civilian) layered in.
 
 If your shop runs cloud services for federal customers, you're touching **FedRAMP** through that work. If anything in your shop is classified, the **classified** fork is in play for those systems specifically.
 
 If your employer is a private contractor handling DoD CUI *in their own environment* (not on a DoD-managed system), the **defense contractor** fork (CMMC + 800-171 + DFARS) applies to that environment, but that's out of scope for this guide. For most fed-direct sysadmins, this isn't your situation; for some, it is.
 
-**First-week move:** ask which of these forks your specific system is on. Phrasing it as a yes/no per fork makes the answer concrete: "is this a CMMC-covered environment? Is it FedRAMP-authorized? Is any of this classified?"
+**First-week move:** ask which of these forks your specific system is on. Phrasing it as a yes/no per fork makes the answer concrete: "Is this a CMMC-covered environment? Is it FedRAMP-authorized? Is any of this classified?"
 </YouPanel>
 
 ## What's next
 
-The next chapter covers the **FedRAMP fork** in depth: how cloud services get authorized for federal use, the difference between Agency ATO and JAB authorization paths, the role of 3PAOs, the FedRAMP impact levels (Low / Moderate / High / Li-SaaS), and what continuous monitoring looks like in the FedRAMP context. Useful orientation for you since fed-direct shops use FedRAMP-authorized services even when they don't aut
+The next chapter covers the **FedRAMP fork** in depth: how cloud services get authorized for federal use, the difference between Agency ATO and JAB authorization paths, the role of 3PAOs, the FedRAMP impact levels (Low / Moderate / High / Li-SaaS), and what continuous monitoring looks like in the FedRAMP context. Useful orientation for you since fed-direct shops use FedRAMP-authorized services even when they don't authorize cloud services themselves.

@@ -7,18 +7,19 @@ summary: "How federal agencies tailor the NIST baseline for their specific missi
 
 import AgencyOverlaysCore from "@cores/agency-overlays.mdx";
 
-Federal agencies don't implement NIST controls directly, they implement their agency's *interpretation* of NIST controls, layered as an overlay on top. The overlay is where most of the variance in fed IT compliance work lives. Your hospital doesn't have a formal agency overlay, but the same pattern shows up: HITRUST CSF and similar frameworks essentially layer healthcare-tailored interpretation on top of HIPAA + NIST + ISO.
+Federal agencies don't implement NIST controls directly. They implement their agency's *interpretation* of NIST controls, layered as an overlay on top. The overlay is where most of the variance in fed IT compliance work lives. Your hospital doesn't have a formal agency overlay, but the same pattern shows up: HITRUST CSF and similar frameworks essentially layer healthcare-tailored interpretation on top of HIPAA + NIST + ISO.
 
 <AgencyOverlaysCore />
 
 <YouPanel persona="jordan">
-No formal overlay in the federal sense applies to you. But the *shape*, start with a baseline framework, tailor for your specific environment, shows up in healthcare too.
+No formal overlay in the federal sense applies to you. But the *shape* (start with a baseline framework, tailor for your specific environment) shows up in healthcare too.
 
-HITRUST CSF is the most prominent healthcare-side analog: it's a tailored framework that pulls from NIST + HIPAA + ISO + others, then customizes for healthcare. Some hospitals adopt it as their internal "overlay." Smaller orgs may operate against HHS's general HIPAA guidance directly without a formal tailored framework.
+HITRUST CSF is the most prominent healthcare-side analog: a tailored framework that pulls from NIST + HIPAA + ISO + others, then customizes for healthcare. Some hospitals adopt it as their internal "overlay." Smaller orgs may operate against HHS's general HIPAA guidance directly without a formal tailored framework.
 
 **First-week move:** ask whether your hospital uses HITRUST or a similar tailored framework on top of HIPAA. The answer tells you whether you're working from a structured catalog or building documentation from scratch.
 </YouPanel>
 
 ## What's next
 
-The next chapter goes one layer deeper into the implementation surface: **STIGs and CIS Benchmarks**. These are the configuration baselines that translate abstract control language into specific product settings. Healthcare doesn't formally use STIGs unless you're touching federal data, CIS Benchmarks are the more relevant configuration fram
+The next chapter goes one layer deeper into the implementation surface: **STIGs and CIS Benchmarks**. These are the configuration baselines that translate abstract control language into specific product settings. Healthcare doesn't formally use STIGs unless you're touching federal data; CIS Benchmarks are the more relevant configuration framework for most hospital environments.
+ronments.

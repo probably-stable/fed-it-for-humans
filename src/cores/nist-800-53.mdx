@@ -12,7 +12,7 @@ import InTheField from "../components/InTheField.astro";
 
 ## The 20 control families
 
-Each family has a 2-letter code. Memorizing them is unnecessary, you'll absorb them by use, but recognition helps a lot when reading SSPs and audit findings:
+Each family has a 2-letter code. Memorizing them isn't necessary (you'll absorb them by use) but recognition helps a lot when reading SSPs and audit findings:
 
 - **AC**, Access Control
 - **AT**, Awareness and Training
@@ -53,7 +53,7 @@ Take **AC-2, Account Management**. Stripped to essentials, it reads roughly:
 >
 > *(Plus a Discussion section explaining the why, Related Controls cross-references, References to other NIST docs, and a long list of Control Enhancements like AC-2(1) for automated management, AC-2(3) for disable-when-inactive, AC-2(12) for atypical-usage monitoring, etc.)*
 
-A control isn't a recipe, it's a requirement. AC-2 says "you must manage accounts according to these principles." HOW you manage accounts is left to you (or to the STIG / CIS Benchmark / vendor guide that translates the requirement into specific configuration steps).
+A control isn't a recipe; it's a requirement. AC-2 says "you must manage accounts according to these principles." HOW you manage accounts is left to you (or to the STIG / CIS Benchmark / vendor guide that translates the requirement into specific configuration steps).
 
 Reading 800-53 is mostly lookup. You find the control by code, you read the control statement and discussion, you check the enhancements that apply at your baseline, and you go back to your work. End-to-end reading isn't the move. Reference reading is.
 
@@ -61,23 +61,23 @@ Reading 800-53 is mostly lookup. You find the control by code, you read the cont
 
 SP 800-53B publishes three baselines that map the FIPS 199 categorization to which controls + enhancements apply:
 
-- **Low baseline**, roughly 100 controls. The minimum for low-impact systems.
-- **Moderate baseline**, roughly 300 controls. The most common federal baseline.
-- **High baseline**, roughly 400+ controls. National security and high-impact systems.
+- **Low baseline.** Roughly 100 controls. The minimum for low-impact systems.
+- **Moderate baseline.** Roughly 300 controls. The most common federal baseline.
+- **High baseline.** Roughly 400+ controls. National security and high-impact systems.
 
 There's also a Privacy baseline, applied alongside the security baseline when the system processes PII.
 
-Your starting point is whichever baseline matches your FIPS 199 category. Then your agency tailors, adds controls (overlays), removes controls (with documented justification), or modifies enhancements. The result is the control set that goes into your SSP.
+Your starting point is whichever baseline matches your FIPS 199 category. Then your agency tailors: adds controls (overlays), removes controls (with documented justification), or modifies enhancements. The result is the control set that goes into your SSP.
 
 ## Control inheritance: not all of those controls are yours
 
-Walking into a Moderate-baseline system and seeing ~300 controls in the SSP can feel overwhelming. The reality is more humane: a meaningful fraction of those controls are not implemented by your system at all. They're **inherited** from upstream.
+Walking into a Moderate-baseline system and seeing ~300 controls in the SSP can feel overwhelming. The reality is more humane: a meaningful fraction of those controls aren't implemented by your system at all. They're **inherited** from upstream.
 
 NIST recognizes three kinds of controls in 800-53:
 
-- **System-specific**, your system implements the control directly. You own it, you document it, you maintain it.
-- **Common**, provided by a single upstream entity (your agency, a shared service provider, a parent system) and inherited by many systems. You don't implement it; you reference where it's provided.
-- **Hybrid**, partly common, partly system-specific. AT-2 (Awareness Training) is a classic example: your agency provides the annual security awareness module everyone takes, your system provides the role-specific training for users with privileged access on top.
+- **System-specific.** Your system implements the control directly. You own it, you document it, you maintain it.
+- **Common.** Provided by a single upstream entity (your agency, a shared service provider, a parent system) and inherited by many systems. You don't implement it; you reference where it's provided.
+- **Hybrid.** Partly common, partly system-specific. AT-2 (Awareness Training) is a classic example: your agency provides the annual security awareness module everyone takes, and your system provides the role-specific training for users with privileged access on top.
 
 The entity that provides a common control is called the **Common Control Provider (CCP)**. When you reference an inherited control in your SSP, you're naming that CCP.
 
@@ -92,9 +92,9 @@ Control families that are commonly inherited at the agency level:
 The practical effect: your actual ownership for a Moderate-baseline system might be 100-150 controls, not 300. The rest get documented as "inherited from [CCP name]" with a pointer to where the upstream artifact lives. If your shop has a mature common-controls program, the burden on individual system owners is dramatically lower than the raw control count suggests.
 
 <InTheField>
-The maturity of common-controls programs varies wildly between agencies. Some shops have well-documented common control catalogs that make inheritance easy and obvious, you write your SSP, mark the inherited controls, and move on. Others have nothing formal, and every system owner ends up re-writing the same physical-security or personnel-security narrative from scratch because there's no agency-level artifact to inherit from. If you're walking into a new shop, ask whether the agency has a common controls catalog. The answer changes how much actual control documentation you'll be doing.
+The maturity of common-controls programs varies wildly between agencies. Some shops have well-documented common control catalogs that make inheritance easy and obvious: you write your SSP, mark the inherited controls, and move on. Others have nothing formal, and every system owner ends up rewriting the same physical-security or personnel-security narrative from scratch because there's no agency-level artifact to inherit from. If you're walking into a new shop, ask whether the agency has a common controls catalog. The answer changes how much actual control documentation you'll be doing.
 </InTheField>
 
 <InTheField>
-**Revision 5 vs revision 4**, different shops are at different points in migrating. SP 800-53 rev 5 was released September 2020. Some agencies migrated quickly; others still have legacy programs operating against rev 4 documentation. The control codes mostly carried over but some controls were renumbered, merged, or moved between families, and the privacy controls got integrated rather than living separately. If you're walking into a new shop, ask what revision their controls program is on. If the answer is "rev 4," older program; "rev 5," current; "transitioning" or "mixed" is common.
+**Revision 5 vs revision 4.** Different shops are at different points in migrating. SP 800-53 rev 5 was released September 2020. Some agencies migrated quickly; others still have legacy programs operating against rev 4 documentation. The control codes mostly carried over but some controls were renumbered, merged, or moved between families, and the privacy controls got integrated rather than living separately. If you're walking into a new shop, ask what revision their controls program is on. "Rev 4" means older program; "rev 5" means current; "transitioning" or "mixed" is common.
 </InTheField>

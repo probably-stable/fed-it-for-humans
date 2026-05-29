@@ -5,23 +5,23 @@ import InTheField from "../components/InTheField.astro";
   title="NIST SP 800-37, Risk Management Framework (RMF)"
   who="Authored by NIST. Operated by a cast of agency roles: the System Owner runs the show, the ISSO (Information System Security Officer) handles day-to-day security, the Authorizing Official (AO) makes the formal risk decision at the Authorize step, and an independent assessor (or a 3PAO in FedRAMP) evaluates the controls."
   what="A federal-government lifecycle for managing information system security risk. Seven steps: Prepare, Categorize, Select, Implement, Assess, Authorize, Monitor. Originally six steps; the Prepare step was added in rev 2 (2018) to formalize organizational-level groundwork."
-  where="Inside the NIST publications family, SP 800-37 specifically, but functionally the practical center of fed IT compliance. Most concrete fed IT work happens inside one of the seven steps for some system at some time. Adjacent: the controls catalog (SP 800-53), the categorization standard (FIPS 199), the assessment procedures (SP 800-53A), all of which the RMF references."
+  where="Inside the NIST publications family (SP 800-37 specifically), but functionally the practical center of fed IT compliance. Most concrete fed IT work happens inside one of the seven steps for some system at some time. Adjacent: the controls catalog (SP 800-53), the categorization standard (FIPS 199), the assessment procedures (SP 800-53A), all of which the RMF references."
   why="Pre-RMF, federal authorization was a one-shot certification process. Systems got 'certified and accredited' once, then were essentially out of scope until someone forced re-cert. RMF reframed authorization as a lifecycle: risk management is continuous, ATO is one milestone, monitoring keeps going. The practical effect: instead of a paper exercise every few years, agencies are supposed to be running a continuous risk-management program."
   how="Walk the seven steps in sequence for each system, then loop back into Monitor continuously. The System Security Plan (SSP) is the master document that grows through Categorize / Select / Implement. The POA&M tracks known weaknesses through Assess and beyond. The AO grants the ATO at Authorize. Continuous monitoring then runs for the system's whole life."
 />
 
 The seven steps, plain language:
 
-1. **Prepare**, organizational and system-level groundwork before the lifecycle starts. Identifies stakeholders, common controls, risk tolerance. Added in rev 2 (2018) to formalize what good agencies were already doing.
-2. **Categorize**, apply FIPS 199 to determine the system's impact level (Low, Moderate, High) based on confidentiality, integrity, and availability.
-3. **Select**, pick the appropriate controls from SP 800-53, using the SP 800-53B baseline that matches the FIPS 199 category. Tailor as needed.
-4. **Implement**, actually deploy the controls. This is where STIGs, CIS Benchmarks, and vendor-specific hardening guides get applied.
-5. **Assess**, an independent assessor evaluates whether the controls are working as documented. Findings get recorded.
-6. **Authorize**, the Authorizing Official reviews everything, weighs the risk, and either grants ATO (Authorization to Operate), grants a conditional or interim ATO, or denies. This is the major milestone.
-7. **Monitor**, continuous monitoring kicks in. Ongoing scans, periodic re-assessment, change management, POA&M tracking. The system stays in this step until it's decommissioned.
+1. **Prepare.** Organizational and system-level groundwork before the lifecycle starts. Identifies stakeholders, common controls, risk tolerance. Added in rev 2 (2018) to formalize what good agencies were already doing.
+2. **Categorize.** Apply FIPS 199 to determine the system's impact level (Low, Moderate, High) based on confidentiality, integrity, and availability.
+3. **Select.** Pick the appropriate controls from SP 800-53, using the SP 800-53B baseline that matches the FIPS 199 category. Tailor as needed.
+4. **Implement.** Actually deploy the controls. This is where STIGs, CIS Benchmarks, and vendor-specific hardening guides get applied.
+5. **Assess.** An independent assessor evaluates whether the controls are working as documented. Findings get recorded.
+6. **Authorize.** The Authorizing Official reviews everything, weighs the risk, and either grants ATO (Authorization to Operate), grants a conditional or interim ATO, or denies. This is the major milestone.
+7. **Monitor.** Continuous monitoring kicks in. Ongoing scans, periodic re-assessment, change management, POA&M tracking. The system stays in this step until it's decommissioned.
 
 The whole loop produces three artifacts you'll see referenced constantly: the **System Security Plan (SSP)**, the **Plan of Action and Milestones (POA&M)**, and the **ATO letter** itself.
 
 <InTheField>
-How long an authorized system stays authorized varies by shop. Some agencies still do **fixed-period reauthorization**, three-year cycles where the system goes through a full re-assessment to renew its ATO. Others have moved to **ongoing authorization**, the system stays authorized as long as continuous-monitoring metrics stay green, with no fixed expiration. The model your shop runs determines whether you experience compliance work as a periodic scramble or a steady background load. Worth asking which one your agency uses.
+How long an authorized system stays authorized varies by shop. Some agencies still do **fixed-period reauthorization**: three-year cycles where the system goes through a full re-assessment to renew its ATO. Others have moved to **ongoing authorization**, where the system stays authorized as long as continuous-monitoring metrics stay green, with no fixed expiration. The model your shop runs determines whether you experience compliance work as a periodic scramble or a steady background load. Worth asking which one your agency uses.
 </InTheField>
