@@ -309,8 +309,38 @@ export default function ChainMap() {
           opacity: 0.7;
         }
         .chainmap-wrap :global(.react-flow__edge-path) {
-          stroke: var(--color-accent, #9a330a);
+          stroke: var(--color-accent, #9d6fff);
           stroke-width: 2;
+        }
+        .chainmap-wrap :global(.react-flow__controls) {
+          background: var(--color-card, #0d0d12);
+          border: 1px solid var(--color-border, #5a3a8a);
+          border-radius: var(--radius, 0.5rem);
+          box-shadow: 0 2px 8px -2px rgb(0 0 0 / 0.5);
+          overflow: hidden;
+        }
+        .chainmap-wrap :global(.react-flow__controls-button) {
+          background: var(--color-card, #0d0d12);
+          color: var(--color-fg, #ffffff);
+          border: none;
+          border-bottom: 1px solid var(--color-border, #5a3a8a);
+          width: 28px;
+          height: 28px;
+        }
+        .chainmap-wrap :global(.react-flow__controls-button:last-child) {
+          border-bottom: none;
+        }
+        .chainmap-wrap :global(.react-flow__controls-button:hover) {
+          background: var(--color-accent, #9d6fff);
+          color: #ffffff;
+        }
+        .chainmap-wrap :global(.react-flow__controls-button svg) {
+          fill: var(--color-fg, #ffffff);
+          max-width: 14px;
+          max-height: 14px;
+        }
+        .chainmap-wrap :global(.react-flow__controls-button:hover svg) {
+          fill: #ffffff;
         }
         @media (prefers-reduced-motion: reduce) {
           .chainmap-wrap :global(.react-flow__node) {

@@ -89,7 +89,7 @@ Open issues and pull requests on GitHub.
 
 ## Author
 
-Jonathan Villarreal — [linkedin.com/in/keeping-it-rreal](https://linkedin.com/in/keeping-it-rreal)
+Jonathan Villarreal, [linkedin.com/in/keeping-it-rreal](https://linkedin.com/in/keeping-it-rreal)
 
 ## License
 
