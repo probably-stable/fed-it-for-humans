@@ -61,6 +61,9 @@ const { Content } = await render(chapter);
 const PERSONA_PREFIXES = ["sam", "jordan", "gary", "tom", "jarod"];
 const idPrefix = chapter.id.split("/")[0];
 const pagePersona = PERSONA_PREFIXES.includes(idPrefix) ? idPrefix : null;
+
+// Base path prefix for deploy subpath (e.g. /fed-it-for-humans on GH Pages).
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <PageLayout
@@ -69,12 +72,12 @@ const pagePersona = PERSONA_PREFIXES.includes(idPrefix) ? idPrefix : null;
   pagePersona={pagePersona}
 >
   <header class="persona-bar wide-column">
-    <a href="/" class="home-link">← fed it for humans</a>
+    <a href={`${BASE}/`} class="home-link">← fed it for humans</a>
     <span class="persona-status" data-persona-content="any">
-      Reading as <strong class="persona-name"></strong> · <a href="/" class="change-link">change</a>
+      Reading as <strong class="persona-name"></strong> · <a href={`${BASE}/`} class="change-link">change</a>
     </span>
     <span class="persona-status" data-persona-content="none">
-      <a href="/" class="change-link">Pick a persona →</a>
+      <a href={`${BASE}/`} class="change-link">Pick a persona →</a>
     </span>
   </header>
 
@@ -99,14 +102,14 @@ const pagePersona = PERSONA_PREFIXES.includes(idPrefix) ? idPrefix : null;
 
     <nav class="chapter-nav" aria-label="Chapter navigation">
       {prev ? (
-        <a href={`/${prev.id}`} class="chapter-nav-link prev">
+        <a href={`${BASE}/${prev.id}`} class="chapter-nav-link prev">
           <span class="chapter-nav-label">← Previous</span>
           <span class="chapter-nav-title">{prev.data.title}</span>
         </a>
       ) : <span class="chapter-nav-spacer" />}
 
       {next ? (
-        <a href={`/${next.id}`} class="chapter-nav-link next">
+        <a href={`${BASE}/${next.id}`} class="chapter-nav-link next">
           <span class="chapter-nav-label">Next →</span>
           <span class="chapter-nav-title">{next.data.title}</span>
         </a>

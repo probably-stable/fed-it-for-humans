@@ -20,6 +20,8 @@ const groups = {
   forks: chapters.filter((c) => c.id.startsWith("sam/forks/")),
   reference: chapters.filter((c) => c.id.startsWith("reference/")),
 };
+
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <PageLayout
@@ -35,7 +37,7 @@ const groups = {
         Either way, here's how to get back on the chain.
       </p>
       <p class="cta">
-        <a href="/">← Back to the home page</a>
+        <a href={`${BASE}/`}>← Back to the home page</a>
       </p>
     </header>
 
@@ -46,7 +48,7 @@ const groups = {
         <h3 class="group-heading">Foundation chain</h3>
         <ul>
           {groups.foundation.map((c) => (
-            <li><a href={`/${c.id}`}>{c.data.title}</a></li>
+            <li><a href={`${BASE}/${c.id}`}>{c.data.title}</a></li>
           ))}
         </ul>
       </div>
@@ -55,7 +57,7 @@ const groups = {
         <h3 class="group-heading">Forks</h3>
         <ul>
           {groups.forks.map((c) => (
-            <li><a href={`/${c.id}`}>{c.data.title}</a></li>
+            <li><a href={`${BASE}/${c.id}`}>{c.data.title}</a></li>
           ))}
         </ul>
       </div>
@@ -64,7 +66,7 @@ const groups = {
         <h3 class="group-heading">Reference</h3>
         <ul>
           {groups.reference.map((c) => (
-            <li><a href={`/${c.id}`}>{c.data.title}</a></li>
+            <li><a href={`${BASE}/${c.id}`}>{c.data.title}</a></li>
           ))}
         </ul>
       </div>

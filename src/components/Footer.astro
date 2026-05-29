@@ -5,15 +5,17 @@
  * the 404 page. Included in PageLayout, so it renders on every page.
  *
  * Reference chapters live at fixed /reference/* URLs (not persona-routed),
- * so these links are the same for every reader.
+ * so these links are the same for every reader. BASE prefix handles the
+ * GitHub Pages subpath deployment.
  */
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <footer class="site-footer wide-column">
   <nav class="site-footer-nav" aria-label="Reference">
-    <a href="/reference/glossary">Glossary</a>
-    <a href="/reference/bookshelf">Bookshelf</a>
-    <a href="/reference/about">About</a>
+    <a href={`${BASE}/reference/glossary`}>Glossary</a>
+    <a href={`${BASE}/reference/bookshelf`}>Bookshelf</a>
+    <a href={`${BASE}/reference/about`}>About</a>
   </nav>
   <p class="site-footer-note">A visual on-ramp to federal IT compliance.</p>
 </footer>
